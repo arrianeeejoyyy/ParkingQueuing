@@ -13,5 +13,4 @@ public class PARKINGSYSTEM {
        QN_panel sc = new QN_panel();
        sc.setVisible(true);
     }
-    
 }
