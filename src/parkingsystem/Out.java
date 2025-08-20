@@ -3,40 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package parkingsystem;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.Random;
 
 /**
  *
  * @author Mitsu
  */
-public class FullSlotTicket extends javax.swing.JFrame {
+public class Out extends javax.swing.JFrame {
 
     /**
-     * Creates new form FullSlotTicket
+     * Creates new form Out
      */
-    public FullSlotTicket() {
+    public Out() {
         initComponents();
-        
-         // Get current date and time once
-     // Get current date and time once
-        Date now = new Date();
-
-        // Date format
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date.setText(" " + df.format(now));
-
-        // Time format
-        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss a");
-        Time.setText(" " + tf.format(now));
-        
-        
-        Random rand = new Random();
-        int ticketCode = 1000 + rand.nextInt(9000); // ensures 4 digits (1000–9999)
-    
-// Example: set it on a JLabel (you need a JLabel named TicketCode in your form)
-        TicketNumber.setText("" + ticketCode);
     }
 
     /**
@@ -49,14 +27,11 @@ public class FullSlotTicket extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        TicketNumber = new javax.swing.JLabel();
-        Date = new javax.swing.JLabel();
-        Time = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -65,29 +40,35 @@ public class FullSlotTicket extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 740, 380, 90));
-        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 190, 30));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(510, 680, 380, 80);
 
-        Date.setText("jLabel2");
-        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 230, 30));
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
+        jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(370, 320, 660, 180);
 
-        Time.setText("jLabel3");
-        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 240, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\src\\MAIN_UI\\FULLSLOT_TICKET.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/OUT.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1399, 900);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        WaitQueue wq = new WaitQueue();
-        wq.setVisible(true);
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,29 +87,27 @@ public class FullSlotTicket extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FullSlotTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Out.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FullSlotTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Out.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FullSlotTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Out.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FullSlotTicket.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Out.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FullSlotTicket().setVisible(true);
+                new Out().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Date;
-    private javax.swing.JLabel TicketNumber;
-    private javax.swing.JLabel Time;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
