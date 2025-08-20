@@ -8,12 +8,12 @@ package parkingsystem;
  *
  * @author Airi
  */
-public class START extends javax.swing.JFrame {
+public class ENTER_PLATENUMBER extends javax.swing.JFrame {
 
     /**
-     * Creates new form START
+     * Creates new form ENTER_PLATENUMBER
      */
-    public START() {
+    public ENTER_PLATENUMBER() {
         initComponents();
     }
 
@@ -26,15 +26,15 @@ public class START extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        imgstart = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgstart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/START_FNL.png"))); // NOI18N
-        getContentPane().add(imgstart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTER_PLATENUMBER.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -56,25 +56,25 @@ public class START extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new START().setVisible(true);
+                new ENTER_PLATENUMBER().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel imgstart;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
