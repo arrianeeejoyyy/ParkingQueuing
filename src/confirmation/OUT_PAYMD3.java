@@ -2,22 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package parkingsystem;
-
-import confirmation.OUT_PAYMD;
-import confirmation.OUT_PAYMD2;
-import javax.swing.JOptionPane;
+package confirmation;
 
 /**
  *
  * @author Hezekiah
  */
-public class OUT_PAY extends javax.swing.JFrame {
+public class OUT_PAYMD3 extends javax.swing.JFrame {
 
     /**
-     * Creates new form OUT_PAY
+     * Creates new form OUT_PAYMD3
      */
-    public OUT_PAY() {
+    public OUT_PAYMD3() {
         initComponents();
     }
 
@@ -30,67 +26,34 @@ public class OUT_PAY extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PAY_FIELD = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1400, 900));
-        getContentPane().setLayout(null);
-
-        PAY_FIELD.setBackground(new java.awt.Color(255, 255, 255));
-        PAY_FIELD.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
-        PAY_FIELD.setForeground(new java.awt.Color(0, 0, 0));
-        PAY_FIELD.setBorder(null);
-        PAY_FIELD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PAY_FIELDActionPerformed(evt);
-            }
-        });
-        getContentPane().add(PAY_FIELD);
-        PAY_FIELD.setBounds(350, 330, 690, 190);
-
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(470, 680, 480, 110);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/OUT_PAY.png"))); // NOI18N
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(500, 350));
+        getContentPane().setLayout(null);
+
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        getContentPane().add(jButton2);
+        jButton2.setBounds(160, 230, 190, 50);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CONFIRMATION_UI/OUT_PAYMD3.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1400, 900);
+        jLabel1.setBounds(0, 0, 500, 350);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PAY_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAY_FIELDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PAY_FIELDActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String text= PAY_FIELD.getText().trim();
-        int presyo = 50;
-        
-        if (text.isEmpty()){
-            new OUT_PAYMD().setVisible(true);
-            
-        } else if (!text.matches("\\d+")){
-            PAY_FIELD.setText(" ");
-            new OUT_PAYMD2().setVisible(true);
-          
-        } else {
-            int pay = Integer.parseInt(text);
-            
-            if (pay<presyo){
-                
-            }
-        }
-            
-        // TODO add your handling code here:
+        this.dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -110,27 +73,27 @@ public class OUT_PAY extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OUT_PAY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OUT_PAYMD3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(OUT_PAY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OUT_PAYMD3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(OUT_PAY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OUT_PAYMD3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(OUT_PAY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OUT_PAYMD3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OUT_PAY().setVisible(true);
+                new OUT_PAYMD3().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PAY_FIELD;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
