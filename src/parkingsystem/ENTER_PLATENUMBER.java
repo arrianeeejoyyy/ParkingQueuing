@@ -15,8 +15,42 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
      */
     public ENTER_PLATENUMBER() {
         initComponents();
-    }
+        
+        PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+            String text = PlateNumber.getText();
 
+            if (text.length() >= 8) {
+                evt.consume();
+                return;
+            }
+
+            int pos = text.length();
+
+            if (pos < 3) {
+                if (!Character.isLetter(c)) {
+                    evt.consume(); 
+                } else {
+                    evt.setKeyChar(Character.toUpperCase(c));
+                }
+            }
+            else if (pos == 3) {
+                PlateNumber.setText(text + "-");
+                if (Character.isDigit(c)) {
+                    PlateNumber.setText(PlateNumber.getText() + c);
+                }
+                evt.consume();
+            }
+            else {
+                if (!Character.isDigit(c)) {
+                    evt.consume(); 
+                }
+            }
+        }
+    });
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,7 +91,15 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
-        // TODO add your handling code here:
+         String input = PlateNumber.getText().toUpperCase(); 
+    
+    if (input.length() > 7) {
+        input = input.substring(0, 7);
+        PlateNumber.setText(input);
+        
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Plate number can only have up to 7 characters.");
+    }
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     /**
