@@ -26,25 +26,45 @@ public class Cselectpark extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        no = new javax.swing.JButton();
+        yes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        no.setToolTipText("");
+        no.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        no.setContentAreaFilled(false);
+        no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noActionPerformed(evt);
+            }
+        });
+        getContentPane().add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 190, 50));
+
+        yes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        yes.setContentAreaFilled(false);
+        yes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                yesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(yes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 190, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CONFIRMATION_UI/slotconfirm.png"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noActionPerformed
+
+    private void yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_yesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +103,7 @@ public class Cselectpark extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton no;
+    private javax.swing.JButton yes;
     // End of variables declaration//GEN-END:variables
 }

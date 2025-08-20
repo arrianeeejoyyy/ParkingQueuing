@@ -26,17 +26,86 @@ public class SELECTPARK extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        R02 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        R03 = new javax.swing.JButton();
+        R04 = new javax.swing.JButton();
+        R05 = new javax.swing.JButton();
+        L01 = new javax.swing.JButton();
+        L02 = new javax.swing.JButton();
+        L03 = new javax.swing.JButton();
+        L04 = new javax.swing.JButton();
+        L05 = new javax.swing.JButton();
+        R01 = new javax.swing.JButton();
+        mainIMG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN_FNL.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 308, 100, 20));
+
+        R02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R02.setContentAreaFilled(false);
+        getContentPane().add(R02, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 100, 80));
+
+        back.setToolTipText("");
+        back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        back.setContentAreaFilled(false);
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, 120));
+
+        R03.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R03.setContentAreaFilled(false);
+        getContentPane().add(R03, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 100, 80));
+
+        R04.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R04.setContentAreaFilled(false);
+        getContentPane().add(R04, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 340, 100, 80));
+
+        R05.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R05.setContentAreaFilled(false);
+        getContentPane().add(R05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 340, 100, 80));
+
+        L01.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        L01.setContentAreaFilled(false);
+        L01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L01ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(L01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 600, 100, 80));
+
+        L02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        L02.setContentAreaFilled(false);
+        getContentPane().add(L02, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, 100, 80));
+
+        L03.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        L03.setContentAreaFilled(false);
+        getContentPane().add(L03, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 600, 100, 80));
+
+        L04.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        L04.setContentAreaFilled(false);
+        getContentPane().add(L04, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 600, 100, 80));
+
+        L05.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        L05.setContentAreaFilled(false);
+        getContentPane().add(L05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 600, 100, 80));
+
+        R01.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R01.setContentAreaFilled(false);
+        getContentPane().add(R01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 100, 80));
+
+        mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN_FNL.png"))); // NOI18N
+        getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_L01ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,6 +143,18 @@ public class SELECTPARK extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton L01;
+    private javax.swing.JButton L02;
+    private javax.swing.JButton L03;
+    private javax.swing.JButton L04;
+    private javax.swing.JButton L05;
+    private javax.swing.JButton R01;
+    private javax.swing.JButton R02;
+    private javax.swing.JButton R03;
+    private javax.swing.JButton R04;
+    private javax.swing.JButton R05;
+    private javax.swing.JButton back;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel mainIMG;
     // End of variables declaration//GEN-END:variables
 }

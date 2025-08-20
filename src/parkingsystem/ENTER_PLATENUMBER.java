@@ -26,6 +26,8 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        confirm = new javax.swing.JButton();
+        PlateNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -33,11 +35,30 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        confirm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirm.setBorderPainted(false);
+        confirm.setContentAreaFilled(false);
+        getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 690, 470, 110));
+
+        PlateNumber.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
+        PlateNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        PlateNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        PlateNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlateNumberActionPerformed(evt);
+            }
+        });
+        getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 700, 160));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTER_PLATENUMBER.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlateNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -64,7 +85,7 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        //</editor-fold>a
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -75,6 +96,8 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField PlateNumber;
+    private javax.swing.JButton confirm;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

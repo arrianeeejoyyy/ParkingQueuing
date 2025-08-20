@@ -26,12 +26,16 @@ public class START extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        start = new javax.swing.JButton();
         imgstart = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        start.setContentAreaFilled(false);
+        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 300, 100));
 
         imgstart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/START_FNL.png"))); // NOI18N
         getContentPane().add(imgstart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
@@ -76,5 +80,6 @@ public class START extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgstart;
+    private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 }

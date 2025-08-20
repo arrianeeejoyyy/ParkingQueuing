@@ -26,6 +26,8 @@ public class IN_OUT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        out = new javax.swing.JButton();
+        in1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -33,11 +35,28 @@ public class IN_OUT extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        out.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        out.setContentAreaFilled(false);
+        out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outActionPerformed(evt);
+            }
+        });
+        getContentPane().add(out, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 370, 450, 110));
+
+        in1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        in1.setContentAreaFilled(false);
+        getContentPane().add(in1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN&OUT_FNL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,6 +94,8 @@ public class IN_OUT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton in1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton out;
     // End of variables declaration//GEN-END:variables
 }
