@@ -66,13 +66,17 @@ public class FullSlotTicket extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 740, 380, 90));
-        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, 190, 30));
 
+        TicketNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 190, 50));
+
+        Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Date.setText("jLabel2");
-        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 230, 30));
+        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 230, 30));
 
+        Time.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Time.setText("jLabel3");
-        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 240, 40));
+        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 240, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\src\\MAIN_UI\\FULLSLOT_TICKET.png")); // NOI18N
         jLabel1.setText("jLabel1");
@@ -85,6 +89,7 @@ public class FullSlotTicket extends javax.swing.JFrame {
         // TODO add your handling code here:
         WaitQueue wq = new WaitQueue();
         wq.setVisible(true);
+        this.setVisible(false);
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
