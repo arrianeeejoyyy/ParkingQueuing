@@ -27,12 +27,11 @@ public class IN_OUT extends javax.swing.JFrame {
     private void initComponents() {
 
         out = new javax.swing.JButton();
-        in1 = new javax.swing.JButton();
+        in = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         out.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -44,9 +43,14 @@ public class IN_OUT extends javax.swing.JFrame {
         });
         getContentPane().add(out, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 370, 450, 110));
 
-        in1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        in1.setContentAreaFilled(false);
-        getContentPane().add(in1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
+        in.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        in.setContentAreaFilled(false);
+        in.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inActionPerformed(evt);
+            }
+        });
+        getContentPane().add(in, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN&OUT_FNL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -57,6 +61,12 @@ public class IN_OUT extends javax.swing.JFrame {
     private void outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_outActionPerformed
+
+    private void inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inActionPerformed
+    this.setVisible(false);
+    SELECTPARK selectParkFrame = new SELECTPARK();
+    selectParkFrame.setVisible(true);
+    }//GEN-LAST:event_inActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,7 +104,7 @@ public class IN_OUT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton in1;
+    private javax.swing.JButton in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton out;
     // End of variables declaration//GEN-END:variables
