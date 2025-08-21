@@ -34,13 +34,24 @@ public class START extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         start.setContentAreaFilled(false);
-        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 530, 300, 100));
+        start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startActionPerformed(evt);
+            }
+        });
+        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 300, 100));
 
         imgstart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/START_FNL.png"))); // NOI18N
         getContentPane().add(imgstart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+    this.setVisible(false);
+    IN_OUT inOutFrame = new IN_OUT();
+    inOutFrame.setVisible(true);
+    }//GEN-LAST:event_startActionPerformed
 
     /**
      * @param args the command line arguments
