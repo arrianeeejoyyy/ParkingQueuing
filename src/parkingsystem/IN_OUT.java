@@ -59,7 +59,9 @@ public class IN_OUT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outActionPerformed
-        // TODO add your handling code here:
+    this.setVisible(false);
+    Out outframe = new Out();
+    outframe.setVisible(true);
     }//GEN-LAST:event_outActionPerformed
 
     private void inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inActionPerformed
