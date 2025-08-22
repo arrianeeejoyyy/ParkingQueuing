@@ -38,6 +38,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         L04 = new javax.swing.JButton();
         L05 = new javax.swing.JButton();
         R01 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         mainIMG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,7 +46,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 308, 100, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 311, 100, 20));
 
         R02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R02.setContentAreaFilled(false);
@@ -146,6 +147,9 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             }
         });
         getContentPane().add(R01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 100, 80));
+
+        jLabel4.setText("jLabel3");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 308, 100, 20));
 
         mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN_FNL.png"))); // NOI18N
         getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -274,6 +278,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     private javax.swing.JButton R05;
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel mainIMG;
     // End of variables declaration//GEN-END:variables
 }
