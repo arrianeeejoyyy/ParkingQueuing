@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package parkingsystem;
 
-/**
- *
- * @author Airi
- */
+
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ENTER_PLATENUMBER
-     */
+   
     public P04_ENTER_PLATENUMBER() {
         initComponents();
         

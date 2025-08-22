@@ -33,6 +33,7 @@ public class P01_START extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        start.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         start.setContentAreaFilled(false);
         start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

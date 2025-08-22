@@ -49,23 +49,48 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
 
         R02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R02.setContentAreaFilled(false);
+        R02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R02ActionPerformed(evt);
+            }
+        });
         getContentPane().add(R02, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 100, 80));
 
         back.setToolTipText("");
         back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         back.setContentAreaFilled(false);
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, 120));
 
         R03.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R03.setContentAreaFilled(false);
+        R03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R03ActionPerformed(evt);
+            }
+        });
         getContentPane().add(R03, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, 100, 80));
 
         R04.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R04.setContentAreaFilled(false);
+        R04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R04ActionPerformed(evt);
+            }
+        });
         getContentPane().add(R04, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 340, 100, 80));
 
         R05.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R05.setContentAreaFilled(false);
+        R05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R05ActionPerformed(evt);
+            }
+        });
         getContentPane().add(R05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 340, 100, 80));
 
         L01.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -79,22 +104,47 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
 
         L02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         L02.setContentAreaFilled(false);
+        L02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L02ActionPerformed(evt);
+            }
+        });
         getContentPane().add(L02, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 600, 100, 80));
 
         L03.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         L03.setContentAreaFilled(false);
+        L03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L03ActionPerformed(evt);
+            }
+        });
         getContentPane().add(L03, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 600, 100, 80));
 
         L04.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         L04.setContentAreaFilled(false);
+        L04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L04ActionPerformed(evt);
+            }
+        });
         getContentPane().add(L04, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 600, 100, 80));
 
         L05.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         L05.setContentAreaFilled(false);
+        L05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                L05ActionPerformed(evt);
+            }
+        });
         getContentPane().add(L05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 600, 100, 80));
 
         R01.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R01.setContentAreaFilled(false);
+        R01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R01ActionPerformed(evt);
+            }
+        });
         getContentPane().add(R01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 100, 80));
 
         mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN_FNL.png"))); // NOI18N
@@ -104,8 +154,70 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
-        // TODO add your handling code here:
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
+
+    private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
+       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_R01ActionPerformed
+
+    private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_R02ActionPerformed
+
+    private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_R03ActionPerformed
+
+    private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
+       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_R04ActionPerformed
+
+    private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
+       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_R05ActionPerformed
+
+    private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
+       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_L02ActionPerformed
+
+    private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
+       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_L03ActionPerformed
+
+    private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_L04ActionPerformed
+
+    private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+       P04.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_L05ActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        P02_IN_OUT P02 = new P02_IN_OUT();
+        P02.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
