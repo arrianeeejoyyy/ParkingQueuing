@@ -3,18 +3,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package parkingsystem;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Random;
 
 /**
  *
  * @author Mitsu
  */
-public class WaitQueue extends javax.swing.JFrame {
+public class P13_QN_TICKET extends javax.swing.JFrame {
 
     /**
-     * Creates new form WaitQueue
+     * Creates new form FullSlotTicket
      */
-    public WaitQueue() {
+    public P13_QN_TICKET() {
         initComponents();
+        
+         // Get current date and time once
+     // Get current date and time once
+        Date now = new Date();
+
+        // Date format
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date.setText(" " + df.format(now));
+
+        // Time format
+        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss a");
+        Time.setText(" " + tf.format(now));
+        
+        
+        Random rand = new Random();
+        int ticketCode = 1000 + rand.nextInt(9000); // ensures 4 digits (1000–9999)
+    
+// Example: set it on a JLabel (you need a JLabel named TicketCode in your form)
+        TicketNumber.setText("" + ticketCode);
     }
 
     /**
@@ -27,14 +49,15 @@ public class WaitQueue extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        TicketNumber = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("NEXT");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -42,20 +65,31 @@ public class WaitQueue extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 810, 230, 90));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 740, 380, 90));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\src\\MAIN_UI\\WAIT_QUEUE.png")); // NOI18N
+        TicketNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 190, 50));
+
+        Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Date.setText("jLabel2");
+        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 230, 30));
+
+        Time.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Time.setText("jLabel3");
+        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 240, 40));
+
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1398, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        OUT out = new OUT();
-        out.setVisible(true);
-        this.setAlwaysOnTop(false);
+        P14_WaitQueue wq = new P14_WaitQueue();
+        wq.setVisible(true);
+        this.setVisible(false);
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -76,25 +110,29 @@ public class WaitQueue extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(WaitQueue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(WaitQueue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(WaitQueue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(WaitQueue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new WaitQueue().setVisible(true);
+                new P13_QN_TICKET().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
+    private javax.swing.JLabel TicketNumber;
+    private javax.swing.JLabel Time;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

@@ -8,12 +8,12 @@ package parkingsystem;
  *
  * @author Airi
  */
-public class IN_OUT extends javax.swing.JFrame {
+public class P01_START extends javax.swing.JFrame {
 
     /**
-     * Creates new form IN_OUT
+     * Creates new form START
      */
-    public IN_OUT() {
+    public P01_START() {
         initComponents();
     }
 
@@ -26,49 +26,32 @@ public class IN_OUT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        out = new javax.swing.JButton();
-        in = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        start = new javax.swing.JButton();
+        imgstart = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        out.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        out.setContentAreaFilled(false);
-        out.addActionListener(new java.awt.event.ActionListener() {
+        start.setContentAreaFilled(false);
+        start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outActionPerformed(evt);
+                startActionPerformed(evt);
             }
         });
-        getContentPane().add(out, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 370, 450, 110));
+        getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 300, 100));
 
-        in.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        in.setContentAreaFilled(false);
-        in.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inActionPerformed(evt);
-            }
-        });
-        getContentPane().add(in, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN&OUT_FNL.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        imgstart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/START_FNL.png"))); // NOI18N
+        getContentPane().add(imgstart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outActionPerformed
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
     this.setVisible(false);
-    OUT outframe = new OUT();
-    outframe.setVisible(true);
-    }//GEN-LAST:event_outActionPerformed
-
-    private void inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inActionPerformed
-    this.setVisible(false);
-    SELECTPARK selectParkFrame = new SELECTPARK();
-    selectParkFrame.setVisible(true);
-    }//GEN-LAST:event_inActionPerformed
+    P02_IN_OUT inOutFrame = new P02_IN_OUT();
+    inOutFrame.setVisible(true);
+    }//GEN-LAST:event_startActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,27 +70,33 @@ public class IN_OUT extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P01_START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P01_START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P01_START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P01_START.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IN_OUT().setVisible(true);
+                new P01_START().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton in;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton out;
+    private javax.swing.JLabel imgstart;
+    private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 }

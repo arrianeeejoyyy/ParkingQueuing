@@ -6,7 +6,7 @@ public class PARKINGSYSTEM {
 
   
     public static void main(String[] args) {
-       START lc = new START();
+       P01_START lc = new P01_START();
        lc.setVisible(true);
 
        

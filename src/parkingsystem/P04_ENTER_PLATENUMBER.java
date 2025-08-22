@@ -8,12 +8,12 @@ package parkingsystem;
  *
  * @author Airi
  */
-public class ENTER_PLATENUMBER extends javax.swing.JFrame {
+public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
     /**
      * Creates new form ENTER_PLATENUMBER
      */
-    public ENTER_PLATENUMBER() {
+    public P04_ENTER_PLATENUMBER() {
         initComponents();
         
         PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -66,7 +66,6 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         confirm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -119,20 +118,27 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>a
+        //</editor-fold>a
+        //</editor-fold>a
+        //</editor-fold>a
+        //</editor-fold>a
+        //</editor-fold>a
+        //</editor-fold>a
         //</editor-fold>a
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ENTER_PLATENUMBER().setVisible(true);
+                new P04_ENTER_PLATENUMBER().setVisible(true);
             }
         });
     }
