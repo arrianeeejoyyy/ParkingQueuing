@@ -15,7 +15,7 @@ public class ENTER_PLATENUMBER extends javax.swing.JFrame {
      */
     public ENTER_PLATENUMBER() {
         initComponents();
-        // Jez
+        
         PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
         @Override
         public void keyTyped(java.awt.event.KeyEvent evt) {
