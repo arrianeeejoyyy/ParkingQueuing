@@ -33,7 +33,6 @@ public class WaitQueue extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("NEXT");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -44,7 +43,7 @@ public class WaitQueue extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 810, 230, 90));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\src\\MAIN_UI\\WAIT_QUEUE.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/WAIT_QUEUE.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1398, -1));
 
@@ -53,7 +52,7 @@ public class WaitQueue extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Out out = new Out();
+        OUT out = new OUT();
         out.setVisible(true);
         this.setAlwaysOnTop(false);
         

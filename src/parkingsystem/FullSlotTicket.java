@@ -78,7 +78,7 @@ public class FullSlotTicket extends javax.swing.JFrame {
         Time.setText("jLabel3");
         getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 240, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\src\\MAIN_UI\\FULLSLOT_TICKET.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/FULLSLOT_TICKET.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 

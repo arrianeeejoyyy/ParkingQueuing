@@ -60,7 +60,7 @@ public class IN_OUT extends javax.swing.JFrame {
 
     private void outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outActionPerformed
     this.setVisible(false);
-    Out outframe = new Out();
+    OUT outframe = new OUT();
     outframe.setVisible(true);
     }//GEN-LAST:event_outActionPerformed
 
