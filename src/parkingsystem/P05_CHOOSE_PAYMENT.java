@@ -26,21 +26,75 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        CARD = new javax.swing.JButton();
+        CASH = new javax.swing.JButton();
+        CASHLESS = new javax.swing.JButton();
+        CONFIRM = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CARD.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        CARD.setContentAreaFilled(false);
+        CARD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CARDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CARD, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 230, 340, 350));
+
+        CASH.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        CASH.setContentAreaFilled(false);
+        CASH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CASHActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CASH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 340, 350));
+
+        CASHLESS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        CASHLESS.setContentAreaFilled(false);
+        CASHLESS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CASHLESSActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CASHLESS, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 340, 350));
+
+        CONFIRM.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        CONFIRM.setContentAreaFilled(false);
+        CONFIRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CONFIRMActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CONFIRM, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 730, 470, 100));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/CHOOSE PAYMENT .png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CASHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHActionPerformed
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CASHActionPerformed
+
+    private void CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONFIRMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CONFIRMActionPerformed
+
+    private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CARDActionPerformed
+
+    private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHLESSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CASHLESSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +135,10 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CARD;
+    private javax.swing.JButton CASH;
+    private javax.swing.JButton CASHLESS;
+    private javax.swing.JButton CONFIRM;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
