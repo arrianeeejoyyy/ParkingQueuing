@@ -15,8 +15,74 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
      */
     public P12_ENTERDETAILS_FULLSLOT() {
         initComponents();
-    }
+        // jez' work
+       PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+            String text = PlateNumber.getText();
 
+            if (text.length() >= 8) {
+                evt.consume();
+                return;
+            }
+
+            int pos = text.length();
+
+            if (pos < 3) {
+                if (!Character.isLetter(c)) {
+                    evt.consume();
+                } else {
+                    evt.setKeyChar(Character.toUpperCase(c));
+                }
+            } else if (pos == 3) {
+                PlateNumber.setText(text + "-");
+                if (Character.isDigit(c)) {
+                    PlateNumber.setText(PlateNumber.getText() + c);
+                }
+                evt.consume();
+            } else {
+                if (!Character.isDigit(c)) {
+                    evt.consume();
+                }
+            }
+        }
+    });
+
+    phoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+            String text = phoneNumber.getText();
+
+            if (!Character.isDigit(c)) {
+                evt.consume();
+                return;
+            }
+
+            if (text.length() >= 11) {
+                evt.consume();
+            }
+        }
+    });
+
+    fullName.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+            String text = fullName.getText();
+
+            if (text.length() >= 50) {
+                evt.consume();
+                return;
+            }
+
+            if (!Character.isLetter(c) && c != ' ' && c != '-' && c != '\'') {
+                evt.consume();
+            }
+        }
+    });
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +94,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
         fullName = new javax.swing.JTextField();
         phoneNumber = new javax.swing.JTextField();
-        plateNo = new javax.swing.JTextField();
+        PlateNumber = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -42,12 +108,22 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
         phoneNumber.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         phoneNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        phoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneNumberActionPerformed(evt);
+            }
+        });
         getContentPane().add(phoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 490, 100));
 
-        plateNo.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
-        plateNo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        plateNo.setOpaque(true);
-        getContentPane().add(plateNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 560, 490, 100));
+        PlateNumber.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
+        PlateNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        PlateNumber.setOpaque(true);
+        PlateNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlateNumberActionPerformed(evt);
+            }
+        });
+        getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 560, 490, 100));
 
         confirm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         confirm.setBorderPainted(false);
@@ -69,6 +145,21 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmActionPerformed
+
+    private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
+      String input = PlateNumber.getText().toUpperCase(); 
+    
+    if (input.length() > 7) {
+        input = input.substring(0, 7);
+        PlateNumber.setText(input);
+        
+        
+    }
+    }//GEN-LAST:event_PlateNumberActionPerformed
+
+    private void phoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,10 +197,10 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField PlateNumber;
     private javax.swing.JButton confirm;
     private javax.swing.JTextField fullName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField phoneNumber;
-    private javax.swing.JTextField plateNo;
     // End of variables declaration//GEN-END:variables
 }
