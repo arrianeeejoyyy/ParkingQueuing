@@ -31,10 +31,11 @@ public class P14_WaitQueue extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
+        setMinimumSize(new java.awt.Dimension(1400, 900));
+        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
-        jButton1.setText("NEXT");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -42,9 +43,9 @@ public class P14_WaitQueue extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 810, 230, 90));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 680, 480, 120));
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/WAIT_QUEUE.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1398, -1));
 
         pack();
@@ -55,6 +56,7 @@ public class P14_WaitQueue extends javax.swing.JFrame {
         P15_TY out = new P15_TY();
         out.setVisible(true);
         this.setAlwaysOnTop(false);
+        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
