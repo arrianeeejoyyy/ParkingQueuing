@@ -99,7 +99,17 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-       
+       String plate = PlateNumber.getText().trim();
+
+    if (plate.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please enter a plate number before proceeding.");
+        return;
+    }
+    DATABASE.QUEUE_NUMBER.savePlateNumber(plate);
+
+    this.setVisible(false);
+    P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
+    P05.setVisible(true);
     }//GEN-LAST:event_confirmActionPerformed
 
     /**

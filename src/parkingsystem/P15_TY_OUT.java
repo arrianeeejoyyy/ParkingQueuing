@@ -12,12 +12,12 @@ import javax.swing.Timer;
  *
  * @author Airi
  */
-public class P15_TY extends javax.swing.JFrame {
+public class P15_TY_OUT extends javax.swing.JFrame {
 
     /**
      * Creates new form P15_IN_TY
      */
-    public P15_TY() {
+    public P15_TY_OUT() {
         initComponents();
         
         timer.setRepeats(false); // run only once
@@ -27,10 +27,10 @@ public class P15_TY extends javax.swing.JFrame {
     Timer timer = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Close or hide the JFrame after 3 seconds
-                setVisible(false);   // just hide
-                P17_GIF_ENTRANCE P17 = new P17_GIF_ENTRANCE();
-                P17.setVisible(true);          // fully close the window
+                
+                setVisible(false);  
+                P18_GIF_EXIT P18 = new P18_GIF_EXIT();
+                P18.setVisible(true);          
             }
         });
     @SuppressWarnings("unchecked")
@@ -71,14 +71,18 @@ public class P15_TY extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P15_TY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P15_TY_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P15_TY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P15_TY_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P15_TY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P15_TY_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P15_TY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(P15_TY_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -87,7 +91,7 @@ public class P15_TY extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new P15_TY().setVisible(true);
+                new P15_TY_OUT().setVisible(true);
             }
         });
     }
