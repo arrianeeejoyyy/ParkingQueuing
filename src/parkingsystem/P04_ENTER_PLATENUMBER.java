@@ -1,6 +1,8 @@
 
 package parkingsystem;
 
+import confirmation.P04_JOPT;
+
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
@@ -93,8 +95,10 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         input = input.substring(0, 7);
         PlateNumber.setText(input);
         
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Plate number can only have up to 7 characters.");
+        new P04_JOPT().setVisible(true);
+        
+        //javax.swing.JOptionPane.showMessageDialog(this, 
+            //"Plate number can only have up to 7 characters.");
     }
     }//GEN-LAST:event_PlateNumberActionPerformed
 
