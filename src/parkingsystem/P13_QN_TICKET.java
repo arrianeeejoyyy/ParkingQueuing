@@ -13,30 +13,29 @@ import java.util.Random;
  */
 public class P13_QN_TICKET extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FullSlotTicket
-     */
+   
     public P13_QN_TICKET() {
         initComponents();
         
-         // Get current date and time once
-     // Get current date and time once
+        
         Date now = new Date();
 
         // Date format
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Date.setText(" " + df.format(now));
+        DateLabel.setText("Date:  " + df.format(now));
 
         // Time format
         SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss a");
-        Time.setText(" " + tf.format(now));
+        TimeLabel.setText("Time:  " + tf.format(now));
         
         
         Random rand = new Random();
-        int ticketCode = 1000 + rand.nextInt(9000); // ensures 4 digits (1000–9999)
+        int ticketCode = 100000 + rand.nextInt(900000); 
     
-// Example: set it on a JLabel (you need a JLabel named TicketCode in your form)
-        TicketNumber.setText("" + ticketCode);
+
+        TicketNumber.setText("Ticket Number:  " + ticketCode);
+        
+        LocationLabel.setText("Location: Olaes Subd Noveleta, Cavite");
     }
 
     /**
@@ -50,8 +49,10 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         TicketNumber = new javax.swing.JLabel();
-        Date = new javax.swing.JLabel();
-        Time = new javax.swing.JLabel();
+        DateLabel = new javax.swing.JLabel();
+        TimeLabel = new javax.swing.JLabel();
+        TicketCode = new javax.swing.JLabel();
+        LocationLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,19 +66,28 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 740, 380, 90));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 680, 380, 90));
 
-        TicketNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 190, 50));
+        TicketNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 360, 50));
 
-        Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Date.setText("jLabel2");
-        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 230, 30));
+        DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DateLabel.setText("jLabel2");
+        getContentPane().add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 370, 50));
 
-        Time.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Time.setText("jLabel3");
-        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 240, 40));
+        TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        TimeLabel.setText("jLabel3");
+        getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 290, 50));
 
+        TicketCode.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
+        TicketCode.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(TicketCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 210, 60));
+
+        LocationLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        LocationLabel.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(LocationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 500, 60));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\QUEUING_NUMBER _ FULL.png")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
@@ -86,8 +96,8 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        P14_WaitQueue wq = new P14_WaitQueue();
-        wq.setVisible(true);
+        P14_WaitQueue P14 = new P14_WaitQueue();
+        P14.setVisible(true);
         this.setVisible(false);
         
         
@@ -130,9 +140,11 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Date;
+    private javax.swing.JLabel DateLabel;
+    private javax.swing.JLabel LocationLabel;
+    private javax.swing.JLabel TicketCode;
     private javax.swing.JLabel TicketNumber;
-    private javax.swing.JLabel Time;
+    private javax.swing.JLabel TimeLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
