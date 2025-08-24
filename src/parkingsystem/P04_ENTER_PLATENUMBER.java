@@ -99,7 +99,9 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-       
+       this.setVisible(false);
+       P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
+       P05.setVisible(true); 
     }//GEN-LAST:event_confirmActionPerformed
 
     /**

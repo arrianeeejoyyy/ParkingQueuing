@@ -23,7 +23,8 @@ public class P18_GIF_EXIT extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Close or hide the JFrame after 3 seconds
                 setVisible(false);   // just hide
-                dispose();           // fully close the window
+                P01_START P01 = new P01_START();  
+                P01.setVisible(true);          // fully close the window
             }
         });
         

@@ -19,9 +19,10 @@ public class P17_GIF_ENTRANCE extends javax.swing.JFrame {
      Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Close or hide the JFrame after 3 seconds
-                setVisible(false);   // just hide
-                dispose();           // fully close the window
+                
+                setVisible(false);   
+                P01_START P01 = new P01_START();  
+                P01.setVisible(true);
             }
         });
         
