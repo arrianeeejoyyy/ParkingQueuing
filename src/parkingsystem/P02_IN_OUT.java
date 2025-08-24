@@ -15,13 +15,13 @@ public class P02_IN_OUT extends javax.swing.JFrame {
      */
     public P02_IN_OUT() {
         initComponents();
-       SlotServedNumber.setOpaque(false); 
-SlotServedNumber.setBorder(null); 
-SlotServedNumber.setBackground(new java.awt.Color(0, 0, 0, 0));
-SlotServedNumber.setForeground(new java.awt.Color(0, 0, 0));
-SlotServedNumber.setEditable(false); 
-SlotServedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER); 
-SlotServedNumber.setText(String.valueOf(DATABASE.SlotServed.getCount())); 
+    SlotServedNumber.setOpaque(false); 
+    SlotServedNumber.setBorder(null); 
+    SlotServedNumber.setBackground(new java.awt.Color(0, 0, 0, 0));
+    SlotServedNumber.setForeground(new java.awt.Color(0, 0, 0));
+    SlotServedNumber.setEditable(false); 
+    SlotServedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER); 
+    SlotServedNumber.setText(String.valueOf(DATABASE.SlotServed.getCount())); 
 
 
     }

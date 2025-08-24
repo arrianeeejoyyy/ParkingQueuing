@@ -4,6 +4,8 @@
  */
 package parkingsystem;
 
+import java.util.Map;
+
 /**
  *
  * @author Airi
@@ -15,7 +17,22 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
      */
     public P03_SELECTPARK() {
         initComponents();
+         checkAndDisableSlots();
     }
+    private void checkAndDisableSlots() {
+    Map<String, Boolean> slotStatus = DATABASE.QUEUE_NUMBER.getAllSlots();
+
+    for (Map.Entry<String, Boolean> entry : slotStatus.entrySet()) {
+        if (entry.getValue()) {
+            switch (entry.getKey()) {
+                case "L01": L01.setEnabled(false); break;
+                case "L02": L02.setEnabled(false); break;
+                case "R01": R01.setEnabled(false); break;
+                // repeat for other buttons
+            }
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,63 +171,143 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "L01";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "R01";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "R02";
+
+    if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "R03";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "R04";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_R04ActionPerformed
 
     private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "R05";
+
+    if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_R05ActionPerformed
 
     private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "L02";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_L02ActionPerformed
 
     private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "L03";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_L03ActionPerformed
 
     private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "L04";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+     String slotId = "L05";
+
+     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
+        return;
+    }
+
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_L05ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

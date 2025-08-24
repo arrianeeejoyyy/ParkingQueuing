@@ -4,8 +4,9 @@ package parkingsystem;
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
-   
-    public P04_ENTER_PLATENUMBER() {
+    private String slotId;
+    public P04_ENTER_PLATENUMBER(String slotId) {
+        this.slotId = slotId;
         initComponents();
         
         PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -99,17 +100,20 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-       String plate = PlateNumber.getText().trim();
+    String plate = PlateNumber.getText().trim();
 
     if (plate.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please enter a plate number before proceeding.");
         return;
     }
-    DATABASE.QUEUE_NUMBER.savePlateNumber(plate);
 
+    // Save the plate number (and optionally slot ID) to the database
+    DATABASE.QUEUE_NUMBER.savePlateNumber(plate, slotId); // updated method call
+
+    // Proceed to payment screen
     this.setVisible(false);
-    P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
-    P05.setVisible(true);
+    new P05_CHOOSE_PAYMENT().setVisible(true);
+    
     }//GEN-LAST:event_confirmActionPerformed
 
     /**
@@ -149,7 +153,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new P04_ENTER_PLATENUMBER().setVisible(true);
+                new P04_ENTER_PLATENUMBER("TEST_SLOT").setVisible(true);
             }
         });
     }
