@@ -20,6 +20,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CARD.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
