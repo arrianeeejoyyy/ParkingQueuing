@@ -51,8 +51,11 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TicketNumber = new javax.swing.JLabel();
         DateLabel = new javax.swing.JLabel();
         TimeLabel = new javax.swing.JLabel();
-        TicketCode = new javax.swing.JLabel();
         LocationLabel = new javax.swing.JLabel();
+        subtotal = new javax.swing.JLabel();
+        subtotal1 = new javax.swing.JLabel();
+        subtotal2 = new javax.swing.JLabel();
+        transactionnumber = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,24 +71,40 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 680, 380, 90));
 
-        TicketNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, 360, 50));
+        TicketNumber.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        TicketNumber.setText("Ticket code : ");
+        TicketNumber.setToolTipText("");
+        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 430, 40));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        DateLabel.setText("jLabel2");
-        getContentPane().add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 370, 50));
+        DateLabel.setText("Date:");
+        getContentPane().add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 340, 20));
 
         TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        TimeLabel.setText("jLabel3");
-        getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 290, 50));
-
-        TicketCode.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
-        getContentPane().add(TicketCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 210, 60));
+        TimeLabel.setText("Transaction Number:");
+        getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 290, 20));
 
         LocationLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        getContentPane().add(LocationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 500, 60));
+        LocationLabel.setText("wala na tong loc ");
+        getContentPane().add(LocationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 480, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QUEUING_NUMBER _ FULL.png"))); // NOI18N
+        subtotal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        subtotal.setText("Total Amount: ");
+        getContentPane().add(subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 640, 180, 20));
+
+        subtotal1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        subtotal1.setText("Subtotal:");
+        getContentPane().add(subtotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 290, 20));
+
+        subtotal2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        subtotal2.setText("Net Amount: ");
+        getContentPane().add(subtotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 290, 20));
+
+        transactionnumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        transactionnumber.setText("Time:");
+        getContentPane().add(transactionnumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 290, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QUEUING_NUMBER _ FULL .png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
@@ -140,10 +159,13 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel LocationLabel;
-    private javax.swing.JLabel TicketCode;
     private javax.swing.JLabel TicketNumber;
     private javax.swing.JLabel TimeLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel subtotal;
+    private javax.swing.JLabel subtotal1;
+    private javax.swing.JLabel subtotal2;
+    private javax.swing.JLabel transactionnumber;
     // End of variables declaration//GEN-END:variables
 }
