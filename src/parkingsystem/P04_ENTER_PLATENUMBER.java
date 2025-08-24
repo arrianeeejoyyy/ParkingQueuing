@@ -87,7 +87,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
-         String input = PlateNumber.getText().toUpperCase(); 
+    String input = PlateNumber.getText().toUpperCase(); 
     
     if (input.length() > 7) {
         input = input.substring(0, 7);

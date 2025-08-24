@@ -15,6 +15,15 @@ public class P02_IN_OUT extends javax.swing.JFrame {
      */
     public P02_IN_OUT() {
         initComponents();
+       SlotServedNumber.setOpaque(false); 
+SlotServedNumber.setBorder(null); 
+SlotServedNumber.setBackground(new java.awt.Color(0, 0, 0, 0));
+SlotServedNumber.setForeground(new java.awt.Color(0, 0, 0));
+SlotServedNumber.setEditable(false); 
+SlotServedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER); 
+SlotServedNumber.setText(String.valueOf(DATABASE.SlotServed.getCount())); 
+
+
     }
 
     /**
@@ -28,6 +37,7 @@ public class P02_IN_OUT extends javax.swing.JFrame {
 
         out = new javax.swing.JButton();
         in = new javax.swing.JButton();
+        SlotServedNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +62,16 @@ public class P02_IN_OUT extends javax.swing.JFrame {
         });
         getContentPane().add(in, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
 
+        SlotServedNumber.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
+        SlotServedNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        SlotServedNumber.setCaretColor(new java.awt.Color(255, 255, 255));
+        SlotServedNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SlotServedNumberActionPerformed(evt);
+            }
+        });
+        getContentPane().add(SlotServedNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 640, 210, 70));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN&OUT_FNL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -65,10 +85,16 @@ public class P02_IN_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_outActionPerformed
 
     private void inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inActionPerformed
+     DATABASE.SlotServed.incrementCount();
+    SlotServedNumber.setText(String.valueOf(DATABASE.SlotServed.getCount()));
     this.setVisible(false);
     P03_SELECTPARK selectParkFrame = new P03_SELECTPARK();
     selectParkFrame.setVisible(true);
     }//GEN-LAST:event_inActionPerformed
+
+    private void SlotServedNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SlotServedNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SlotServedNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,6 +139,7 @@ public class P02_IN_OUT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField SlotServedNumber;
     private javax.swing.JButton in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton out;
