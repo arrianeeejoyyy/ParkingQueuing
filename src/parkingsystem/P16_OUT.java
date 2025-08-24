@@ -19,21 +19,10 @@ public class P16_OUT extends javax.swing.JFrame {
      */
     public P16_OUT() {
         initComponents();
-        
-        timer.setRepeats(false); // run only once
-        timer.start();
+       
     }
 
-    Timer timer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Close or hide the JFrame after 3 seconds
-                setVisible(false);   // just hide
-                P18_GIF_EXIT P18 = new P18_GIF_EXIT();
-                P18.setVisible(true);
-                // fully close the window
-            }
-        });
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -65,9 +54,10 @@ public class P16_OUT extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 90, 140, 120));
 
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 670, 170));
+        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 680, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/OUT.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -77,12 +67,14 @@ public class P16_OUT extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setVisible(false);   
-        P01_START P01 = new P01_START();  
+        P02_IN_OUT P01 = new P02_IN_OUT();  
         P01.setVisible(true);  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
+        setVisible(false);   
+        P15_TY_OUT P15 = new P15_TY_OUT();  
+        P15.setVisible(true);  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -6,38 +6,42 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 
-public class P08 extends javax.swing.JFrame {
+public class P15_TY_IN extends javax.swing.JFrame {
 
-   
-    public P08() {
+    
+    public P15_TY_IN() {
         initComponents();
         
-         timer.setRepeats(false); // run only once
+        timer.setRepeats(false); // run only once
         timer.start();
     }
-Timer timer = new Timer(4000, new ActionListener() {
+
+    Timer timer = new Timer(2000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Close or hide the JFrame after 3 seconds
                 setVisible(false);   // just hide
-                P10_RECEIPT P10 = new P10_RECEIPT();
-                P10.setVisible(true);         // fully close the window
+                P17_GIF_ENTRANCE P17 = new P17_GIF_ENTRANCE();
+                P17.setVisible(true);          // fully close the window
             }
         });
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GIF/SCAN QR.gif"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -47,12 +51,11 @@ Timer timer = new Timer(4000, new ActionListener() {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new P08().setVisible(true);
+                new P15_TY_IN().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
