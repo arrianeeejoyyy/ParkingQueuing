@@ -82,8 +82,8 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }//GEN-LAST:event_CARDActionPerformed
 
     private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHLESSActionPerformed
-        P08 p8 = new P08();
-        p8.setVisible(true);
+        P07_QR_FOR_CASHLESS p7 = new P07_QR_FOR_CASHLESS();
+        p7.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_CASHLESSActionPerformed
 

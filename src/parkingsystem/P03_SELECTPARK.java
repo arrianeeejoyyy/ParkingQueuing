@@ -44,9 +44,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 311, 100, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 100, 20));
 
         R02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R02.setContentAreaFilled(false);
@@ -147,11 +145,9 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             }
         });
         getContentPane().add(R01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 100, 80));
-
-        jLabel4.setText("jLabel3");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 308, 100, 20));
 
-        mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN_FNL.png"))); // NOI18N
+        mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/SELECT_PARK_FNL.png"))); // NOI18N
         getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

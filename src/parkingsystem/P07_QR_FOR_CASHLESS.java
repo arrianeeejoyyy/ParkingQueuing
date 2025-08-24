@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package parkingsystem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -15,7 +18,18 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
      */
     public P07_QR_FOR_CASHLESS() {
         initComponents();
+        
+        timer.setRepeats(false);
+        timer.start();
     }
+     Timer timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);   
+                P08 p8 = new P08();
+                p8.setVisible(true);
+            }
+        });
 
     /**
      * This method is called from within the constructor to initialize the form.
