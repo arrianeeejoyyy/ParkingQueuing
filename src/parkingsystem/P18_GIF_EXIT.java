@@ -1,7 +1,11 @@
 
 package parkingsystem;
 
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
+
+
 
 
 public class P18_GIF_EXIT extends javax.swing.JFrame {
@@ -10,10 +14,19 @@ public class P18_GIF_EXIT extends javax.swing.JFrame {
     public P18_GIF_EXIT() {
         initComponents();
         
-        
+         timer.setRepeats(false); // run only once
+        timer.start();
     }
 
-   
+   Timer timer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Close or hide the JFrame after 3 seconds
+                setVisible(false);   // just hide
+                dispose();           // fully close the window
+            }
+        });
+        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

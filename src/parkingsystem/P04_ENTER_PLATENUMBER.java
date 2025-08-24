@@ -63,6 +63,11 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         confirm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         confirm.setBorderPainted(false);
         confirm.setContentAreaFilled(false);
+        confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmActionPerformed(evt);
+            }
+        });
         getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 690, 470, 110));
 
         PlateNumber.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
@@ -92,6 +97,10 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             "Plate number can only have up to 7 characters.");
     }
     }//GEN-LAST:event_PlateNumberActionPerformed
+
+    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
+       
+    }//GEN-LAST:event_confirmActionPerformed
 
     /**
      * @param args the command line arguments
