@@ -100,17 +100,17 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-    String plate = PlateNumber.getText().trim();
+     String plate = PlateNumber.getText().trim();
 
     if (plate.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please enter a plate number before proceeding.");
         return;
     }
 
-    // Save the plate number (and optionally slot ID) to the database
-    DATABASE.QUEUE_NUMBER.savePlateNumber(plate, slotId); // updated method call
+    // Save the plate and mark slot as taken
+    DATABASE.QUEUE_NUMBER.savePlateNumber(plate, slotId);
+    DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
 
-    // Proceed to payment screen
     this.setVisible(false);
     new P05_CHOOSE_PAYMENT().setVisible(true);
     

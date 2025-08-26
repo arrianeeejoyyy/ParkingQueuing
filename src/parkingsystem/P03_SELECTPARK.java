@@ -179,21 +179,21 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
-     String slotId = "R01";
+     String slotId = "R02";
 
-     if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
+    if (DATABASE.QUEUE_NUMBER.isSlotTaken(slotId)) {
         javax.swing.JOptionPane.showMessageDialog(this, "This slot is already taken. Please choose another one.");
         return;
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
@@ -207,7 +207,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_R02ActionPerformed
@@ -221,7 +221,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_R03ActionPerformed
@@ -235,7 +235,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId);
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_R04ActionPerformed
@@ -249,7 +249,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_R05ActionPerformed
@@ -263,7 +263,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId);
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_L02ActionPerformed
@@ -277,7 +277,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_L03ActionPerformed
@@ -291,7 +291,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_L04ActionPerformed
@@ -305,7 +305,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }
 
     DATABASE.QUEUE_NUMBER.markSlotAsTaken(slotId);
-    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); // pass slotId
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER(slotId); 
     P04.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_L05ActionPerformed

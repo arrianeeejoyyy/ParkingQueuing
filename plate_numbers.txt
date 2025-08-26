@@ -1,0 +1,3 @@
+Plate: ASD-123 | Slot: R01 | Time: 2025-08-24 23:31:18
+Plate: ASA-3222 | Slot: R02 | Time: 2025-08-24 23:32:01
+Plate: SAS-1231 | Slot: L01 | Time: 2025-08-24 23:35:26
