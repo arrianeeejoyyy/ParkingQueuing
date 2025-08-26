@@ -6,10 +6,22 @@ import java.util.Random;
 
 
 public class P13_QN_TICKET extends javax.swing.JFrame {
+    
+     private String paymentType;
+    
+    private static int counter = 0;
+
+    // Method to generate Transaction Number
+    private String generateTransactionNumber() {
+        counter++; // Increment for each transaction
+
+        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        return String.format("PARK-%s-%04d", date, counter);
+    }
 
    
     public P13_QN_TICKET() {
-        initComponents();
+        initComponents();     
         
          
         
@@ -27,6 +39,9 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         Random rand = new Random();
         int ticketCode = 100000 + rand.nextInt(900000); 
         
+        String trxNumber = generateTransactionNumber();
+        transactionNumber.setText("Transaction No: " + trxNumber);
+        
 
     
 
@@ -37,6 +52,8 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         VatLabel.setText("VAT (12%): ₱5.36");
         DiscountLabel.setText("Discount: ₱0.00");
         DiscTypeLabel.setText("Discount Type: None");
+        
+        PaymentTypeLabel.setText("Payment Type: " + paymentType);
         
         
        
@@ -58,6 +75,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         VatLabel = new javax.swing.JLabel();
         DiscountLabel = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
+        PaymentTypeLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,7 +114,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         transactionNumber.setText("Transaction Number:");
-        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 290, 20));
+        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 400, 20));
 
         VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatLabel.setText("VAT:");
@@ -109,6 +127,10 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscTypeLabel.setText("Discount Type:");
         getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 370, -1));
+
+        PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        PaymentTypeLabel.setText("Payment Type:");
+        getContentPane().add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 200, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\QUEUING_NUMBER _ FULL .png")); // NOI18N
         jLabel1.setText("jLabel1");
@@ -166,6 +188,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DiscTypeLabel;
     private javax.swing.JLabel DiscountLabel;
+    private javax.swing.JLabel PaymentTypeLabel;
     private javax.swing.JLabel TicketNumber;
     private javax.swing.JLabel TimeLabel;
     private javax.swing.JLabel VatLabel;
