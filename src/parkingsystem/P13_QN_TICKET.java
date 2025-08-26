@@ -11,6 +11,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     public P13_QN_TICKET() {
         initComponents();
         
+         
         
         Date now = new Date();
 
@@ -25,13 +26,23 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         
         Random rand = new Random();
         int ticketCode = 100000 + rand.nextInt(900000); 
+        
+
     
 
         TicketNumber.setText(" " + ticketCode);
         
+        subtotal.setText("Total Amount: ₱50.00");
+        subtotal1.setText("Subtotal: ₱44.64");    
+        VatLabel.setText("VAT (12%): ₱5.36");
+        DiscountLabel.setText("Discount: ₱0.00");
+        DiscTypeLabel.setText("Discount Type: None");
+        
+        
        
     }
-
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -43,8 +54,10 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TimeLabel = new javax.swing.JLabel();
         subtotal = new javax.swing.JLabel();
         subtotal1 = new javax.swing.JLabel();
-        subtotal2 = new javax.swing.JLabel();
-        transactionnumber = new javax.swing.JLabel();
+        transactionNumber = new javax.swing.JLabel();
+        VatLabel = new javax.swing.JLabel();
+        DiscountLabel = new javax.swing.JLabel();
+        DiscTypeLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,21 +88,29 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         subtotal.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         subtotal.setText("Total Amount: ");
-        getContentPane().add(subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 180, 20));
+        getContentPane().add(subtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 300, 20));
 
         subtotal1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         subtotal1.setText("Subtotal:");
-        getContentPane().add(subtotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 290, 20));
+        getContentPane().add(subtotal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 290, 20));
 
-        subtotal2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        subtotal2.setText("Net Amount: ");
-        getContentPane().add(subtotal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, 290, 20));
+        transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        transactionNumber.setText("Transaction Number:");
+        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 290, 20));
 
-        transactionnumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        transactionnumber.setText("Transaction Number:");
-        getContentPane().add(transactionnumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 290, 20));
+        VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        VatLabel.setText("VAT:");
+        getContentPane().add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 210, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QUEUING_NUMBER _ FULL .png"))); // NOI18N
+        DiscountLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DiscountLabel.setText("DISCOUNT:");
+        getContentPane().add(DiscountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 350, -1));
+
+        DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DiscTypeLabel.setText("Discount Type:");
+        getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, 370, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\QUEUING_NUMBER _ FULL .png")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
@@ -143,13 +164,15 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DateLabel;
+    private javax.swing.JLabel DiscTypeLabel;
+    private javax.swing.JLabel DiscountLabel;
     private javax.swing.JLabel TicketNumber;
     private javax.swing.JLabel TimeLabel;
+    private javax.swing.JLabel VatLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel subtotal;
     private javax.swing.JLabel subtotal1;
-    private javax.swing.JLabel subtotal2;
-    private javax.swing.JLabel transactionnumber;
+    private javax.swing.JLabel transactionNumber;
     // End of variables declaration//GEN-END:variables
 }
