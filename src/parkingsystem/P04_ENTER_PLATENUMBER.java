@@ -1,6 +1,9 @@
 
 package parkingsystem;
 
+import javax.swing.JOptionPane;
+import parkingsystem.P03_SELECTPARK.ParkingData;
+
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
@@ -80,7 +83,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         });
         getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 700, 160));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTER_PLATENUMBER.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\ENTER_PLATENUMBER.png")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();
@@ -99,7 +102,23 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-       this.setVisible(false);
+        String plate = PlateNumber.getText().trim();
+        if (plate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a plate number!");
+            return;
+        }
+
+        String slot = ParkingData.selectedSlot;
+        if (slot != null) {
+        // save plate
+            ParkingData.occupiedSlots.put(slot, plate);
+            
+            QN_panel.getInstance().addParkingRow(slot, plate);
+
+     
+        }
+
+        this.setVisible(false);
        P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
        P05.setVisible(true); 
     }//GEN-LAST:event_confirmActionPerformed
