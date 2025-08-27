@@ -67,7 +67,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/MAIN_UI/IN&amp;OUT_FNL.png"/>
+          <Image iconType="2" name="C:\Users\Mitsu\OneDrive\Documents\NetBeansProjects\ParkingQueuing\ParkingQueuing\src\MAIN_UI\IN&amp;OUT_FNL.png"/>
         </Property>
       </Properties>
       <Constraints>

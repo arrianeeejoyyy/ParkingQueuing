@@ -42,7 +42,7 @@ public class P01_START extends javax.swing.JFrame {
         });
         getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 300, 100));
 
-        imgstart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/START_FNL.png"))); // NOI18N
+        imgstart.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\START_FNL.png")); // NOI18N
         getContentPane().add(imgstart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();

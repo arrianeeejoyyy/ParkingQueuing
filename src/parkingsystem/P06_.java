@@ -43,7 +43,7 @@ public class P06_ extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GIF/MONEY.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\GIF\\MONEY.gif")); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

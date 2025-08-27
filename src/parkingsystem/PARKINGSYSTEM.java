@@ -10,7 +10,7 @@ public class PARKINGSYSTEM {
        lc.setVisible(true);
 
        
-       QN_panel sc = new QN_panel();
-       sc.setVisible(true);
+       QN_panel.getInstance().setVisible(true);
+       
     }
 }

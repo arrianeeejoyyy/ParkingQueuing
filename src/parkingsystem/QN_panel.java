@@ -4,18 +4,44 @@
  */
 package parkingsystem;
 
+
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Airi
  */
 public class QN_panel extends javax.swing.JFrame {
-
+      
+  
+    
     /**
      * Creates new form QN_panel
+     * 
+     * 
      */
-    public QN_panel() {
+
+  
+    private static QN_panel instance;   // singleton instance
+    public static DefaultTableModel model;
+    
+    private QN_panel() {
         initComponents();
+          model = (DefaultTableModel) jTable1.getModel();
     }
+    
+    
+    public static QN_panel getInstance() {
+        if (instance == null) {
+            instance = new QN_panel();
+        }
+        return instance;
+    }
+    
+     public void addParkingRow(String slot, String plate) {
+        model.addRow(new Object[]{slot, plate});
+    }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,29 +61,42 @@ public class QN_panel extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(1500, 150, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Slot", "Plate Number", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 310, 340));
 
-        PIC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/2ND UI DATASTRUC.png"))); // NOI18N
+        PIC.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\SECOND_UI\\2ND UI DATASTRUC.png")); // NOI18N
         getContentPane().add(PIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
