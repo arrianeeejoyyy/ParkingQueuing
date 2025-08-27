@@ -103,9 +103,10 @@ public class P16_OUT extends javax.swing.JFrame {
             return;
         } 
         if (ParkingData.releaseSlot(slot, enteredCode)){
-             setVisible(false);   
+             
             P15_TY_OUT P15 = new P15_TY_OUT();  
-            P15.setVisible(true);  
+            P15.setVisible(true);
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "invalid.");
 

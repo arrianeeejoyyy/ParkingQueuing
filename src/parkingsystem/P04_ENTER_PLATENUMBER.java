@@ -111,7 +111,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         String slot = ParkingData.selectedSlot;
         if (slot != null) {
         // save plate
-            ParkingData.occupiedSlots.put(slot, plate);
+            //ParkingData.occupiedSlots.put(slot, plate);
         }
 
         this.dispose();
