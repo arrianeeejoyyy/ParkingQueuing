@@ -6,7 +6,11 @@ package parkingsystem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import parkingsystem.P03_SELECTPARK.ParkingData;
+import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
+
 
 /**
  *
@@ -21,6 +25,15 @@ public class P16_OUT extends javax.swing.JFrame {
         initComponents();
        
     }
+    public static boolean releaseSlot(String slot, String code) {
+        if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
+            occupiedSlots.remove(slot); 
+            return true; 
+        }
+        return false; 
+    }
+
+    
 
   
     @SuppressWarnings("unchecked")
@@ -82,9 +95,22 @@ public class P16_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);   
-        P15_TY_OUT P15 = new P15_TY_OUT();  
-        P15.setVisible(true);  
+        String slot = ParkingData.selectedSlot; 
+        String enteredCode = jTextField1.getText().trim(); 
+        
+        if (enteredCode.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
+            return;
+        } 
+        if (ParkingData.releaseSlot(slot, enteredCode)){
+             setVisible(false);   
+            P15_TY_OUT P15 = new P15_TY_OUT();  
+            P15.setVisible(true);  
+        } else {
+            JOptionPane.showMessageDialog(this, "invalid.");
+
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

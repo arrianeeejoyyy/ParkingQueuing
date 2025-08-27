@@ -6,6 +6,7 @@ package parkingsystem;
 
 import java.awt.Color;
 import java.util.HashMap;
+import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 /**
  *
@@ -15,6 +16,13 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     public class ParkingData {
         public static String selectedSlot = null;
         public static HashMap<String, String> occupiedSlots = new HashMap<>();
+        public static boolean releaseSlot(String slot, String code) {
+        if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
+            occupiedSlots.remove(slot); // free the slot
+            return true; // correct code, slot released
+        }
+        return false; // wrong code
+        }
     }
 
     /**
@@ -52,6 +60,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             label.setBackground(null);
         }
     }
+    
 
     
     
@@ -191,10 +200,12 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             }
         });
         getContentPane().add(L05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 600, 100, 80));
-        getContentPane().add(r1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 306, 100, 20));
-        getContentPane().add(r2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 100, 20));
-        getContentPane().add(r3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 306, 100, 20));
-        getContentPane().add(r4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 100, 20));
+        getContentPane().add(r1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 305, 98, 25));
+        getContentPane().add(r2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 305, 98, 25));
+        getContentPane().add(r3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 306, 98, 25));
+        r3l.getAccessibleContext().setAccessibleDescription("");
+
+        getContentPane().add(r4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(833, 305, 98, 25));
         getContentPane().add(r5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 306, 100, 20));
         getContentPane().add(l1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 696, 100, 20));
         getContentPane().add(l2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 696, 100, 20));
