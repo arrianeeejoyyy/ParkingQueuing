@@ -12,21 +12,19 @@ public class QUEUE_NUMBER {
     private static final Map<String, Boolean> slots = new HashMap<>();
 
     static {
-        loadSlots(); // Load slots on class load
+        loadSlots();
     }
 
     private static void loadSlots() {
         File file = new File(SLOT_FILE_PATH);
-        if (!file.exists()) return; // No file yet — assume all slots are available
+        if (!file.exists()) return;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("=");
                 if (parts.length == 2) {
-                    String slotId = parts[0].trim();
-                    boolean isTaken = Boolean.parseBoolean(parts[1].trim());
-                    slots.put(slotId, isTaken);
+                    slots.put(parts[0].trim(), Boolean.parseBoolean(parts[1].trim()));
                 }
             }
         } catch (IOException e) {
@@ -60,10 +58,9 @@ public class QUEUE_NUMBER {
     }
 
     public static Map<String, Boolean> getAllSlots() {
-        return new HashMap<>(slots); // Return a copy
+        return new HashMap<>(slots);
     }
 
-    // ✅ Save plate number with slot ID and timestamp
     public static void savePlateNumber(String plate, String slotId) {
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         String entry = "Plate: " + plate + " | Slot: " + slotId + " | Time: " + timeStamp;
