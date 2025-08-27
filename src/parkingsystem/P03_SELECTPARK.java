@@ -4,18 +4,57 @@
  */
 package parkingsystem;
 
+import java.awt.Color;
+import java.util.HashMap;
+
 /**
  *
  * @author Airi
  */
 public class P03_SELECTPARK extends javax.swing.JFrame {
+    public class ParkingData {
+        public static String selectedSlot = null;
+        public static HashMap<String, String> occupiedSlots = new HashMap<>();
+    }
 
     /**
      * Creates new form SELECTPARK
      */
     public P03_SELECTPARK() {
         initComponents();
+        refreshLabels();
     }
+    
+    private void slotButtonClicked(String slotName) {
+        ParkingData.selectedSlot = slotName; 
+        new P04_ENTER_PLATENUMBER().setVisible(true);
+        this.dispose();
+    }
+    private void refreshLabels() {
+        setLabelColor(r1l, "R01");
+        setLabelColor(r2l, "R02");
+        setLabelColor(r3l, "R03");
+        setLabelColor(r4l, "R04");
+        setLabelColor(r5l, "R05");
+        setLabelColor(l1l, "L01");
+        setLabelColor(l2l, "L02");
+        setLabelColor(l3l, "L03");
+        setLabelColor(l4l, "L04");
+        setLabelColor(l5l, "L05");
+}
+
+    private void setLabelColor(javax.swing.JLabel label, String slot) {
+        if (ParkingData.occupiedSlots.containsKey(slot)) {
+            label.setOpaque(true);
+            label.setBackground(Color.RED);
+        } else {
+            label.setOpaque(false);
+            label.setBackground(null);
+        }
+    }
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,9 +65,9 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        R02 = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        R01 = new javax.swing.JButton();
+        R02 = new javax.swing.JButton();
         R03 = new javax.swing.JButton();
         R04 = new javax.swing.JButton();
         R05 = new javax.swing.JButton();
@@ -37,23 +76,21 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         L03 = new javax.swing.JButton();
         L04 = new javax.swing.JButton();
         L05 = new javax.swing.JButton();
-        R01 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        r1l = new javax.swing.JLabel();
+        r2l = new javax.swing.JLabel();
+        r3l = new javax.swing.JLabel();
+        r4l = new javax.swing.JLabel();
+        r5l = new javax.swing.JLabel();
+        l1l = new javax.swing.JLabel();
+        l2l = new javax.swing.JLabel();
+        l3l = new javax.swing.JLabel();
+        l4l = new javax.swing.JLabel();
+        l5l = new javax.swing.JLabel();
         mainIMG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 100, 20));
-
-        R02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        R02.setContentAreaFilled(false);
-        R02.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R02ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(R02, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 100, 80));
 
         back.setToolTipText("");
         back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -64,6 +101,24 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             }
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, 120));
+
+        R01.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R01.setContentAreaFilled(false);
+        R01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R01ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(R01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 100, 80));
+
+        R02.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        R02.setContentAreaFilled(false);
+        R02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                R02ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(R02, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 100, 80));
 
         R03.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         R03.setContentAreaFilled(false);
@@ -136,16 +191,16 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             }
         });
         getContentPane().add(L05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 600, 100, 80));
-
-        R01.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        R01.setContentAreaFilled(false);
-        R01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                R01ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(R01, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 100, 80));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 308, 100, 20));
+        getContentPane().add(r1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 306, 100, 20));
+        getContentPane().add(r2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 100, 20));
+        getContentPane().add(r3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 306, 100, 20));
+        getContentPane().add(r4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 100, 20));
+        getContentPane().add(r5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 306, 100, 20));
+        getContentPane().add(l1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 696, 100, 20));
+        getContentPane().add(l2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 696, 100, 20));
+        getContentPane().add(l3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 696, 100, 20));
+        getContentPane().add(l4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 696, 100, 20));
+        getContentPane().add(l5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 696, 100, 20));
 
         mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/SELECT_PARK_FNL.png"))); // NOI18N
         getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -154,61 +209,71 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
+        slotButtonClicked("L01");
         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        slotButtonClicked("R01");
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
+         slotButtonClicked("R02");
         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
+         slotButtonClicked("R03");
         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        slotButtonClicked("R04");
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_R04ActionPerformed
 
     private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        slotButtonClicked("R05");
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_R05ActionPerformed
 
     private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        slotButtonClicked("L02");
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_L02ActionPerformed
 
     private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
-       P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        slotButtonClicked("L03");
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_L03ActionPerformed
 
     private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
+        slotButtonClicked("L04");
         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+         slotButtonClicked("L05");
+         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
        P04.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_L05ActionPerformed
@@ -273,8 +338,16 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     private javax.swing.JButton R04;
     private javax.swing.JButton R05;
     private javax.swing.JButton back;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel l1l;
+    private javax.swing.JLabel l2l;
+    private javax.swing.JLabel l3l;
+    private javax.swing.JLabel l4l;
+    private javax.swing.JLabel l5l;
     private javax.swing.JLabel mainIMG;
+    private javax.swing.JLabel r1l;
+    private javax.swing.JLabel r2l;
+    private javax.swing.JLabel r3l;
+    private javax.swing.JLabel r4l;
+    private javax.swing.JLabel r5l;
     // End of variables declaration//GEN-END:variables
 }
