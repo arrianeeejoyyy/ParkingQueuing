@@ -135,7 +135,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
         });
         getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 720, 430, 110));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTERDETAILS_FULLSLOT.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\ENTERDETAILS_FULLSLOT.png")); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
