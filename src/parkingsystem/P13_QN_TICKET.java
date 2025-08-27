@@ -25,8 +25,6 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     public P13_QN_TICKET() {
         initComponents();     
         
-         
-        
         Date now = new Date();
 
         // Date format
