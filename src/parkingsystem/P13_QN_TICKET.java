@@ -207,8 +207,21 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PRINTTICKETActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTTICKETActionPerformed
-    
+     
+        PDFticket pdf = new PDFticket();
 
+    // Pass the values from P13_QN_TICKET to PDFticket
+    pdf.TicketNumber.setText(this.TicketNumber.getText());
+    pdf.transactionNumber.setText(this.transactionNumber.getText());
+    pdf.DateLabel.setText(this.DateLabel.getText());
+    pdf.TimeLabel.setText(this.TimeLabel.getText());
+    pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+
+    // Make the PDFticket window visible
+    pdf.setVisible(true);  
+    pdf.savePanelImageAsPDF();
+    
+    
 // TODO add your handling code here:
         //P14_WaitQueue P14 = new P14_WaitQueue();
         //P14.setVisible(true);
