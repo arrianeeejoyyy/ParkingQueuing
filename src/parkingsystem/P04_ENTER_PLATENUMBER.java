@@ -1,6 +1,9 @@
 
 package parkingsystem;
 
+import javax.swing.JOptionPane;
+import parkingsystem.P03_SELECTPARK.ParkingData;
+
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
@@ -99,7 +102,19 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-       this.setVisible(false);
+        String plate = PlateNumber.getText().trim();
+        if (plate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a plate number!");
+            return;
+        }
+
+        String slot = ParkingData.selectedSlot;
+        if (slot != null) {
+        // save plate
+            ParkingData.occupiedSlots.put(slot, plate);
+        }
+
+        this.setVisible(false);
        P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
        P05.setVisible(true); 
     }//GEN-LAST:event_confirmActionPerformed
