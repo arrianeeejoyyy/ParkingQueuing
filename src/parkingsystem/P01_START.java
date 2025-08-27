@@ -31,6 +31,7 @@ public class P01_START extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         start.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -42,7 +43,7 @@ public class P01_START extends javax.swing.JFrame {
         });
         getContentPane().add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 300, 100));
 
-        imgstart.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\START_FNL.png")); // NOI18N
+        imgstart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/START_FNL.png"))); // NOI18N
         getContentPane().add(imgstart, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();

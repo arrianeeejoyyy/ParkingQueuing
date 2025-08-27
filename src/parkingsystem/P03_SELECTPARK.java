@@ -202,7 +202,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         getContentPane().add(l4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 696, 100, 20));
         getContentPane().add(l5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 696, 100, 20));
 
-        mainIMG.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\SELECT_PARK_FNL.png")); // NOI18N
+        mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/SELECT_PARK_FNL.png"))); // NOI18N
         getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

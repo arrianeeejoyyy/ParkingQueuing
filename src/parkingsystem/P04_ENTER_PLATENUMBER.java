@@ -83,7 +83,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         });
         getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 700, 160));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\ENTER_PLATENUMBER.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTER_PLATENUMBER.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 900));
 
         pack();

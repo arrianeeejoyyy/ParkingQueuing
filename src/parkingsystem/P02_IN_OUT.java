@@ -52,7 +52,7 @@ public class P02_IN_OUT extends javax.swing.JFrame {
         });
         getContentPane().add(in, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\IN&OUT_FNL.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN&OUT_FNL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
