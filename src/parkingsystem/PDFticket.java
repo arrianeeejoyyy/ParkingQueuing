@@ -15,93 +15,45 @@ public class PDFticket extends javax.swing.JFrame {
         initComponents();
     }
 
-   // 🔹 Method to generate PDF from your JFrame labels
-   public File exportToPDF() {
-    File pdfFile = new File("TicketReceipt.pdf");
-    try {
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
-
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
-        contentStream.beginText();
-        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
-        contentStream.setLeading(18f);
-        contentStream.newLineAtOffset(50, 700);
-
-        // Add your JLabel texts
-        contentStream.showText(TicketNumber.getText()); contentStream.newLine();
-        contentStream.showText(transactionNumber.getText()); contentStream.newLine();
-        contentStream.showText(DateLabel.getText()); contentStream.newLine();
-        contentStream.showText(TimeLabel.getText()); contentStream.newLine();
-        contentStream.showText(PaymentTypeLabel.getText()); contentStream.newLine();
-        contentStream.showText(unitcostlabel.getText()); contentStream.newLine();
-        contentStream.showText(DiscTypeLabel.getText()); contentStream.newLine();
-        contentStream.showText(DiscountLabel.getText()); contentStream.newLine();
-        contentStream.showText(subtotallabel.getText()); contentStream.newLine();
-        contentStream.showText(VatsalesLabel.getText()); contentStream.newLine();
-        contentStream.showText(VatLabel.getText()); contentStream.newLine();
-        contentStream.showText(totalAmount.getText()); contentStream.newLine();
-
-        contentStream.endText();
-        contentStream.close();
-
-        document.save(pdfFile);
-        document.close();
-
-        System.out.println("✅ PDF generated: " + pdfFile.getAbsolutePath());
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    return pdfFile;
-}
-    
-    
-    public PDFticket(String ticketNo, String transNo, String date, String time,
-                 String paymentType, String unitCost, String discType, String discount,
-                 String subtotal, String vatSales, String vat, String total) {
-    initComponents();
-
-    TicketNumber.setText(ticketNo);
-    transactionNumber.setText(transNo);
-    DateLabel.setText(date);
-    TimeLabel.setText(time);
-    PaymentTypeLabel.setText(paymentType);
-    unitcostlabel.setText(unitCost);
-    DiscTypeLabel.setText(discType);
-    DiscountLabel.setText(discount);
-    subtotallabel.setText(subtotal);
-    VatsalesLabel.setText(vatSales);
-    VatLabel.setText(vat);
-    totalAmount.setText(total);
-}
+   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         TicketNumber = new javax.swing.JLabel();
-        transactionNumber = new javax.swing.JLabel();
+        tn = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         subtotallabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        DateLabel = new javax.swing.JLabel();
-        TimeLabel = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
         DiscountLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         VatLabel = new javax.swing.JLabel();
         totalAmount = new javax.swing.JLabel();
-        PaymentTypeLabel = new javax.swing.JLabel();
+        pl = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         unitcostlabel = new javax.swing.JLabel();
         VatsalesLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        transactionNumber = new javax.swing.JLabel();
+        DateLabel = new javax.swing.JLabel();
+        TimeLabel = new javax.swing.JLabel();
+        PaymentTypeLabel = new javax.swing.JLabel();
+        ryy = new javax.swing.JLabel();
+        ryy1 = new javax.swing.JLabel();
+        ryy2 = new javax.swing.JLabel();
+        ryy3 = new javax.swing.JLabel();
+        ryy4 = new javax.swing.JLabel();
+        ryy5 = new javax.swing.JLabel();
+        ryy6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(450, 750));
@@ -110,8 +62,8 @@ public class PDFticket extends javax.swing.JFrame {
         TicketNumber.setText("Ticket C");
         TicketNumber.setToolTipText("");
 
-        transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        transactionNumber.setText("Transaction Number:");
+        tn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        tn.setText("Transaction Number:");
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("****************************************");
@@ -136,11 +88,11 @@ public class PDFticket extends javax.swing.JFrame {
         jLabel5.setText("---------------------------------------------------------------------------");
         jLabel5.setToolTipText("");
 
-        DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        DateLabel.setText("Date:");
+        Date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Date.setText("Date:");
 
-        TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        TimeLabel.setText("Time:");
+        Time.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Time.setText("Time:");
 
         DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscTypeLabel.setText("Discount Type:");
@@ -155,11 +107,11 @@ public class PDFticket extends javax.swing.JFrame {
         VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatLabel.setText("VAT:");
 
-        totalAmount.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         totalAmount.setText("Total Amount: ");
 
-        PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        PaymentTypeLabel.setText("Payment Type:");
+        pl.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        pl.setText("Payment Type:");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel7.setText("....................................");
@@ -183,6 +135,39 @@ public class PDFticket extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/barccode.png"))); // NOI18N
         jLabel10.setToolTipText("");
 
+        transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        transactionNumber.setText("Transaction Number:");
+
+        DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DateLabel.setText("Date:");
+
+        TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        TimeLabel.setText("Time:");
+
+        PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        PaymentTypeLabel.setText("Payment Type");
+
+        ryy.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy.setText("₱50.00");
+
+        ryy1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy1.setText("₱50.00");
+
+        ryy2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy2.setText("₱50.00");
+
+        ryy3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy3.setText("₱50.00");
+
+        ryy4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy4.setText("₱50.00");
+
+        ryy5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy5.setText("₱50.00");
+
+        ryy6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        ryy6.setText("₱50.00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,33 +179,58 @@ public class PDFticket extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(PaymentTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel6)
-                                .addComponent(DiscTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(DiscountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(subtotallabel, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(VatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(VatsalesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(unitcostlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(DiscTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(subtotallabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(DiscountLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                                    .addComponent(VatLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel6)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(totalAmount)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(ryy6))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(unitcostlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(pl, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(PaymentTypeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(ryy1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ryy2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ryy, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ryy3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ryy4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(ryy5, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                            .addGap(11, 11, 11)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(VatsalesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(111, 111, 111))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(transactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(111, 111, 111))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -238,8 +248,15 @@ public class PDFticket extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(TicketNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(TicketNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tn, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(transactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,29 +274,51 @@ public class PDFticket extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(transactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tn, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transactionNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(PaymentTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PaymentTypeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addComponent(unitcostlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unitcostlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ryy3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DiscTypeLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DiscTypeLabel)
+                    .addComponent(ryy1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DiscountLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DiscountLabel)
+                    .addComponent(ryy2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(subtotallabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subtotallabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ryy, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VatsalesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VatsalesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ryy4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(VatLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VatLabel)
+                    .addComponent(ryy5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ryy6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -288,7 +327,7 @@ public class PDFticket extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -325,21 +364,18 @@ public class PDFticket extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PDFticket ticketFrame = new PDFticket();
-                ticketFrame.setVisible(true);
-
-                // Example: after showing the form, generate PDF
-                ticketFrame.exportToPDF();
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DiscTypeLabel;
     private javax.swing.JLabel DiscountLabel;
     private javax.swing.JLabel PaymentTypeLabel;
     private javax.swing.JLabel TicketNumber;
+    private javax.swing.JLabel Time;
     private javax.swing.JLabel TimeLabel;
     private javax.swing.JLabel VatLabel;
     private javax.swing.JLabel VatsalesLabel;
@@ -353,7 +389,16 @@ public class PDFticket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel pl;
+    private javax.swing.JLabel ryy;
+    private javax.swing.JLabel ryy1;
+    private javax.swing.JLabel ryy2;
+    private javax.swing.JLabel ryy3;
+    private javax.swing.JLabel ryy4;
+    private javax.swing.JLabel ryy5;
+    private javax.swing.JLabel ryy6;
     private javax.swing.JLabel subtotallabel;
+    private javax.swing.JLabel tn;
     private javax.swing.JLabel totalAmount;
     private javax.swing.JLabel transactionNumber;
     private javax.swing.JLabel unitcostlabel;
