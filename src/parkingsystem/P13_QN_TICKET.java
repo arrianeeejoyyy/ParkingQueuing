@@ -1,5 +1,7 @@
 
 package parkingsystem;
+import java.awt.Desktop;
+import java.io.File;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Random;
@@ -92,7 +94,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 680, 380, 90));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 680, 410, 90));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("-------------------------------------------------------------------------");
@@ -156,10 +158,42 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        P14_WaitQueue P14 = new P14_WaitQueue();
-        P14.setVisible(true);
-        this.setVisible(false);
+    // Collect values from your form (replace with your actual fields)
+    String ticketNo = "Ticket C";
+    String transNo = "Transaction Number: 12345";
+    String date = "Date: 2025-08-27";
+    String time = "Time: 10:15 AM";
+    String paymentType = "Cash";
+    String unitCost = "₱50.00";
+    String discType = "None";
+    String discount = "₱00.00";
+    String subtotal = "₱40.00";
+    String vatSales = "₱35.71";
+    String vat = "₱4.29";
+    String total = "₱40.00";
+
+    // Show PDFticket JFrame
+    PDFticket ticketFrame = new PDFticket(ticketNo, transNo, date, time,
+                                          paymentType, unitCost, discType, discount,
+                                          subtotal, vatSales, vat, total);
+    ticketFrame.setVisible(true);
+
+    // Export PDF
+    File pdf = ticketFrame.exportToPDF();
+
+    // 🔹 Open PDF automatically
+    try {
+        if (pdf.exists()) {
+            Desktop.getDesktop().open(pdf);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+// TODO add your handling code here:
+        //P14_WaitQueue P14 = new P14_WaitQueue();
+        //P14.setVisible(true);
+       // this.setVisible(false);
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

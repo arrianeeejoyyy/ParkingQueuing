@@ -5,6 +5,8 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import java.io.File;
+import java.awt.Desktop;
 
 
 public class PDFticket extends javax.swing.JFrame {
@@ -14,47 +16,65 @@ public class PDFticket extends javax.swing.JFrame {
     }
 
    // 🔹 Method to generate PDF from your JFrame labels
-    private void exportToPDF() {
-        try {
-            // Create a new PDF document
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage();
-            document.addPage(page);
+   public File exportToPDF() {
+    File pdfFile = new File("TicketReceipt.pdf");
+    try {
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
+        document.addPage(page);
 
-            // Start writing content
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-            contentStream.beginText();
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
-            contentStream.setLeading(18f); // line spacing
-            contentStream.newLineAtOffset(50, 700);
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+        contentStream.setLeading(18f);
+        contentStream.newLineAtOffset(50, 700);
 
-            // Add contents from your labels
-            contentStream.showText(TicketNumber.getText()); contentStream.newLine();
-            contentStream.showText(transactionNumber.getText()); contentStream.newLine();
-            contentStream.showText(DateLabel.getText()); contentStream.newLine();
-            contentStream.showText(TimeLabel.getText()); contentStream.newLine();
-            contentStream.showText(PaymentTypeLabel.getText()); contentStream.newLine();
-            contentStream.showText(unitcostlabel.getText()); contentStream.newLine();
-            contentStream.showText(DiscTypeLabel.getText()); contentStream.newLine();
-            contentStream.showText(DiscountLabel.getText()); contentStream.newLine();
-            contentStream.showText(subtotallabel.getText()); contentStream.newLine();
-            contentStream.showText(VatsalesLabel.getText()); contentStream.newLine();
-            contentStream.showText(VatLabel.getText()); contentStream.newLine();
-            contentStream.showText(totalAmount.getText()); contentStream.newLine();
+        // Add your JLabel texts
+        contentStream.showText(TicketNumber.getText()); contentStream.newLine();
+        contentStream.showText(transactionNumber.getText()); contentStream.newLine();
+        contentStream.showText(DateLabel.getText()); contentStream.newLine();
+        contentStream.showText(TimeLabel.getText()); contentStream.newLine();
+        contentStream.showText(PaymentTypeLabel.getText()); contentStream.newLine();
+        contentStream.showText(unitcostlabel.getText()); contentStream.newLine();
+        contentStream.showText(DiscTypeLabel.getText()); contentStream.newLine();
+        contentStream.showText(DiscountLabel.getText()); contentStream.newLine();
+        contentStream.showText(subtotallabel.getText()); contentStream.newLine();
+        contentStream.showText(VatsalesLabel.getText()); contentStream.newLine();
+        contentStream.showText(VatLabel.getText()); contentStream.newLine();
+        contentStream.showText(totalAmount.getText()); contentStream.newLine();
 
-            contentStream.endText();
-            contentStream.close();
+        contentStream.endText();
+        contentStream.close();
 
-            // Save PDF file
-            document.save("TicketReceipt.pdf");
-            document.close();
+        document.save(pdfFile);
+        document.close();
 
-            System.out.println("✅ PDF generated: TicketReceipt.pdf");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("✅ PDF generated: " + pdfFile.getAbsolutePath());
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return pdfFile;
+}
     
+    
+    public PDFticket(String ticketNo, String transNo, String date, String time,
+                 String paymentType, String unitCost, String discType, String discount,
+                 String subtotal, String vatSales, String vat, String total) {
+    initComponents();
+
+    TicketNumber.setText(ticketNo);
+    transactionNumber.setText(transNo);
+    DateLabel.setText(date);
+    TimeLabel.setText(time);
+    PaymentTypeLabel.setText(paymentType);
+    unitcostlabel.setText(unitCost);
+    DiscTypeLabel.setText(discType);
+    DiscountLabel.setText(discount);
+    subtotallabel.setText(subtotal);
+    VatsalesLabel.setText(vatSales);
+    VatLabel.setText(vat);
+    totalAmount.setText(total);
+}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
