@@ -24,15 +24,73 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 
-public class PDFticket extends javax.swing.JFrame {
+public class PDFreceipt extends javax.swing.JFrame {
 
-    public PDFticket() {
+    public PDFreceipt() {
         initComponents();
         
         
     }
 
-  
+   public void saveTicketAsPDF() {
+        try {
+            // Get the user's Documents folder
+            String userHome = System.getProperty("user.home");
+            String documentsPath = userHome + File.separator + "Documents";
+            String fileName = "ticket_" + System.currentTimeMillis() + ".pdf";
+            File pdfFile = new File(documentsPath, fileName);
+
+            // Create a new PDF document
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage(PDRectangle.LETTER); // A4 size, you can change it to LETTER
+            document.addPage(page);
+
+            // Create a content stream to write the content to the PDF
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            // Start writing text
+            contentStream.beginText();
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+            contentStream.newLineAtOffset(50, 750); // Starting position (x, y)
+            contentStream.showText("DISPLAY HUB Receipt");
+
+            // Set font for the ticket details (smaller font)
+            contentStream.setFont(PDType1Font.HELVETICA, 12);
+            contentStream.newLineAtOffset(0, -25);
+            contentStream.showText("Ticket Number: " + TicketNumber.getText());
+            contentStream.newLineAtOffset(0, -15);
+            contentStream.showText("Transaction Number: " + transactionNumber.getText());
+            contentStream.newLineAtOffset(0, -15);
+            contentStream.showText("Date: " + DateLabel.getText());
+            contentStream.newLineAtOffset(0, -15);
+            contentStream.showText("Time: " + TimeLabel.getText());
+            contentStream.newLineAtOffset(0, -15);
+            contentStream.showText("Payment Type: " + PaymentTypeLabel.getText());
+            contentStream.newLineAtOffset(0, -30);
+
+            
+            contentStream.endText();
+            contentStream.close();
+
+            // Save the PDF file
+            document.save(pdfFile);
+            document.close();
+
+            // Optional: Show confirmation dialog
+            javax.swing.JOptionPane.showMessageDialog(this, "Receipt saved to:\n" + pdfFile.getAbsolutePath());
+
+            // Open the saved PDF file using the default PDF viewer
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(pdfFile);
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Automatic open not supported on this platform.");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error saving PDF: " + e.getMessage());
+        }
+    }
 
     // Helper method to capture the panel as an image (if you want to save the receipt as an image and then convert to PDF)
     public BufferedImage getPanelImage() {
@@ -159,13 +217,16 @@ private void closePDFAndShowPanel() {
         ryy4 = new javax.swing.JLabel();
         ryy5 = new javax.swing.JLabel();
         ryy6 = new javax.swing.JLabel();
+        Time1 = new javax.swing.JLabel();
         ryy2 = new javax.swing.JLabel();
         ryy1 = new javax.swing.JLabel();
         ryy3 = new javax.swing.JLabel();
         pl = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
         DiscountLabel = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(450, 750));
@@ -175,15 +236,15 @@ private void closePDFAndShowPanel() {
         jPanel1.setLayout(null);
 
         TicketNumber.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
-        TicketNumber.setText("Ticket C");
+        TicketNumber.setText("R NO.");
         TicketNumber.setToolTipText("");
         jPanel1.add(TicketNumber);
-        TicketNumber.setBounds(84, 23, 310, 60);
+        TicketNumber.setBounds(70, 170, 310, 60);
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");
         jPanel1.add(DateLabel);
-        DateLabel.setBounds(97, 298, 226, 20);
+        DateLabel.setBounds(100, 295, 226, 20);
 
         VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatLabel.setText("VAT:");
@@ -193,7 +254,7 @@ private void closePDFAndShowPanel() {
         tn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         tn.setText("Transaction Number:");
         jPanel1.add(tn);
-        tn.setBounds(32, 272, 196, 20);
+        tn.setBounds(50, 270, 196, 20);
 
         totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         totalAmount.setText("Total Amount: ");
@@ -204,7 +265,7 @@ private void closePDFAndShowPanel() {
         jLabel2.setText("PARKPOINT PARKING SERVICES");
         jLabel2.setToolTipText("");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(34, 145, 385, 28);
+        jLabel2.setBounds(40, 20, 385, 28);
 
         subtotallabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         subtotallabel.setText("Subtotal:");
@@ -215,13 +276,13 @@ private void closePDFAndShowPanel() {
         jLabel3.setText("Location: Olaes Subd Noveleta, Cavite");
         jLabel3.setToolTipText("");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(101, 185, 268, 17);
+        jLabel3.setBounds(90, 50, 268, 17);
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("Email: PPPservices@gmail.com");
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel4.setText("\"THIS IS A OFFICIAL RECEIPT \"");
         jLabel4.setToolTipText("");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(122, 214, 217, 17);
+        jLabel4.setBounds(90, 110, 280, 22);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("---------------------------------------------------------------------------");
@@ -233,7 +294,7 @@ private void closePDFAndShowPanel() {
         jLabel1.setText("****************************************");
         jLabel1.setToolTipText("");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, 111, 360, 28);
+        jLabel1.setBounds(50, 140, 360, 28);
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel7.setText("....................................");
@@ -244,7 +305,7 @@ private void closePDFAndShowPanel() {
         Date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Date.setText("Date:");
         jPanel1.add(Date);
-        Date.setBounds(44, 298, 47, 20);
+        Date.setBounds(50, 295, 47, 20);
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("PARKPOINT PARKING SERVICES");
@@ -265,7 +326,7 @@ private void closePDFAndShowPanel() {
         TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         TimeLabel.setText("Time:");
         jPanel1.add(TimeLabel);
-        TimeLabel.setBounds(109, 324, 194, 20);
+        TimeLabel.setBounds(110, 320, 194, 20);
 
         ryy.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy.setText("₱50.00");
@@ -273,9 +334,9 @@ private void closePDFAndShowPanel() {
         ryy.setBounds(351, 507, 57, 20);
 
         transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        transactionNumber.setText("Transaction Number:");
+        transactionNumber.setText("number");
         jPanel1.add(transactionNumber);
-        transactionNumber.setBounds(234, 272, 196, 20);
+        transactionNumber.setBounds(240, 270, 196, 20);
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("THANKYOU FOR CHOOSING");
@@ -287,13 +348,13 @@ private void closePDFAndShowPanel() {
         jLabel6.setText("---------------------------------------------------------------------------");
         jLabel6.setToolTipText("");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(44, 363, 375, 17);
+        jLabel6.setBounds(40, 370, 375, 17);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/barccode.png"))); // NOI18N
         jLabel10.setToolTipText("");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(124, 712, 170, 47);
+        jLabel10.setBounds(124, 712, 170, 50);
 
         PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         PaymentTypeLabel.setText("Payment Type");
@@ -314,6 +375,11 @@ private void closePDFAndShowPanel() {
         ryy6.setText("₱50.00");
         jPanel1.add(ryy6);
         ryy6.setBounds(333, 593, 75, 30);
+
+        Time1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Time1.setText("Plate Number:");
+        jPanel1.add(Time1);
+        Time1.setBounds(50, 350, 150, 20);
 
         ryy2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy2.setText("₱50.00");
@@ -338,20 +404,32 @@ private void closePDFAndShowPanel() {
         Time.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Time.setText("Time:");
         jPanel1.add(Time);
-        Time.setBounds(44, 324, 53, 20);
+        Time.setBounds(50, 320, 53, 20);
 
         DiscountLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscountLabel.setText("Discount:");
         jPanel1.add(DiscountLabel);
         DiscountLabel.setBounds(44, 479, 94, 22);
 
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel11.setText("TIN: 101-165-233-00012");
+        jLabel11.setToolTipText("");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(140, 90, 170, 17);
+
         DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscTypeLabel.setText("Discount Type:");
         jPanel1.add(DiscTypeLabel);
         DiscTypeLabel.setBounds(44, 451, 145, 22);
 
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel12.setText("Email: PPPservices@gmail.com");
+        jLabel12.setToolTipText("");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(120, 70, 217, 20);
+
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 450, 770);
+        jPanel1.setBounds(0, 0, 450, 780);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -376,11 +454,14 @@ private void closePDFAndShowPanel() {
     public javax.swing.JLabel PaymentTypeLabel;
     public javax.swing.JLabel TicketNumber;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel Time1;
     public javax.swing.JLabel TimeLabel;
     private javax.swing.JLabel VatLabel;
     private javax.swing.JLabel VatsalesLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
