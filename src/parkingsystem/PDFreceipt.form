@@ -57,7 +57,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="70" y="170" width="310" height="60"/>
+              <AbsoluteConstraints x="90" y="170" width="270" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -367,7 +367,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="266" y="398" width="142" height="20"/>
+              <AbsoluteConstraints x="280" y="400" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -376,7 +376,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x20b1;50.00"/>
+            <Property name="text" type="java.lang.String" value="&#x20b1;44.64"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -389,11 +389,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x20b1;50.00"/>
+            <Property name="text" type="java.lang.String" value="&#x20b1;5.36"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="351" y="560" width="-1" height="20"/>
+              <AbsoluteConstraints x="360" y="560" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -428,11 +428,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x20b1;50.00"/>
+            <Property name="text" type="java.lang.String" value="&#x20b1;0.00"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="351" y="479" width="-1" height="20"/>
+              <AbsoluteConstraints x="360" y="480" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -441,11 +441,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x20b1;50.00"/>
+            <Property name="text" type="java.lang.String" value="None"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="351" y="452" width="-1" height="20"/>
+              <AbsoluteConstraints x="360" y="450" width="-1" height="20"/>
             </Constraint>
           </Constraints>
         </Component>

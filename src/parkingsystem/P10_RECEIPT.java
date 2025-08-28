@@ -1,19 +1,60 @@
 
 package parkingsystem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 /**
  *
  * @author Airi
  */
 public class P10_RECEIPT extends javax.swing.JFrame {
+  private String paymentType;
+    
+    private static int counter = 0;
 
-    /**
-     * Creates new form P10_RECEIPT
-     */
+    // Method to generate Transaction Number
+    private String generateTransactionNumber() {
+        counter++; // Increment for each transaction
+
+        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        return String.format("PARK-%s-%04d", date, counter);
+    }
+    
+    
     public P10_RECEIPT() {
         initComponents();
-    }
+        
+        Date now = new Date();
 
+        // Date format
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateLabel.setText(df.format(now));
+
+        // Time format
+        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss a");
+        TimeLabel.setText( tf.format(now));
+        
+        
+        Random rand = new Random();
+        int ticketCode = 100000 + rand.nextInt(900000); 
+        
+        String trxNumber = generateTransactionNumber();
+        transactionNumber.setText(trxNumber);
+        
+
+    
+
+        TicketCode.setText(" " + ticketCode);
+        
+        PaymentTypeLabel.setText(paymentType);
+        
+    }
+         
+        
+        
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -23,17 +64,173 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TicketCode = new javax.swing.JLabel();
+        tn = new javax.swing.JLabel();
+        Date = new javax.swing.JLabel();
+        Time = new javax.swing.JLabel();
+        Time1 = new javax.swing.JLabel();
+        pl = new javax.swing.JLabel();
+        unitcostlabel = new javax.swing.JLabel();
+        DiscTypeLabel = new javax.swing.JLabel();
+        DiscountLabel = new javax.swing.JLabel();
+        subtotallabel = new javax.swing.JLabel();
+        VatsalesLabel = new javax.swing.JLabel();
+        VatLabel = new javax.swing.JLabel();
+        totalAmount = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        transactionNumber = new javax.swing.JLabel();
+        DateLabel = new javax.swing.JLabel();
+        TimeLabel = new javax.swing.JLabel();
+        PaymentTypeLabel = new javax.swing.JLabel();
+        ryy3 = new javax.swing.JLabel();
+        ryy4 = new javax.swing.JLabel();
+        ryy5 = new javax.swing.JLabel();
+        ryy6 = new javax.swing.JLabel();
+        ryy7 = new javax.swing.JLabel();
+        ryy8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TicketCode.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
+        TicketCode.setText("R NO.");
+        TicketCode.setToolTipText("");
+        getContentPane().add(TicketCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 310, 60));
+
+        tn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        tn.setText("Transaction Number:");
+        getContentPane().add(tn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 196, 20));
+
+        Date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Date.setText("Date:");
+        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, -1, 20));
+
+        Time.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Time.setText("Time:");
+        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 53, 20));
+
+        Time1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Time1.setText("Plate Number:");
+        getContentPane().add(Time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 150, 20));
+
+        pl.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        pl.setText("Payment Type:");
+        getContentPane().add(pl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 142, 20));
+
+        unitcostlabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        unitcostlabel.setText("Unit Cost/Price :");
+        getContentPane().add(unitcostlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 153, 20));
+
+        DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DiscTypeLabel.setText("Discount Type:");
+        getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 145, -1));
+
+        DiscountLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DiscountLabel.setText("Discount:");
+        getContentPane().add(DiscountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 94, -1));
+
+        subtotallabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        subtotallabel.setText("Subtotal:");
+        getContentPane().add(subtotallabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 94, 20));
+
+        VatsalesLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        VatsalesLabel.setText("VAT Sales:");
+        getContentPane().add(VatsalesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 118, 20));
+
+        VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        VatLabel.setText("VAT:");
+        getContentPane().add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 59, -1));
+
+        totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        totalAmount.setText("Total Amount: ");
+        getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 640, -1, 20));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setText("-------------------------------------------------------------------------");
+        jLabel5.setToolTipText("");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
+
+        transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        transactionNumber.setText("number");
+        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 196, 20));
+
+        DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        DateLabel.setText("Date");
+        getContentPane().add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, 226, 20));
+
+        TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        TimeLabel.setText("Tim");
+        getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 170, 20));
+
+        PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        PaymentTypeLabel.setText("Payment Type");
+        getContentPane().add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, 142, 20));
+
+        ryy3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy3.setText("₱50.00");
+        getContentPane().add(ryy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 600, -1, 20));
+
+        ryy4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy4.setText("₱50.00");
+        getContentPane().add(ryy4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 520, -1, 20));
+
+        ryy5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy5.setText("₱50.00");
+        getContentPane().add(ryy5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 540, -1, 20));
+
+        ryy6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy6.setText("₱50.00");
+        getContentPane().add(ryy6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 560, -1, 20));
+
+        ryy7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy7.setText("₱50.00");
+        getContentPane().add(ryy7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, -1, 20));
+
+        ryy8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ryy8.setText("₱50.00");
+        getContentPane().add(ryy8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, -1, 20));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 690, 420, 90));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/RECEIPT.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 910));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      String ticketCode = TicketCode.getText();
+      String slot = P03_SELECTPARK.ParkingData.selectedSlot;
+      if(slot != null) {
+      P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
+      }
+      new P15_TY_IN().setVisible(true);
+      this.dispose();  
+        
+        
+        
+    PDFreceipt pdf = new PDFreceipt();
+
+    
+    pdf.TicketNumber.setText(this.TicketCode.getText());
+    pdf.transactionNumber.setText(this.transactionNumber.getText());
+    pdf.DateLabel.setText(this.DateLabel.getText());
+    pdf.TimeLabel.setText(this.TimeLabel.getText());
+    pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+
+    // Make the PDFticket window visible
+    pdf.setVisible(true);  
+    pdf.savePanelImageAsPDF();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,6 +268,31 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Date;
+    public javax.swing.JLabel DateLabel;
+    private javax.swing.JLabel DiscTypeLabel;
+    private javax.swing.JLabel DiscountLabel;
+    public javax.swing.JLabel PaymentTypeLabel;
+    public javax.swing.JLabel TicketCode;
+    private javax.swing.JLabel Time;
+    private javax.swing.JLabel Time1;
+    public javax.swing.JLabel TimeLabel;
+    private javax.swing.JLabel VatLabel;
+    private javax.swing.JLabel VatsalesLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel pl;
+    private javax.swing.JLabel ryy3;
+    private javax.swing.JLabel ryy4;
+    private javax.swing.JLabel ryy5;
+    private javax.swing.JLabel ryy6;
+    private javax.swing.JLabel ryy7;
+    private javax.swing.JLabel ryy8;
+    private javax.swing.JLabel subtotallabel;
+    private javax.swing.JLabel tn;
+    private javax.swing.JLabel totalAmount;
+    public javax.swing.JLabel transactionNumber;
+    private javax.swing.JLabel unitcostlabel;
     // End of variables declaration//GEN-END:variables
 }

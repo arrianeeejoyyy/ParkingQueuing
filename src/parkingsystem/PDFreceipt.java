@@ -170,18 +170,10 @@ public class PDFreceipt extends javax.swing.JFrame {
 }
 
 private void closePDFAndShowPanel() {
-    // Close the PDF (this cannot be done directly via code, but you can rely on the system closing it after a while)
-    // We can switch to another panel in the NetBeans JFrame here:
+   
+    this.setVisible(false);  
 
-    // Hide the current PDF view or close the frame
-    this.setVisible(false);  // Hide the current frame, or you can close it with dispose() if needed
-
-    // Show another panel or frame
-    // Assuming you want to show a different JPanel:
-    P14_WaitQueue newPanel = new P14_WaitQueue();
-    newPanel.setVisible(true);// Replace NewPanel with your actual panel class
     this.getContentPane().removeAll();
-    this.getContentPane().add(newPanel);
     this.revalidate();
     this.repaint();
 }
@@ -238,7 +230,7 @@ private void closePDFAndShowPanel() {
         TicketNumber.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
         TicketNumber.setText("R NO.");
         TicketNumber.setToolTipText("");
-        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 310, 60));
+        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 270, 60));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");
@@ -336,15 +328,15 @@ private void closePDFAndShowPanel() {
 
         PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         PaymentTypeLabel.setText("Payment Type");
-        jPanel1.add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 398, 142, 20));
+        jPanel1.add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, 20));
 
         ryy4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy4.setText("₱50.00");
+        ryy4.setText("₱44.64");
         jPanel1.add(ryy4, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 533, -1, 20));
 
         ryy5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy5.setText("₱50.00");
-        jPanel1.add(ryy5, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 560, -1, 20));
+        ryy5.setText("₱5.36");
+        jPanel1.add(ryy5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, -1, 20));
 
         ryy6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         ryy6.setText("₱50.00");
@@ -355,12 +347,12 @@ private void closePDFAndShowPanel() {
         jPanel1.add(Time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 150, 20));
 
         ryy2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy2.setText("₱50.00");
-        jPanel1.add(ryy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 479, -1, 20));
+        ryy2.setText("₱0.00");
+        jPanel1.add(ryy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, 20));
 
         ryy1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy1.setText("₱50.00");
-        jPanel1.add(ryy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 452, -1, 20));
+        ryy1.setText("None");
+        jPanel1.add(ryy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, -1, 20));
 
         ryy3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy3.setText("₱50.00");

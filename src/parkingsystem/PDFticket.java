@@ -166,6 +166,7 @@ private void closePDFAndShowPanel() {
         Time = new javax.swing.JLabel();
         DiscountLabel = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
+        tn1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(450, 750));
@@ -181,15 +182,15 @@ private void closePDFAndShowPanel() {
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");
-        jPanel1.add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 298, 226, 20));
+        jPanel1.add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 226, 20));
 
         VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatLabel.setText("VAT:");
         jPanel1.add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 559, 59, -1));
 
         tn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        tn.setText("Transaction Number:");
-        jPanel1.add(tn, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 272, 196, 20));
+        tn.setText("Plate Number:");
+        jPanel1.add(tn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 196, 20));
 
         totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         totalAmount.setText("Total Amount: ");
@@ -217,7 +218,7 @@ private void closePDFAndShowPanel() {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("---------------------------------------------------------------------------");
         jLabel5.setToolTipText("");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 243, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setText("****************************************");
@@ -231,7 +232,7 @@ private void closePDFAndShowPanel() {
 
         Date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Date.setText("Date:");
-        jPanel1.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 298, -1, 20));
+        jPanel1.add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 20));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("PARKPOINT PARKING SERVICES");
@@ -248,7 +249,7 @@ private void closePDFAndShowPanel() {
 
         TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         TimeLabel.setText("Time:");
-        jPanel1.add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 324, 194, 20));
+        jPanel1.add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 194, 20));
 
         ryy.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy.setText("₱50.00");
@@ -256,7 +257,7 @@ private void closePDFAndShowPanel() {
 
         transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         transactionNumber.setText("Transaction Number:");
-        jPanel1.add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 272, 196, 20));
+        jPanel1.add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 196, 20));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("THANKYOU FOR CHOOSING");
@@ -275,27 +276,27 @@ private void closePDFAndShowPanel() {
 
         PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         PaymentTypeLabel.setText("Payment Type");
-        jPanel1.add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 398, 142, 20));
+        jPanel1.add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, 20));
 
         ryy4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy4.setText("₱50.00");
+        ryy4.setText("₱44.64");
         jPanel1.add(ryy4, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 533, -1, 20));
 
         ryy5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy5.setText("₱50.00");
-        jPanel1.add(ryy5, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 560, -1, 20));
+        ryy5.setText("₱5.36");
+        jPanel1.add(ryy5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, -1, 20));
 
         ryy6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         ryy6.setText("₱50.00");
         jPanel1.add(ryy6, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 593, -1, 30));
 
         ryy2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy2.setText("₱50.00");
-        jPanel1.add(ryy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 479, -1, 20));
+        ryy2.setText("₱0.00");
+        jPanel1.add(ryy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, 20));
 
         ryy1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        ryy1.setText("₱50.00");
-        jPanel1.add(ryy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 452, -1, 20));
+        ryy1.setText("None");
+        jPanel1.add(ryy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, -1, 20));
 
         ryy3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy3.setText("₱50.00");
@@ -307,7 +308,7 @@ private void closePDFAndShowPanel() {
 
         Time.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Time.setText("Time:");
-        jPanel1.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 324, 53, 20));
+        jPanel1.add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 53, 20));
 
         DiscountLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscountLabel.setText("Discount:");
@@ -316,6 +317,10 @@ private void closePDFAndShowPanel() {
         DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscTypeLabel.setText("Discount Type:");
         jPanel1.add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 451, 145, -1));
+
+        tn1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        tn1.setText("Transaction Number:");
+        jPanel1.add(tn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 196, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 770));
 
@@ -366,6 +371,7 @@ private void closePDFAndShowPanel() {
     private javax.swing.JLabel ryy6;
     private javax.swing.JLabel subtotallabel;
     private javax.swing.JLabel tn;
+    private javax.swing.JLabel tn1;
     private javax.swing.JLabel totalAmount;
     public javax.swing.JLabel transactionNumber;
     private javax.swing.JLabel unitcostlabel;
