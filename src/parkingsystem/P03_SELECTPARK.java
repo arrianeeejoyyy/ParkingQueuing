@@ -24,18 +24,31 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         }
     }
     
-
+    private void slotButtonClicked(String slotName) {
+    // Check if the slot is already taken
+    if (ParkingData.occupiedSlots.containsKey(slotName)) {
+        // Show a simple message dialog if the slot is already taken
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "This slot is already taken. Please choose another slot.", 
+            "Slot Taken", 
+            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        
+        // Stay on the current panel, do nothing further
+    } else {
+        // If the slot is not taken, proceed with the selection
+        ParkingData.selectedSlot = slotName; 
+        new P04_ENTER_PLATENUMBER().setVisible(true);
+        this.dispose(); // Dispose the current panel after moving to the next
+    }
+}
+    
     
     public P03_SELECTPARK() {
         initComponents();
         refreshLabels();
     }
     
-    private void slotButtonClicked(String slotName) {
-        ParkingData.selectedSlot = slotName; 
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+  
     private void refreshLabels() {
         setLabelColor(r1l, "R01");
         setLabelColor(r2l, "R02");
@@ -212,71 +225,61 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
         slotButtonClicked("L01");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+       
        this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
         slotButtonClicked("R01");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+        
        this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
          slotButtonClicked("R02");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+        
        this.setVisible(false);
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
          slotButtonClicked("R03");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+       
        this.setVisible(false);
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
         slotButtonClicked("R04");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+       
        this.setVisible(false);
     }//GEN-LAST:event_R04ActionPerformed
 
     private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
         slotButtonClicked("R05");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+       
        this.setVisible(false);
     }//GEN-LAST:event_R05ActionPerformed
 
     private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
         slotButtonClicked("L02");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+     
        this.setVisible(false);
     }//GEN-LAST:event_L02ActionPerformed
 
     private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
         slotButtonClicked("L03");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+     
        this.setVisible(false);
     }//GEN-LAST:event_L03ActionPerformed
 
     private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
         slotButtonClicked("L04");
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+      
        this.setVisible(false);
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
          slotButtonClicked("L05");
-         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
+       
        this.setVisible(false);
     }//GEN-LAST:event_L05ActionPerformed
 
@@ -287,41 +290,9 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P03_SELECTPARK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P03_SELECTPARK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P03_SELECTPARK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P03_SELECTPARK.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new P03_SELECTPARK().setVisible(true);

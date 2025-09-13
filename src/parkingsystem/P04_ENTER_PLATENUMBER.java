@@ -98,25 +98,36 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-        String plate = PlateNumber.getText().trim();
-        if (plate.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Enter a plate number!");
-            return;
-        }
+String plate = PlateNumber.getText().trim();
+    
+    if (plate.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Enter a plate number!");
+        return;
+    }
 
+    // Show confirmation dialog
+    int confirmResult = JOptionPane.showConfirmDialog(this, 
+        "Are you sure this is the correct plate number?\n" + plate, 
+        "Confirm Plate Number", 
+        JOptionPane.YES_NO_OPTION);
+
+    // If user confirms, pass the plate number to the Time1 label in P10_RECEIPT
+    if (confirmResult == JOptionPane.YES_OPTION) {
+        P10_RECEIPT timeLabel = new P10_RECEIPT();
+        timeLabel.Platenumber_receipt.setText(plate);  // Set the plate number to Time1 label
+
+        // Continue with the rest of the code
         String slot = ParkingData.selectedSlot;
         if (slot != null) {
-        // save plate
+            // Save plate number
             ParkingData.occupiedSlots.put(slot, plate);
-            
             QN_panel.getInstance().addParkingRow(slot, plate);
-
-     
         }
 
         this.setVisible(false);
-       P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
-       P05.setVisible(true); 
+        P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
+        P05.setVisible(true); 
+    }
     }//GEN-LAST:event_confirmActionPerformed
 
   

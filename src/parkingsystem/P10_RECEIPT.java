@@ -58,7 +58,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         tn = new javax.swing.JLabel();
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
-        Time1 = new javax.swing.JLabel();
+        Platenumber_receipt = new javax.swing.JLabel();
         pl = new javax.swing.JLabel();
         unitcostlabel = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
@@ -104,9 +104,9 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         Time.setText("Time:");
         getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 53, 20));
 
-        Time1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        Time1.setText("Plate Number:");
-        getContentPane().add(Time1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, 20));
+        Platenumber_receipt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        Platenumber_receipt.setText("Plate Number:");
+        getContentPane().add(Platenumber_receipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, 20));
 
         pl.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         pl.setText("Payment Type:");
@@ -250,9 +250,9 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     private javax.swing.JLabel DiscTypeLabel;
     private javax.swing.JLabel DiscountLabel;
     public javax.swing.JLabel PaymentTypeLabel;
+    public javax.swing.JLabel Platenumber_receipt;
     public javax.swing.JLabel TicketCode;
     private javax.swing.JLabel Time;
-    private javax.swing.JLabel Time1;
     private javax.swing.JLabel Time2;
     public javax.swing.JLabel TimeLabel;
     private javax.swing.JLabel VatLabel;
