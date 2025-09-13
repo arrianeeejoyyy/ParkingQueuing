@@ -223,13 +223,6 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     // Make the PDFticket window visible
     pdf.setVisible(true);  
     pdf.savePanelImageAsPDF();
-    
-    
-// TODO add your handling code here:
-        //P14_WaitQueue P14 = new P14_WaitQueue();
-        //P14.setVisible(true);
-       // this.setVisible(false);
-        
         
     }//GEN-LAST:event_PRINTTICKETActionPerformed
 

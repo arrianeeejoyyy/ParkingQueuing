@@ -1,28 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package parkingsystem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import parkingsystem.P03_SELECTPARK.ParkingData;
+import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
-/**
- *
- * @author Airi
- */
 public class P16_OUT extends javax.swing.JFrame {
 
-    /**
-     * Creates new form P16_OUT
-     */
+    
     public P16_OUT() {
         initComponents();
        
     }
 
-  
+    public static boolean releaseSlot(String slot, String code) {
+        if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
+//            occupiedSlots.remove(slot); 
+            return true; 
+        }
+        return false; 
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,7 +68,7 @@ public class P16_OUT extends javax.swing.JFrame {
                 jTextField1KeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 710, 200));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 690, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/OUT.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -82,13 +83,25 @@ public class P16_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        setVisible(false);   
-        P15_TY_OUT P15 = new P15_TY_OUT();  
-        P15.setVisible(true);  
+         String slot = ParkingData.selectedSlot; 
+        String enteredCode = jTextField1.getText().trim(); 
+        
+        if (enteredCode.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
+            return;
+        } 
+        if (ParkingData.releaseSlot(slot, enteredCode)){
+             
+            P15_TY_OUT P15 = new P15_TY_OUT();  
+            P15.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "invalid.");
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+       
       
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -103,37 +116,13 @@ public class P16_OUT extends javax.swing.JFrame {
 
 
     if (jTextField1.getText().length() >= 6) {
-    evt.consume(); // block typing more than 6
+    evt.consume(); 
     }//GEN-LAST:event_jTextField1KeyTyped
     }
-    /**
-     * @param args the command line arguments
-     */
+   
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P16_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P16_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P16_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P16_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new P16_OUT().setVisible(true);

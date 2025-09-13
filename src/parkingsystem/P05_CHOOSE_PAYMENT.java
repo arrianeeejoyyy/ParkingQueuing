@@ -67,7 +67,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CASHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHActionPerformed
-        P06_ p6 = new P06_();
+        P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY();
         p6.setVisible(true);
         QN_panel.getInstance().setVisible(true);
         this.setVisible(false);
@@ -78,7 +78,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }//GEN-LAST:event_CONFIRMActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
-         P09 p9 = new P09();
+         P09_INSERTCARD p9 = new P09_INSERTCARD();
         p9.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_CARDActionPerformed
