@@ -202,7 +202,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TNL1.setText("Transaction Number:");
         getContentPane().add(TNL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 200, 20));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QUEUING_NUMBER _ FULL .png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QUEUING_NUMBER _ FULL.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 

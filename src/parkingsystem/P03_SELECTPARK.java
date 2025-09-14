@@ -24,7 +24,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         }
     }
     
-    private void slotButtonClicked(String slotName) {
+private void slotButtonClicked(String slotName) {
     // Check if the slot is already taken
     if (ParkingData.occupiedSlots.containsKey(slotName)) {
         // Show a simple message dialog if the slot is already taken
@@ -32,13 +32,14 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             "This slot is already taken. Please choose another slot.", 
             "Slot Taken", 
             javax.swing.JOptionPane.INFORMATION_MESSAGE);
-           
-        // Stay on the current panel, do nothing further
+        // Remove this line to avoid disposing the panel
+        // this.dispose(); 
     } else {
         // If the slot is not taken, proceed with the selection
         ParkingData.selectedSlot = slotName; 
         new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose(); // Dispose the current panel after moving to the next
+        // Keep the current panel visible
+        // this.dispose(); // Do not call dispose here anymore
     }
 }
     

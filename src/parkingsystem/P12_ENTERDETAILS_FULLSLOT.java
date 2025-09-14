@@ -84,6 +84,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
         phoneNumber = new javax.swing.JTextField();
         PlateNumber = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,7 +93,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
         fullName.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         fullName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(fullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 260, 490, 100));
+        getContentPane().add(fullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 490, 100));
 
         phoneNumber.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         phoneNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -101,7 +102,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
                 phoneNumberActionPerformed(evt);
             }
         });
-        getContentPane().add(phoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, 490, 100));
+        getContentPane().add(phoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 490, 100));
 
         PlateNumber.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         PlateNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -111,7 +112,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
                 PlateNumberActionPerformed(evt);
             }
         });
-        getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 560, 490, 100));
+        getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 490, 90));
 
         confirm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         confirm.setBorderPainted(false);
@@ -122,6 +123,16 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
             }
         });
         getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 720, 430, 110));
+
+        back.setToolTipText("");
+        back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        back.setContentAreaFilled(false);
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTERDETAILS_FULLSLOT.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -148,6 +159,13 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     private void phoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumberActionPerformed
        
     }//GEN-LAST:event_phoneNumberActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        P02_IN_OUT P02 = new P02_IN_OUT();
+        P02.setVisible(true);
+        QN_panel.getInstance().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_backActionPerformed
 
    
     public static void main(String args[]) {
@@ -184,6 +202,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PlateNumber;
+    private javax.swing.JButton back;
     private javax.swing.JButton confirm;
     private javax.swing.JTextField fullName;
     private javax.swing.JLabel jLabel1;

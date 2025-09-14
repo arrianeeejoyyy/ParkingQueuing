@@ -53,7 +53,7 @@ public class P16_OUT extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 90, 140, 120));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 140, 120));
 
         jTextField1.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
