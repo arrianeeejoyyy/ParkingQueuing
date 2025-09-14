@@ -32,7 +32,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
             "This slot is already taken. Please choose another slot.", 
             "Slot Taken", 
             javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        
+           
         // Stay on the current panel, do nothing further
     } else {
         // If the slot is not taken, proceed with the selection
