@@ -7,48 +7,47 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import parkingsystem.P03_SELECTPARK.ParkingData;
 
-
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
+    // Static field to temporarily store the plate number
+    public static String tempPlateNumber = "";
 
     public P04_ENTER_PLATENUMBER() {
         initComponents();
 
         PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
-        @Override
-        public void keyTyped(java.awt.event.KeyEvent evt) {
-            char c = evt.getKeyChar();
-            String text = PlateNumber.getText();
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                char c = evt.getKeyChar();
+                String text = PlateNumber.getText();
 
-            if (text.length() >= 8) {
-                evt.consume();
-                return;
-            }
+                if (text.length() >= 8) {
+                    evt.consume();
+                    return;
+                }
 
-            int pos = text.length();
+                int pos = text.length();
 
-            if (pos < 3) {
-                if (!Character.isLetter(c)) {
+                if (pos < 3) {
+                    if (!Character.isLetter(c)) {
+                        evt.consume();
+                    } else {
+                        evt.setKeyChar(Character.toUpperCase(c));
+                    }
+                } else if (pos == 3) {
+                    PlateNumber.setText(text + "-");
+                    if (Character.isDigit(c)) {
+                        PlateNumber.setText(PlateNumber.getText() + c);
+                    }
                     evt.consume();
                 } else {
-                    evt.setKeyChar(Character.toUpperCase(c));
+                    if (!Character.isDigit(c)) {
+                        evt.consume();
+                    }
                 }
             }
-            else if (pos == 3) {
-                PlateNumber.setText(text + "-");
-                if (Character.isDigit(c)) {
-                    PlateNumber.setText(PlateNumber.getText() + c);
-                }
-                evt.consume();
-            }
-            else {
-                if (!Character.isDigit(c)) {
-                    evt.consume();
-                }
-            }
-        }
-    });
-}
+        });
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -100,15 +99,15 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
-         String input = PlateNumber.getText().toUpperCase();
+        String input = PlateNumber.getText().toUpperCase();
 
-    if (input.length() > 7) {
-        input = input.substring(0, 7);
-        PlateNumber.setText(input);
+        if (input.length() > 7) {
+            input = input.substring(0, 7);
+            PlateNumber.setText(input);
 
-        javax.swing.JOptionPane.showMessageDialog(this,
-            "Plate number can only have up to 7 characters.");
-    }
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Plate number can only have up to 7 characters.");
+        }
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
@@ -121,51 +120,16 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
         // Show confirmation dialog
         int confirmResult = JOptionPane.showConfirmDialog(this,
-            "Are you sure this is the correct plate number?\n" + plate,
-            "Confirm Plate Number",
-            JOptionPane.YES_NO_OPTION);
+                "Are you sure this is the correct plate number?\n" + plate,
+                "Confirm Plate Number",
+                JOptionPane.YES_NO_OPTION);
 
-        // If user confirms, pass the plate number to the Platenumber_receipt label in P10_RECEIPT
+        // If user confirms, store the plate number and navigate to payment selection
         if (confirmResult == JOptionPane.YES_OPTION) {
-            // Create P10_RECEIPT to get generated ticket code and transaction number
-            // Pass plate and payment type directly to the constructor
-            P10_RECEIPT receiptFrame = new P10_RECEIPT(plate, P05_CHOOSE_PAYMENT.currentPaymentType);
-            
-            String slotName = ParkingData.selectedSlot;
-            if (slotName != null) {
-                // Get current date/time for entry
-                String entryDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
-                // Create a ParkingSlot object
-                ParkingSlot newParking = new ParkingSlot(
-                    slotName,
-                    plate,
-                    receiptFrame.TicketCode.getText().trim(), // Get ticket code from receipt
-                    receiptFrame.transactionNumber.getText().trim(), // Get transaction number
-                    P05_CHOOSE_PAYMENT.currentPaymentType, // Use the actual payment type
-                    entryDateTime
-                );
-
-                // Save the ParkingSlot object to the HashMap
-                ParkingData.occupiedSlots.put(slotName, newParking);
-
-                // Update QN_panel with the new parking entry
-                QN_panel.getInstance().addParkingRow(
-                    newParking.getSlotName(),
-                    newParking.getPlateNumber(),
-                    newParking.getTicketCode(),
-                    newParking.getEntryDateTime()
-                );
-
-                // Save all parking data to file
-                ParkingDataManager.saveParkingData(ParkingData.occupiedSlots);
-            }
-
+            tempPlateNumber = plate; // Store the plate number
             this.setVisible(false);
-            // Instead of P05_CHOOSE_PAYMENT, we now show the P10_RECEIPT directly
-            // P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
-            // P05.setVisible(true);
-            receiptFrame.setVisible(true); // Show the receipt frame
+            P05_CHOOSE_PAYMENT choosePaymentFrame = new P05_CHOOSE_PAYMENT();
+            choosePaymentFrame.setVisible(true);
         }
     }//GEN-LAST:event_confirmActionPerformed
 
@@ -176,13 +140,9 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -199,16 +159,8 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
+        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new P04_ENTER_PLATENUMBER().setVisible(true);
