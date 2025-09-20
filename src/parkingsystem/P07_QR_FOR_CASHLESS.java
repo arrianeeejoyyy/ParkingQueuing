@@ -9,28 +9,28 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
     private String plateNumber;
     private String paymentType;
 
-    private Timer timer;
-
+    // Constructor accepts plate number and payment type
     public P07_QR_FOR_CASHLESS(String plateNumber, String paymentType) {
         this.plateNumber = plateNumber;
         this.paymentType = paymentType;
-
         initComponents();
-
-        timer = new Timer(3000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                P08_GIF_SCANQR p8 = new P08_GIF_SCANQR(P07_QR_FOR_CASHLESS.this.plateNumber, P07_QR_FOR_CASHLESS.this.paymentType);
-                p8.setVisible(true);
-            }
-        });
 
         timer.setRepeats(false);
         timer.start();
     }
 
+    Timer timer = new Timer(3000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+            // Pass plateNumber and paymentType to P08_GIF_SCANQR
+            P08_GIF_SCANQR p8 = new P08_GIF_SCANQR(plateNumber, paymentType);
+            p8.setVisible(true);
+        }
+    });
+
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         back = new javax.swing.JButton();
@@ -55,35 +55,26 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
         pack();
-    }
+    }// </editor-fold>                        
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {
-        P05_CHOOSE_PAYMENT p05 = new P05_CHOOSE_PAYMENT();
-        p05.setVisible(true);
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        P05_CHOOSE_PAYMENT P02 = new P05_CHOOSE_PAYMENT();
+        P02.setVisible(true);
         QN_panel.getInstance().setVisible(true);
         this.setVisible(false);
-    }
+    }                                    
 
     public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception ex) {
-            java.util.logging.Logger.getLogger(P07_QR_FOR_CASHLESS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // For testing, pass dummy values
+                // For testing, pass dummy plate and payment type
                 new P07_QR_FOR_CASHLESS("ABC-1234", "Cashless").setVisible(true);
             }
         });
     }
 
+    // Variables declaration - do not modify                     
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
+    // End of variables declaration                   
 }

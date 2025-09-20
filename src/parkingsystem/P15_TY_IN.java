@@ -1,4 +1,3 @@
-
 package parkingsystem;
 
 import java.awt.event.ActionEvent;

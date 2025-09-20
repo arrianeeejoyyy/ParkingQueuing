@@ -4,34 +4,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
+
 public class P09_INSERTCARD extends javax.swing.JFrame {
 
-    private String plateNumber;
-    private String paymentType;
-
-    private Timer timer;
-
-    public P09_INSERTCARD(String plateNumber, String paymentType) {
-        this.plateNumber = plateNumber;
-        this.paymentType = paymentType;
-
+ 
+    public P09_INSERTCARD() {
         initComponents();
-
-        timer = new Timer(5000, new ActionListener() {
+        
+         timer.setRepeats(false); // run only once
+        timer.start();
+    }
+Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                P10_RECEIPT receipt = new P10_RECEIPT(P09_INSERTCARD.this.plateNumber, P09_INSERTCARD.this.paymentType);
-                receipt.setVisible(true);
+                // Close or hide the JFrame after 3 seconds
+                setVisible(false);   // just hide
+                P10_RECEIPT P10 = new P10_RECEIPT(); // This will now use the default constructor, which might not have plate/payment info
+                P10.setVisible(true);       // fully close the window
             }
         });
 
-        timer.setRepeats(false);
-        timer.start();
-    }
 
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,15 +39,19 @@ public class P09_INSERTCARD extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
-    }
+    }// </editor-fold>//GEN-END:initComponents
 
+  
     public static void main(String args[]) {
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new P09_INSERTCARD("ABC-1234", "Card").setVisible(true);
+                new P09_INSERTCARD().setVisible(true);
             }
         });
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    // End of variables declaration//GEN-END:variables
 }

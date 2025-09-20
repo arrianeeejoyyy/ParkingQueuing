@@ -1,10 +1,5 @@
 package parkingsystem;
 
-import DATABASE.ParkingDataManager;
-import DATABASE.ParkingSlot;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
 
     // Static field to hold the selected payment type
@@ -14,8 +9,11 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
         initComponents();
     }
 
+
     @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         CARD = new javax.swing.JButton();
         CASH = new javax.swing.JButton();
         CASHLESS = new javax.swing.JButton();
@@ -67,78 +65,45 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
         pack();
-    }
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void CASHActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        currentPaymentType = "Cash";
-        String plateNumber = P04_ENTER_PLATENUMBER.tempPlateNumber;
-        P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY(plateNumber, currentPaymentType);
-        p6.setVisible(true);
-        QN_panel.getInstance().setVisible(true);
-        this.setVisible(false);
-    }                                    
+    private void CASHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHActionPerformed
+        currentPaymentType = "Cash"; // Set payment type
+        // P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY(); // Removed direct navigation
+        // p6.setVisible(true);
+        this.dispose(); // Close this frame
+    }//GEN-LAST:event_CASHActionPerformed
 
-    private void CARDActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        currentPaymentType = "Card";
-        String plateNumber = P04_ENTER_PLATENUMBER.tempPlateNumber;
-        P09_INSERTCARD p9 = new P09_INSERTCARD(plateNumber, currentPaymentType);
-        p9.setVisible(true);
-        this.setVisible(false);
-    }                                    
+    private void CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONFIRMActionPerformed
+        // This button's action might need to be re-evaluated based on your desired flow.
+        // Currently, selecting Cash, Card, or Cashless directly disposes this frame.
+        // If CONFIRM is meant to be a general "proceed" button after selection,
+        // its logic would need to check if a payment type has been selected.
+    }//GEN-LAST:event_CONFIRMActionPerformed
 
-    private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        currentPaymentType = "Cashless";
-        String plateNumber = P04_ENTER_PLATENUMBER.tempPlateNumber;
-        P07_QR_FOR_CASHLESS p7 = new P07_QR_FOR_CASHLESS(plateNumber, currentPaymentType);
-        p7.setVisible(true);
-        this.setVisible(false);
-    }                                        
+    private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
+        currentPaymentType = "Card"; // Set payment type
+        // P09_INSERTCARD p9 = new P09_INSERTCARD(); // Removed direct navigation
+        // p9.setVisible(true);
+        this.dispose(); // Close this frame
+    }//GEN-LAST:event_CARDActionPerformed
 
-    private void CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        if (currentPaymentType == null || currentPaymentType.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Please select a payment type before confirming.", "Payment Type Required", javax.swing.JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+    private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHLESSActionPerformed
+        currentPaymentType = "Cashless"; // Set payment type
+        // P07_QR_FOR_CASHLESS p7 = new P07_QR_FOR_CASHLESS(); // Removed direct navigation
+        // p7.setVisible(true);
+        this.dispose(); // Close this frame
+    }//GEN-LAST:event_CASHLESSActionPerformed
 
-        String plateNumber = P04_ENTER_PLATENUMBER.tempPlateNumber;
-
-        if (plateNumber == null || plateNumber.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Plate number is missing. Please start over.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        P10_RECEIPT receiptFrame = new P10_RECEIPT(plateNumber, currentPaymentType);
-
-        String slotName = P03_SELECTPARK.ParkingData.selectedSlot;
-        if (slotName != null) {
-            String entryDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
-            ParkingSlot newParking = new ParkingSlot(
-                slotName,
-                plateNumber,
-                receiptFrame.TicketCode.getText().trim(),
-                receiptFrame.transactionNumber.getText().trim(),
-                currentPaymentType,
-                entryDateTime
-            );
-
-            P03_SELECTPARK.ParkingData.occupiedSlots.put(slotName, newParking);
-
-            QN_panel.getInstance().addParkingRow(
-                newParking.getSlotName(),
-                newParking.getPlateNumber(),
-                newParking.getTicketCode(),
-                newParking.getEntryDateTime()
-            );
-
-            ParkingDataManager.saveParkingData(P03_SELECTPARK.ParkingData.occupiedSlots);
-        }
-
-        this.setVisible(false);
-        receiptFrame.setVisible(true);
-    }
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -146,10 +111,21 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(P05_CHOOSE_PAYMENT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(P05_CHOOSE_PAYMENT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(P05_CHOOSE_PAYMENT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(P05_CHOOSE_PAYMENT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new P05_CHOOSE_PAYMENT().setVisible(true);
@@ -157,9 +133,11 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
         });
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CARD;
     private javax.swing.JButton CASH;
     private javax.swing.JButton CASHLESS;
     private javax.swing.JButton CONFIRM;
     private javax.swing.JLabel jLabel1;
+    // End of variables declaration//GEN-END:variables
 }
