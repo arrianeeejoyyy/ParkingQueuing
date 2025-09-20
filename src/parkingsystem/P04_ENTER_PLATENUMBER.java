@@ -1,16 +1,19 @@
-
 package parkingsystem;
 
+import DATABASE.ParkingDataManager;
+import DATABASE.ParkingSlot;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import parkingsystem.P03_SELECTPARK.ParkingData;
 
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
-   
+
     public P04_ENTER_PLATENUMBER() {
         initComponents();
-        
+
         PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
         @Override
         public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -26,7 +29,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
             if (pos < 3) {
                 if (!Character.isLetter(c)) {
-                    evt.consume(); 
+                    evt.consume();
                 } else {
                     evt.setKeyChar(Character.toUpperCase(c));
                 }
@@ -40,13 +43,13 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             }
             else {
                 if (!Character.isDigit(c)) {
-                    evt.consume(); 
+                    evt.consume();
                 }
             }
         }
     });
 }
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -97,63 +100,86 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
-         String input = PlateNumber.getText().toUpperCase(); 
-    
+         String input = PlateNumber.getText().toUpperCase();
+
     if (input.length() > 7) {
         input = input.substring(0, 7);
         PlateNumber.setText(input);
-        
-        javax.swing.JOptionPane.showMessageDialog(this, 
+
+        javax.swing.JOptionPane.showMessageDialog(this,
             "Plate number can only have up to 7 characters.");
     }
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-String plate = PlateNumber.getText().trim();
-    
-    if (plate.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Enter a plate number!");
-        return;
-    }
+        String plate = PlateNumber.getText().trim();
 
-    // Show confirmation dialog
-    int confirmResult = JOptionPane.showConfirmDialog(this, 
-        "Are you sure this is the correct plate number?\n" + plate, 
-        "Confirm Plate Number", 
-        JOptionPane.YES_NO_OPTION);
-
-    // If user confirms, pass the plate number to the Time1 label in P10_RECEIPT
-    if (confirmResult == JOptionPane.YES_OPTION) {
-        P10_RECEIPT timeLabel = new P10_RECEIPT();
-        timeLabel.Platenumber_receipt.setText(plate);  // Set the plate number to Time1 label
-
-        // Continue with the rest of the code
-        String slot = ParkingData.selectedSlot;
-        if (slot != null) {
-            // Save plate number
-            ParkingData.occupiedSlots.put(slot, plate);
-            QN_panel.getInstance().addParkingRow(slot, plate);
+        if (plate.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter a plate number!");
+            return;
         }
 
-        this.setVisible(false);
-        P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
-        P05.setVisible(true); 
-    }
+        // Show confirmation dialog
+        int confirmResult = JOptionPane.showConfirmDialog(this,
+            "Are you sure this is the correct plate number?\n" + plate,
+            "Confirm Plate Number",
+            JOptionPane.YES_NO_OPTION);
+
+        // If user confirms, pass the plate number to the Platenumber_receipt label in P10_RECEIPT
+        if (confirmResult == JOptionPane.YES_OPTION) {
+            // Create P10_RECEIPT to get generated ticket code and transaction number
+            P10_RECEIPT receiptFrame = new P10_RECEIPT();
+            receiptFrame.Platenumber_receipt.setText(plate); // Set plate number on receipt
+
+            String slotName = ParkingData.selectedSlot;
+            if (slotName != null) {
+                // Get current date/time for entry
+                String entryDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+                // Create a ParkingSlot object
+                ParkingSlot newParking = new ParkingSlot(
+                    slotName,
+                    plate,
+                    receiptFrame.TicketCode.getText().trim(), // Get ticket code from receipt
+                    receiptFrame.transactionNumber.getText().trim(), // Get transaction number
+                    P05_CHOOSE_PAYMENT.currentPaymentType, // Use the actual payment type
+                    entryDateTime
+                );
+
+                // Save the ParkingSlot object to the HashMap
+                ParkingData.occupiedSlots.put(slotName, newParking);
+
+                // Update QN_panel with the new parking entry
+                QN_panel.getInstance().addParkingRow(
+                    newParking.getSlotName(),
+                    newParking.getPlateNumber(),
+                    newParking.getTicketCode(),
+                    newParking.getEntryDateTime()
+                );
+
+                // Save all parking data to file
+                ParkingDataManager.saveParkingData(ParkingData.occupiedSlots);
+            }
+
+            this.setVisible(false);
+            P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
+            P05.setVisible(true);
+        }
     }//GEN-LAST:event_confirmActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        P03_SELECTPARK P02 = new P03_SELECTPARK();
-        P02.setVisible(true);
+        P03_SELECTPARK P03 = new P03_SELECTPARK();
+        P03.setVisible(true);
         QN_panel.getInstance().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-  
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
