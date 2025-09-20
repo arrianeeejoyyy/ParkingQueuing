@@ -1,29 +1,36 @@
-
 package parkingsystem;
 
+import DATABASE.ParkingDataManager;
+import DATABASE.ParkingSlot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import parkingsystem.P03_SELECTPARK.ParkingData;
-import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
+
 
 public class P16_OUT extends javax.swing.JFrame {
 
-    
+
     public P16_OUT() {
         initComponents();
-       
+
     }
 
+    // This method is no longer directly used for releasing, as the logic is in jButton1ActionPerformed
+    // but keeping it for consistency if needed elsewhere.
     public static boolean releaseSlot(String slot, String code) {
-        if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
-//            occupiedSlots.remove(slot); 
-            return true; 
+        if (ParkingData.occupiedSlots.containsKey(slot)) {
+            ParkingSlot parkedCar = ParkingData.occupiedSlots.get(slot);
+            if (parkedCar.getTicketCode().equals(code)) {
+                // occupiedSlots.remove(slot); // This line was commented out in original, now handled in action listener
+                return true;
+            }
         }
-        return false; 
+        return false;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,52 +84,69 @@ public class P16_OUT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        setVisible(false);   
-        P02_IN_OUT P01 = new P02_IN_OUT();  
-        P01.setVisible(true);  
+        setVisible(false);
+        P02_IN_OUT P01 = new P02_IN_OUT();
+        P01.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String slot = ParkingData.selectedSlot; 
-        String enteredCode = jTextField1.getText().trim(); 
-        
+        String enteredCode = jTextField1.getText().trim();
+
         if (enteredCode.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
             return;
-        } 
-        if (ParkingData.releaseSlot(slot, enteredCode)){
-             
-            P15_TY_OUT P15 = new P15_TY_OUT();  
+        }
+
+        // Find the slot associated with the entered ticket code
+        String slotToVacate = null;
+        for (Map.Entry<String, ParkingSlot> entry : ParkingData.occupiedSlots.entrySet()) {
+            if (entry.getValue().getTicketCode().trim().equals(enteredCode)) {
+                slotToVacate = entry.getKey();
+                break;
+            }
+        }
+
+        if (slotToVacate != null) {
+            // Remove the slot from occupiedSlots
+            ParkingData.occupiedSlots.remove(slotToVacate);
+
+            // Update QN_panel (you'll need a method to remove a row)
+            QN_panel.getInstance().removeParkingRow(slotToVacate);
+
+            // Save the updated parking data to file
+            ParkingDataManager.saveParkingData(ParkingData.occupiedSlots);
+
+            P15_TY_OUT P15 = new P15_TY_OUT();
             P15.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "invalid.");
-}
+            JOptionPane.showMessageDialog(this, "Invalid Ticket Code or car not found.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-       
-      
+
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-     
+
         char c = evt.getKeyChar();
 
 
     if (!Character.isDigit(c)) {
-    evt.consume(); 
+    evt.consume();
 }
 
 
     if (jTextField1.getText().length() >= 6) {
-    evt.consume(); 
+    evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
     }
-   
-    
+
+
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new P16_OUT().setVisible(true);

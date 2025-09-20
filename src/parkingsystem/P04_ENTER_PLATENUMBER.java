@@ -128,9 +128,9 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         // If user confirms, pass the plate number to the Platenumber_receipt label in P10_RECEIPT
         if (confirmResult == JOptionPane.YES_OPTION) {
             // Create P10_RECEIPT to get generated ticket code and transaction number
-            P10_RECEIPT receiptFrame = new P10_RECEIPT();
-            receiptFrame.Platenumber_receipt.setText(plate); // Set plate number on receipt
-
+            // Pass plate and payment type directly to the constructor
+            P10_RECEIPT receiptFrame = new P10_RECEIPT(plate, P05_CHOOSE_PAYMENT.currentPaymentType);
+            
             String slotName = ParkingData.selectedSlot;
             if (slotName != null) {
                 // Get current date/time for entry
@@ -162,8 +162,10 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             }
 
             this.setVisible(false);
-            P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
-            P05.setVisible(true);
+            // Instead of P05_CHOOSE_PAYMENT, we now show the P10_RECEIPT directly
+            // P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
+            // P05.setVisible(true);
+            receiptFrame.setVisible(true); // Show the receipt frame
         }
     }//GEN-LAST:event_confirmActionPerformed
 

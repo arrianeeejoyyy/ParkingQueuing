@@ -1,14 +1,15 @@
-
 package parkingsystem;
 
 public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
 
-    
+    // Static field to hold the selected payment type
+    public static String currentPaymentType = "";
+
     public P05_CHOOSE_PAYMENT() {
         initComponents();
     }
 
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,26 +68,31 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CASHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHActionPerformed
-        P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY();
-        p6.setVisible(true);
-        QN_panel.getInstance().setVisible(true);
-        this.setVisible(false);
+        currentPaymentType = "Cash"; // Set payment type
+        // P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY(); // Removed direct navigation
+        // p6.setVisible(true);
+        this.dispose(); // Close this frame
     }//GEN-LAST:event_CASHActionPerformed
 
     private void CONFIRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CONFIRMActionPerformed
-        // TODO add your handling code here:
+        // This button's action might need to be re-evaluated based on your desired flow.
+        // Currently, selecting Cash, Card, or Cashless directly disposes this frame.
+        // If CONFIRM is meant to be a general "proceed" button after selection,
+        // its logic would need to check if a payment type has been selected.
     }//GEN-LAST:event_CONFIRMActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
-         P09_INSERTCARD p9 = new P09_INSERTCARD();
-        p9.setVisible(true);
-        this.setVisible(false);
+        currentPaymentType = "Card"; // Set payment type
+        // P09_INSERTCARD p9 = new P09_INSERTCARD(); // Removed direct navigation
+        // p9.setVisible(true);
+        this.dispose(); // Close this frame
     }//GEN-LAST:event_CARDActionPerformed
 
     private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHLESSActionPerformed
-        P07_QR_FOR_CASHLESS p7 = new P07_QR_FOR_CASHLESS();
-        p7.setVisible(true);
-        this.setVisible(false);
+        currentPaymentType = "Cashless"; // Set payment type
+        // P07_QR_FOR_CASHLESS p7 = new P07_QR_FOR_CASHLESS(); // Removed direct navigation
+        // p7.setVisible(true);
+        this.dispose(); // Close this frame
     }//GEN-LAST:event_CASHLESSActionPerformed
 
     /**
@@ -96,7 +102,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

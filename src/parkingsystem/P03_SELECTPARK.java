@@ -1,56 +1,55 @@
-
 package parkingsystem;
 
+import DATABASE.ParkingSlot;
 import java.awt.Color;
 import java.util.HashMap;
-import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
-
+import java.util.Map; // Import Map for iterating entry set
 
 public class P03_SELECTPARK extends javax.swing.JFrame {
-    public class ParkingData {
-        public static String selectedSlot = null;
-        public static HashMap<String, String> occupiedSlots = new HashMap<>();
-        static String SelectedSlot;
-        public static boolean releaseSlot(String slot, String code) {
-            if(occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)); {
-            occupiedSlots.remove(slot);
-            return true;
-        }
-            
-        }
 
-        static boolean releasedSlot(String slot, String enteredCode) {
-            throw new UnsupportedOperationException("Not supported yet."); 
+    public static class ParkingData {
+        public static String selectedSlot = null;
+        // Change this to store ParkingSlot objects
+        public static HashMap<String, ParkingSlot> occupiedSlots = new HashMap<>();
+
+        // This method is no longer directly used for releasing, as P16_OUT handles it
+        // but keeping it for consistency if needed elsewhere.
+        public static boolean releaseSlot(String slot, String code) {
+            // Check if the slot exists and the ticket code matches
+            if (occupiedSlots.containsKey(slot)) {
+                ParkingSlot parkedCar = occupiedSlots.get(slot);
+                if (parkedCar.getTicketCode().equals(code)) {
+                    occupiedSlots.remove(slot);
+                    return true;
+                }
+            }
+            return false;
         }
     }
-    
-private void slotButtonClicked(String slotName) {
-    // Check if the slot is already taken
-    if (ParkingData.occupiedSlots.containsKey(slotName)) {
-        // Show a simple message dialog if the slot is already taken
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "This slot is already taken. Please choose another slot.", 
-            "Slot Taken", 
-            javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        // Remove this line to avoid disposing the panel
-        // this.dispose(); 
-    } else {
-        // If the slot is not taken, proceed with the selection
-        ParkingData.selectedSlot = slotName; 
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        // Keep the current panel visible
-        // this.dispose(); // Do not call dispose here anymore
+
+    private void slotButtonClicked(String slotName) {
+        // Check if the slot is already taken by checking the key in occupiedSlots
+        if (ParkingData.occupiedSlots.containsKey(slotName)) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                "This slot is already taken. Please choose another slot.",
+                "Slot Taken",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // If the slot is not taken, proceed with the selection
+            ParkingData.selectedSlot = slotName;
+            new P04_ENTER_PLATENUMBER().setVisible(true);
+            this.setVisible(false); // Hide this frame after selection
+        }
     }
-}
-    
-    
+
     public P03_SELECTPARK() {
         initComponents();
-        refreshLabels();
+        refreshLabels(); // Call refreshLabels in the constructor
     }
-    
-  
-    private void refreshLabels() {
+
+    // This method should be called whenever the parking status might have changed
+    // e.g., after loading data, or after a car parks/exits
+    public void refreshLabels() {
         setLabelColor(r1l, "R01");
         setLabelColor(r2l, "R02");
         setLabelColor(r3l, "R03");
@@ -61,9 +60,10 @@ private void slotButtonClicked(String slotName) {
         setLabelColor(l3l, "L03");
         setLabelColor(l4l, "L04");
         setLabelColor(l5l, "L05");
-}
+    }
 
     private void setLabelColor(javax.swing.JLabel label, String slot) {
+        // Check if the slot name exists as a key in occupiedSlots
         if (ParkingData.occupiedSlots.containsKey(slot)) {
             label.setOpaque(true);
             label.setBackground(Color.RED);
@@ -73,10 +73,6 @@ private void slotButtonClicked(String slotName) {
         }
     }
 
-    
-    
-
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -226,62 +222,42 @@ private void slotButtonClicked(String slotName) {
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
         slotButtonClicked("L01");
-       
-       this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
         slotButtonClicked("R01");
-        
-       this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
-         slotButtonClicked("R02");
-        
-       this.setVisible(false);
+        slotButtonClicked("R02");
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
-         slotButtonClicked("R03");
-       
-       this.setVisible(false);
+        slotButtonClicked("R03");
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
         slotButtonClicked("R04");
-       
-       this.setVisible(false);
     }//GEN-LAST:event_R04ActionPerformed
 
     private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
         slotButtonClicked("R05");
-       
-       this.setVisible(false);
     }//GEN-LAST:event_R05ActionPerformed
 
     private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
         slotButtonClicked("L02");
-     
-       this.setVisible(false);
     }//GEN-LAST:event_L02ActionPerformed
 
     private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
         slotButtonClicked("L03");
-     
-       this.setVisible(false);
     }//GEN-LAST:event_L03ActionPerformed
 
     private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
         slotButtonClicked("L04");
-      
-       this.setVisible(false);
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
-         slotButtonClicked("L05");
-       
-       this.setVisible(false);
+        slotButtonClicked("L05");
     }//GEN-LAST:event_L05ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -291,9 +267,9 @@ private void slotButtonClicked(String slotName) {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-    
+
     public static void main(String args[]) {
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new P03_SELECTPARK().setVisible(true);
