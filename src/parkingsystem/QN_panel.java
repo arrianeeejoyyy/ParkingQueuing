@@ -38,8 +38,21 @@ public class QN_panel extends javax.swing.JFrame {
     }
     
      public void addParkingRow(String slot, String plate) {
-        model.addRow(new Object[]{slot, plate});
+         if (model != null) {
+            model.addRow(new Object[]{slot, plate});
+        }
     }
+     
+     public void removeParkingRow(String slot) {
+        if (model != null) {
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (model.getValueAt(i, 0).equals(slot)) { // check Slot column
+                    model.removeRow(i);
+                    break;
+                }
+            }
+        }
+     }
 
    
 
