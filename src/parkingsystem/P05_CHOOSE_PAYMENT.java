@@ -59,7 +59,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
         });
         getContentPane().add(CONFIRM, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 730, 470, 100));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\MAIN_UI\\CHOOSE PAYMENT .png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/CHOOSE PAYMENT .png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
 
@@ -67,7 +67,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CASHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHActionPerformed
-        P06_ p6 = new P06_();
+        P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY();
         p6.setVisible(true);
         QN_panel.getInstance().setVisible(true);
         this.setVisible(false);
@@ -78,7 +78,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }//GEN-LAST:event_CONFIRMActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
-         P09 p9 = new P09();
+         P09_INSERTCARD p9 = new P09_INSERTCARD();
         p9.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_CARDActionPerformed

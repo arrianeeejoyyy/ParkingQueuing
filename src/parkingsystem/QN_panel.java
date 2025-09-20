@@ -101,7 +101,7 @@ public class QN_panel extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 310, 340));
 
-        PIC.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mitsu\\OneDrive\\Documents\\NetBeansProjects\\ParkingQueuing\\ParkingQueuing\\src\\SECOND_UI\\2ND UI DATASTRUC.png")); // NOI18N
+        PIC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/2ND UI DATASTRUC.png"))); // NOI18N
         getContentPane().add(PIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 700));
 
         pack();

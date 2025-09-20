@@ -300,7 +300,7 @@
     <Component class="javax.swing.JLabel" name="mainIMG">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Mitsu\OneDrive\Documents\NetBeansProjects\ParkingQueuing\ParkingQueuing\src\MAIN_UI\SELECT_PARK_FNL.png"/>
+          <Image iconType="3" name="/MAIN_UI/SELECT_PARK_FNL.png"/>
         </Property>
       </Properties>
       <Constraints>
