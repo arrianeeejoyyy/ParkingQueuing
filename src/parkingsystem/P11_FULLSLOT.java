@@ -29,7 +29,7 @@ public class P11_FULLSLOT extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 710, 370, 80));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 710, 370, 80));
 
         jButton2.setBorder(null);
         jButton2.setContentAreaFilled(false);
@@ -38,7 +38,7 @@ public class P11_FULLSLOT extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 710, 380, 80));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 720, 380, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/FULLSLOT.png"))); // NOI18N
         jLabel1.setText("jLabel1");

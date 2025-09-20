@@ -17,7 +17,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     
     public static int Counter = 0;
 
-
+     
     
     private String generateTransactionNumber() {
         Counter++; 

@@ -1,13 +1,17 @@
 
 package parkingsystem;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import parkingsystem.P03_SELECTPARK.ParkingData;
 
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
-   
+   private static final String DATABASE_FILE = "src/DATABASE/Intheslot.txt";
+    
     public P04_ENTER_PLATENUMBER() {
         initComponents();
         
@@ -97,7 +101,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
-         String input = PlateNumber.getText().toUpperCase(); 
+    String input = PlateNumber.getText().toUpperCase(); 
     
     if (input.length() > 7) {
         input = input.substring(0, 7);
@@ -109,7 +113,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-String plate = PlateNumber.getText().trim();
+    String plate = PlateNumber.getText().trim();
     
     if (plate.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Enter a plate number!");
@@ -122,23 +126,33 @@ String plate = PlateNumber.getText().trim();
         "Confirm Plate Number", 
         JOptionPane.YES_NO_OPTION);
 
-    // If user confirms, pass the plate number to the Time1 label in P10_RECEIPT
     if (confirmResult == JOptionPane.YES_OPTION) {
         P10_RECEIPT timeLabel = new P10_RECEIPT();
-        timeLabel.Platenumber_receipt.setText(plate);  // Set the plate number to Time1 label
+        timeLabel.Platenumber_receipt.setText(plate);
 
-        // Continue with the rest of the code
         String slot = ParkingData.selectedSlot;
         if (slot != null) {
-            // Save plate number
+            // Save plate number in memory
             ParkingData.occupiedSlots.put(slot, plate);
             QN_panel.getInstance().addParkingRow(slot, plate);
+
+            // --- Save to text file (database) with slot status --- 
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE, true))) {
+                // Assuming 'R' for reserved and 'L' for left side, you can modify accordingly
+                String status = "Occupied";  // Could be "Occupied" or "Available"
+                String slotColor = (ParkingData.occupiedSlots.containsKey(slot)) ? "RED" : "GREEN"; // Color indication
+                writer.write(slot + " - " + plate + " - " + status + " - " + slotColor); // Save with status and color
+                writer.newLine();
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
+            }
         }
 
         this.setVisible(false);
         P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
         P05.setVisible(true); 
     }
+
     }//GEN-LAST:event_confirmActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

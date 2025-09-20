@@ -3,7 +3,9 @@ package parkingsystem;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,11 +35,22 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         }
     }
     
- private void slotButtonClicked(String slotName) {
-        ParkingData.selectedSlot = slotName; 
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
+private void slotButtonClicked(String slotName) {
+    // Check if the slot is occupied (RED)
+    if (ParkingData.occupiedSlots.containsKey(slotName)) {
+        JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Warning", 
+            JOptionPane.WARNING_MESSAGE);
+        return; // Stop further action if the slot is occupied
     }
+
+    // If the slot is not occupied, proceed to the next step
+    ParkingData.selectedSlot = slotName;
+    new P04_ENTER_PLATENUMBER().setVisible(true);
+    this.dispose();
+}
+
     
     
 
@@ -52,7 +65,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     
   
  
-    private void refreshLabels() {
+      private void refreshLabels() {
         setLabelColor(r1l, "R01");
         setLabelColor(r2l, "R02");
         setLabelColor(r3l, "R03");
@@ -63,17 +76,88 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         setLabelColor(l3l, "L03");
         setLabelColor(l4l, "L04");
         setLabelColor(l5l, "L05");
+
+        // Read data from file and apply the colors to slots
+        loadSlotStatusesFromFile();
+    }
+
+    private void loadSlotStatusesFromFile() {
+    try (BufferedReader reader = new BufferedReader(new FileReader("src/DATABASE/Intheslot.txt"))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            // Example line: "R01 - ABC123 - Occupied - RED"
+            String[] parts = line.split(" - ");
+            if (parts.length == 4) {
+                String slot = parts[0];
+                String plate = parts[1];
+                String status = parts[2];
+                String color = parts[3];
+
+                // Add the slot to the occupied slots map
+                if (status.equals("Occupied")) {
+                    ParkingData.occupiedSlots.put(slot, plate); // Store occupied slots
+                }
+
+                // Apply color based on the slot status
+                applySlotColor(slot, color);
+            }
+        }
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error reading slot statuses: " + e.getMessage());
+    }
 }
 
-    private void setLabelColor(javax.swing.JLabel label, String slot) {
-        if (ParkingData.occupiedSlots.containsKey(slot)) {
+    private void applySlotColor(String slot, String color) {
+        switch (slot) {
+            case "R01":
+                setLabelColor(r1l, color);
+                break;
+            case "R02":
+                setLabelColor(r2l, color);
+                break;
+            case "R03":
+                setLabelColor(r3l, color);
+                break;
+            case "R04":
+                setLabelColor(r4l, color);
+                break;
+            case "R05":
+                setLabelColor(r5l, color);
+                break;
+            case "L01":
+                setLabelColor(l1l, color);
+                break;
+            case "L02":
+                setLabelColor(l2l, color);
+                break;
+            case "L03":
+                setLabelColor(l3l, color);
+                break;
+            case "L04":
+                setLabelColor(l4l, color);
+                break;
+            case "L05":
+                setLabelColor(l5l, color);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setLabelColor(javax.swing.JLabel label, String color) {
+        if (color.equals("RED")) {
             label.setOpaque(true);
             label.setBackground(Color.RED);
+        } else if (color.equals("GREEN")) {
+            label.setOpaque(true);
+            label.setBackground(Color.GREEN);
         } else {
             label.setOpaque(false);
             label.setBackground(null);
         }
     }
+
+    
 
     
     
@@ -221,7 +305,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         getContentPane().add(l5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 696, 100, 20));
 
         mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/SELECT_PARK_FNL.png"))); // NOI18N
-        getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -245,21 +329,22 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
-         String slotName = "R01";
+           String slotName = "R01";
 
-  
-        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-            JOptionPane.showMessageDialog(this, 
+    // Check if the slot is occupied (red)
+    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+        JOptionPane.showMessageDialog(this, 
             "Slot " + slotName + " is already occupied!", 
-            "Error", 
+            "Warning", 
             JOptionPane.WARNING_MESSAGE);
-            return; 
-        }
+        return; // Stop the action if the slot is occupied
+    }
 
-        slotButtonClicked(slotName);
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-        P04.setVisible(true);
-        this.setVisible(false);
+    // Proceed with normal action if the slot is available
+    slotButtonClicked(slotName);
+    P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+    P04.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
@@ -389,7 +474,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
-         String slotName = "L05";
+        String slotName = "L05";
 
   
         if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
