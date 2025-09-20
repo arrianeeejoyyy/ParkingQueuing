@@ -114,11 +114,11 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             //ParkingData.occupiedSlots.put(slot, plate);
         }
 
-        this.dispose();
+        
         //new P03_SELECTPARK().setVisible(true);
         
-       P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
-       P05.setVisible(true); 
+        P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
+        P05.setVisible(true); 
     }//GEN-LAST:event_confirmActionPerformed
 
     /**

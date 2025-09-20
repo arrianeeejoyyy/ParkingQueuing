@@ -6,6 +6,7 @@ package parkingsystem;
 
 import java.awt.Color;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 /**
@@ -16,6 +17,7 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     public class ParkingData {
         public static String selectedSlot = null;
         public static HashMap<String, String> occupiedSlots = new HashMap<>();
+        
         public static boolean releaseSlot(String slot, String code) {
         if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
             occupiedSlots.remove(slot); // free the slot
@@ -220,10 +222,22 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
-        slotButtonClicked("L01");
+         String slotName = "L01";
+
+    // Check if the slot is already occupied
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+    // If available, continue as before
+        slotButtonClicked(slotName);
         P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-       P04.setVisible(true);
-       this.setVisible(false);
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed

@@ -109,7 +109,7 @@ public class P16_OUT extends javax.swing.JFrame {
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "invalid.");
-
+ 
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
