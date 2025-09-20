@@ -1,14 +1,40 @@
 
 package parkingsystem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import org.w3c.dom.css.Counter;
+
 
 public class P02_IN_OUT extends javax.swing.JFrame {
 
-
+  public static int Counter = 0;
+  
+  
     public P02_IN_OUT() {
         initComponents();
     }
 
+   public int loadCounterFromFile() {
+    int counter = 0;  // Default value if file doesn't exist or is empty
+    try {
+        File file = new File("src/DATABASE/Counter_P02.txt");
+        if (file.exists()) {
+            Scanner scanner = new Scanner(file);
+            if (scanner.hasNextInt()) {
+                counter = scanner.nextInt(); // Read the counter from the file
+            }
+            scanner.close();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return counter;
+}
+   
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -53,15 +79,49 @@ public class P02_IN_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_outActionPerformed
 
     private void inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inActionPerformed
+     // Load the counter from the file
+    int currentCounter = loadCounterFromFile();  // Load the current counter value from the file
+
+    // Check if the counter is less than or equal to 10
+    if (currentCounter <= 9) {
+        // If the counter is 10 or less, go to P03 (Select Park)
+        P03_SELECTPARK selectParkFrame = new P03_SELECTPARK();
+        selectParkFrame.setVisible(true);
+    } else {
+        // If the counter is greater than 10, go to P11 (Full Slot)
+        P11_FULLSLOT p11Frame = new P11_FULLSLOT();
+        p11Frame.setVisible(true);
+    }
+
+    // Close the current P02 window
     this.setVisible(false);
-    P03_SELECTPARK selectParkFrame = new P03_SELECTPARK();
-    selectParkFrame.setVisible(true);
-    QN_panel.getInstance().setVisible(true);
     }//GEN-LAST:event_inActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
+   public void loadCounter() {
+    try {
+        File file = new File("src/DATABASE/Counter_P02.txt");
+        if (file.exists()) {
+            Scanner scanner = new Scanner(file);
+            if (scanner.hasNextInt()) {
+                Counter = scanner.nextInt(); // Read the counter from the file
+            }
+            scanner.close();
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+// Method to save the updated counter back to the text file
+public void saveCounter() {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Counter_P02.txt"))) {
+        writer.write(String.valueOf(Counter)); // Save the counter value to the text file
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

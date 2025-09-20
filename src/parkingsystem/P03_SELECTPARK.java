@@ -2,11 +2,20 @@
 package parkingsystem;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 
 public class P03_SELECTPARK extends javax.swing.JFrame {
+    
+
+  
+     
     public class ParkingData {
         public static String selectedSlot = null;
         public static HashMap<String, String> occupiedSlots = new HashMap<>();
@@ -24,32 +33,25 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
         }
     }
     
-private void slotButtonClicked(String slotName) {
-    // Check if the slot is already taken
-    if (ParkingData.occupiedSlots.containsKey(slotName)) {
-        // Show a simple message dialog if the slot is already taken
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "This slot is already taken. Please choose another slot.", 
-            "Slot Taken", 
-            javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        // Remove this line to avoid disposing the panel
-        // this.dispose(); 
-    } else {
-        // If the slot is not taken, proceed with the selection
+ private void slotButtonClicked(String slotName) {
         ParkingData.selectedSlot = slotName; 
         new P04_ENTER_PLATENUMBER().setVisible(true);
-        // Keep the current panel visible
-        // this.dispose(); // Do not call dispose here anymore
+        this.dispose();
     }
-}
     
     
+
+ 
+ 
+ 
+ 
     public P03_SELECTPARK() {
         initComponents();
         refreshLabels();
     }
     
   
+ 
     private void refreshLabels() {
         setLabelColor(r1l, "R01");
         setLabelColor(r2l, "R02");
@@ -225,63 +227,183 @@ private void slotButtonClicked(String slotName) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
-        slotButtonClicked("L01");
-       
-       this.setVisible(false);
+        String slotName = "L01";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
-        slotButtonClicked("R01");
-        
-       this.setVisible(false);
+         String slotName = "R01";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
-         slotButtonClicked("R02");
-        
-       this.setVisible(false);
+          String slotName = "R02";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; 
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
-         slotButtonClicked("R03");
-       
-       this.setVisible(false);
+         String slotName = "R03";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
-        slotButtonClicked("R04");
-       
-       this.setVisible(false);
+        String slotName = "R04";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_R04ActionPerformed
 
     private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
-        slotButtonClicked("R05");
-       
-       this.setVisible(false);
+        String slotName = "R05";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_R05ActionPerformed
 
     private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
-        slotButtonClicked("L02");
-     
-       this.setVisible(false);
+        String slotName = "L02";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_L02ActionPerformed
 
     private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
-        slotButtonClicked("L03");
-     
-       this.setVisible(false);
+       String slotName = "L03";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_L03ActionPerformed
 
     private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
-        slotButtonClicked("L04");
-      
-       this.setVisible(false);
+        String slotName = "L04";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
-         slotButtonClicked("L05");
-       
-       this.setVisible(false);
+         String slotName = "L05";
+
+  
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+            "Slot " + slotName + " is already occupied!", 
+            "Error", 
+            JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t go through
+        }
+
+        slotButtonClicked(slotName);
+        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
+        P04.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_L05ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -292,6 +414,11 @@ private void slotButtonClicked(String slotName) {
     }//GEN-LAST:event_backActionPerformed
 
     
+ 
+       
+       
+       
+       
     public static void main(String args[]) {
       
         java.awt.EventQueue.invokeLater(new Runnable() {

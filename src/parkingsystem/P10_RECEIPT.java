@@ -1,22 +1,29 @@
 
 package parkingsystem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
+
 
 
 public class P10_RECEIPT extends javax.swing.JFrame {
   private String paymentType;
     
-    private static int counter = 0;
+    public static int Counter = 0;
+
 
     
     private String generateTransactionNumber() {
-        counter++; 
+        Counter++; 
 
         String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
-        return String.format("PARK-%s-%04d", date, counter);
+        return String.format("PARK-%s-%04d", date, Counter);
     }
     
     
@@ -209,32 +216,69 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      String ticketCode = TicketCode.getText();
-      String slot = P03_SELECTPARK.ParkingData.selectedSlot;
-      if(slot != null) {
-      P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
-      }
-      
-      new P15_TY_IN().setVisible(true);
-      this.dispose();  
-        
-        
-        
-    PDFreceipt pdf = new PDFreceipt();
+       String ticketCode = TicketCode.getText();
+        String slot = P03_SELECTPARK.ParkingData.selectedSlot;
+        if (slot != null) {
+            P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
+        }
 
-    
-    pdf.TicketNumber.setText(this.TicketCode.getText());
-    pdf.transactionNumber.setText(this.transactionNumber.getText());
-    pdf.DateLabel.setText(this.DateLabel.getText());
-    pdf.TimeLabel.setText(this.TimeLabel.getText());
-    pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+        // Increment the counter here inside P10_RECEIPT when user clicks the button
+        loadCounter();  // Load current counter value
+        Counter++;      // Increment counter
+        saveCounter();  // Save the updated counter value back to the text file
 
-    // Make the PDFticket window visible
-    pdf.setVisible(true);  
-    pdf.savePanelImageAsPDF();
+        // Proceed to next action
+        new P15_TY_IN().setVisible(true);
+        this.dispose();  
+
+        // Create and show the PDF receipt
+        PDFreceipt pdf = new PDFreceipt();
+        pdf.TicketNumber.setText(this.TicketCode.getText());
+        pdf.transactionNumber.setText(this.transactionNumber.getText());
+        pdf.DateLabel.setText(this.DateLabel.getText());
+        pdf.TimeLabel.setText(this.TimeLabel.getText());
+        pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+        pdf.setVisible(true);  
+        pdf.savePanelImageAsPDF();
+        
+        // Update counter value and proceed to the receipt frame
+        PDFreceipt receiptFrame = new PDFreceipt();
+        receiptFrame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+   public class ParkingSystemData {
+    public static int Counter = 0;  // Public static counter
+}
    
+   
+    // Helper method to load the counter from the file
+    public void loadCounter() {
+        try {
+            File file = new File("src/DATABASE/Counter_P02.txt");
+            if (file.exists()) {
+                Scanner scanner = new Scanner(file);
+                if (scanner.hasNextInt()) {
+                    Counter = scanner.nextInt(); // Read the counter from the file
+                }
+                scanner.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to save the updated counter to the file
+    public void saveCounter() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Counter_P02.txt"))) {
+            writer.write(String.valueOf(Counter)); // Save the counter value to the text file
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -274,4 +318,5 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     public javax.swing.JLabel transactionNumber;
     private javax.swing.JLabel unitcostlabel;
     // End of variables declaration//GEN-END:variables
+
 }
