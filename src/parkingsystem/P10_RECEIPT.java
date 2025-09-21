@@ -216,13 +216,21 @@ public class P10_RECEIPT extends javax.swing.JFrame {
 
         // --- Save to text file (database) here ---
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Intheslot.txt", true))) {
-            String status = "Occupied";  
-            String slotColor = "RED";    
-            writer.write(slot + " - " + plate + " - " + status + " - " + slotColor);
-            writer.newLine();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
-        }
+    String status = "Occupied";  
+    String slotColor = "RED";    
+    writer.write(slot + " - " + plate + " - " + status + " - " + slotColor);
+    writer.newLine();
+} catch (IOException e) {
+    JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
+}
+
+// --- Also save TicketCode to DATABASE_FILE ---
+try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/DATABASE_FILE.txt", true))) {
+    writer.write("TicketCode: " + ticketCode + " | Slot: " + slot + " | Plate: " + plate);
+    writer.newLine();
+} catch (IOException e) {
+    JOptionPane.showMessageDialog(this, "Error saving TicketCode to DATABASE_FILE: " + e.getMessage());
+}
     }
 
     // Increment the counter here inside P10_RECEIPT when user clicks the button
@@ -249,12 +257,10 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     receiptFrame.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
     
    public class ParkingSystemData {
     public static int Counter = 0;  // Public static counter
 }
-   
    
     // Helper method to load the counter from the file
     public void loadCounter() {
