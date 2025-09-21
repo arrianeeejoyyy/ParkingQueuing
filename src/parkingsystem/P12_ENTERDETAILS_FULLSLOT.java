@@ -2,11 +2,16 @@
 package parkingsystem;
 
 
+import javax.swing.JOptionPane;
+
+
 public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
    
     public P12_ENTERDETAILS_FULLSLOT() {
         initComponents();
+        
+      
         
        PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
         @Override
@@ -42,21 +47,43 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     });
 
     phoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
-        @Override
-        public void keyTyped(java.awt.event.KeyEvent evt) {
-            char c = evt.getKeyChar();
-            String text = phoneNumber.getText();
+    @Override
+    public void keyTyped(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        String text = phoneNumber.getText();
 
-            if (!Character.isDigit(c)) {
-                evt.consume();
-                return;
-            }
-
-            if (text.length() >= 11) {
-                evt.consume();
-            }
+        // Allow only digits
+        if (!Character.isDigit(c)) {
+            evt.consume();
+            return;
         }
-    });
+
+        // Limit to 11 digits
+        if (text.length() >= 11) {
+            evt.consume();
+            return;
+        }
+
+        // Validate prefix "09" as the first two characters
+        if (text.length() == 0 && c != '0') {
+            evt.consume();
+            JOptionPane.showMessageDialog(
+                null,
+                "Phone number must start with 09 and only have 11 digits.",
+                "Invalid Input",
+                JOptionPane.ERROR_MESSAGE
+            );
+        } else if (text.length() == 1 && c != '9') {
+            evt.consume();
+            JOptionPane.showMessageDialog(
+                null,
+                "Phone number must start with 09 and only have 11 digits.",
+                "Invalid Input",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+});
 
     fullName.addKeyListener(new java.awt.event.KeyAdapter() {
         @Override
@@ -74,6 +101,8 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
             }
         }
     });
+    
+        
 }
    
     @SuppressWarnings("unchecked")
@@ -85,6 +114,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
         PlateNumber = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        checkbox1 = new java.awt.Checkbox();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,6 +164,11 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 120, 120));
 
+        checkbox1.setBackground(new java.awt.Color(255, 255, 255));
+        checkbox1.setForeground(new java.awt.Color(255, 255, 255));
+        checkbox1.setMinimumSize(new java.awt.Dimension(0, 0));
+        getContentPane().add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 740, 10, 10));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTERDETAILS_FULLSLOT.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
@@ -145,7 +180,25 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
        String name = fullName.getText().trim();
     String phone = phoneNumber.getText().trim();
     String plate = PlateNumber.getText().trim();
+    
+    
+    
+    
+        if (!checkbox1.getState()) {                       
+        JOptionPane.showMessageDialog(
+            this,
+            "You must check the box before confirming!",
+            "Warning",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return; 
+    }
 
+
+   
+    
+    
+    
     if (name.isEmpty() || phone.isEmpty() || plate.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all details!");
         return;
@@ -228,6 +281,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField PlateNumber;
     private javax.swing.JButton back;
+    private java.awt.Checkbox checkbox1;
     private javax.swing.JButton confirm;
     private javax.swing.JTextField fullName;
     private javax.swing.JLabel jLabel1;
