@@ -15,12 +15,27 @@ import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 public class P03_SELECTPARK extends javax.swing.JFrame {
 
-    static void setSlotColor(String savedSlot, Color RED) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setSlotColor(String slotName, Color color) {
+    switch (slotName) {
+        case "R01": r1l.setBackground(color); r1l.setOpaque(true); break;
+        case "R02": r2l.setBackground(color); r2l.setOpaque(true); break;
+        case "R03": r3l.setBackground(color); r3l.setOpaque(true); break;
+        case "R04": r4l.setBackground(color); r4l.setOpaque(true); break;
+        case "R05": r5l.setBackground(color); r5l.setOpaque(true); break;
+        case "L01": l1l.setBackground(color); l1l.setOpaque(true); break;
+        case "L02": l2l.setBackground(color); l2l.setOpaque(true); break;
+        case "L03": l3l.setBackground(color); l3l.setOpaque(true); break;
+        case "L04": l4l.setBackground(color); l4l.setOpaque(true); break;
+        case "L05": l5l.setBackground(color); l5l.setOpaque(true); break;
     }
+}
     
 
-  
+   public P03_SELECTPARK() {
+        initComponents();
+        refreshLabels();
+    }
+    
      
     public class ParkingData {
         public static String selectedSlot = null;
@@ -55,54 +70,40 @@ private void slotButtonClicked(String slotName) {
     this.dispose();
 }
 
-    
-    
+      public void refreshLabels() {
+    setLabelColor(r1l, "R01");
+    setLabelColor(r2l, "R02");
+    setLabelColor(r3l, "R03");
+    setLabelColor(r4l, "R04");
+    setLabelColor(r5l, "R05");
+    setLabelColor(l1l, "L01");
+    setLabelColor(l2l, "L02");
+    setLabelColor(l3l, "L03");
+    setLabelColor(l4l, "L04");
+    setLabelColor(l5l, "L05");
 
- 
- 
- 
- 
-    public P03_SELECTPARK() {
-        initComponents();
-        refreshLabels();
-    }
-    
-  
- 
-      private void refreshLabels() {
-        setLabelColor(r1l, "R01");
-        setLabelColor(r2l, "R02");
-        setLabelColor(r3l, "R03");
-        setLabelColor(r4l, "R04");
-        setLabelColor(r5l, "R05");
-        setLabelColor(l1l, "L01");
-        setLabelColor(l2l, "L02");
-        setLabelColor(l3l, "L03");
-        setLabelColor(l4l, "L04");
-        setLabelColor(l5l, "L05");
-
-        // Read data from file and apply the colors to slots
-        loadSlotStatusesFromFile();
-    }
+    // Read data from file and apply the colors to slots
+    loadSlotStatusesFromFile();
+}
 
     private void loadSlotStatusesFromFile() {
     try (BufferedReader reader = new BufferedReader(new FileReader("src/DATABASE/Intheslot.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
-            // Example line: "R01 - ABC123 - Occupied - RED"
+            // Split the line by " - "
             String[] parts = line.split(" - ");
-            if (parts.length == 4) {
+            if (parts.length >= 4) {  // <-- Your code here
                 String slot = parts[0];
                 String plate = parts[1];
                 String status = parts[2];
                 String color = parts[3];
 
-                // Add the slot to the occupied slots map
+                // Add the slot to the occupied slots map if occupied
                 if (status.equals("Occupied")) {
-                    ParkingData.occupiedSlots.put(slot, plate); // Store occupied slots
+                    ParkingData.occupiedSlots.put(slot, plate);
                 }
 
-                // Apply color based on the slot status
+                // Apply color to the slot label
                 applySlotColor(slot, color);
             }
         }

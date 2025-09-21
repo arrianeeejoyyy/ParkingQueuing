@@ -3,17 +3,23 @@ package parkingsystem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import parkingsystem.P03_SELECTPARK.ParkingData;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 public class P16_OUT extends javax.swing.JFrame {
 
-    
+     private P03_SELECTPARK selectParkPanel; // reference to the existing P03 panel
+    private P03_SELECTPARK panel;
+     
     public P16_OUT() {
         initComponents();
-       
+        this.selectParkPanel = panel;
     }
 
     public static boolean releaseSlot(String slot, String code) {
@@ -83,21 +89,65 @@ public class P16_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String slot = ParkingData.selectedSlot; 
-        String enteredCode = jTextField1.getText().trim(); 
-        
-        if (enteredCode.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
-            return;
-        } 
-        if (ParkingData.releaseSlot(slot, enteredCode)){
-             
-            P15_TY_OUT P15 = new P15_TY_OUT();  
-            P15.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "invalid.");
+     String slot = ParkingData.selectedSlot; 
+    String enteredCode = jTextField1.getText().trim(); 
+
+    if (enteredCode.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
+        return;
+    }
+
+    if (ParkingData.releaseSlot(slot, enteredCode)) {
+    try {
+        // ===== Delete the same info from intheslot.txt =====
+        File slotFile = new File("src/DATABASE/intheslot.txt");
+        List<String> slotLines = new ArrayList<>();
+        try (Scanner sc = new Scanner(slotFile)) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                if (!line.contains(enteredCode)) { // delete lines with the same ticket code
+                    slotLines.add(line);
+                }
+            }
+        }
+        try (PrintWriter pw = new PrintWriter(slotFile)) {
+            for (String l : slotLines) pw.println(l);
+        }
+
+        // ===== Remove from occupiedSlots map =====
+        occupiedSlots.remove(slot);
+
+        // ===== Refresh the existing P03_SELECTPARK panel =====
+        if (selectParkPanel != null) {
+            selectParkPanel.refreshLabels(); // repaint slots to remove RED
+        }
+
+        // ===== Decrement counter in Counter_P02.txt =====
+        File counterFile = new File("src/DATABASE/Counter_P02.txt");
+        int count = 0;
+        if (counterFile.exists()) {
+            try (Scanner sc = new Scanner(counterFile)) {
+                if (sc.hasNextInt()) count = sc.nextInt();
+            }
+        }
+        if (count > 0) count--; // decrement but not negative
+        try (PrintWriter pw = new PrintWriter(counterFile)) {
+            pw.println(count);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    // ===== Show thank-you panel =====
+    P15_TY_OUT P15 = new P15_TY_OUT();
+    P15.setVisible(true);
+    this.dispose();
+
+} else {
+    JOptionPane.showMessageDialog(this, "Invalid Ticket Code.");
 }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

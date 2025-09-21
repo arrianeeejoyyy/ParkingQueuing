@@ -93,7 +93,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
         fullName.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         fullName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(fullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 490, 100));
+        getContentPane().add(fullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 490, 90));
 
         phoneNumber.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         phoneNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -102,7 +102,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
                 phoneNumberActionPerformed(evt);
             }
         });
-        getContentPane().add(phoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 490, 100));
+        getContentPane().add(phoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 490, 90));
 
         PlateNumber.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         PlateNumber.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
