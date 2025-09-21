@@ -2,3 +2,9 @@ R01 - Plate Number: - Occupied - RED
 R02 - Plate Number: - Occupied - RED
 R03 - Plate Number: - Occupied - RED
 R04 - Plate Number: - Occupied - RED
+R05 - Plate Number: - Occupied - RED
+L01 - Plate Number: - Occupied - RED
+L02 - Plate Number: - Occupied - RED
+L03 - Plate Number: - Occupied - RED
+L04 - Plate Number: - Occupied - RED
+L05 - Plate Number: - Occupied - RED

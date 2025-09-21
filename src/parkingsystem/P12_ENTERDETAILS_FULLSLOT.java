@@ -122,7 +122,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
                 confirmActionPerformed(evt);
             }
         });
-        getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 720, 430, 110));
+        getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 750, 430, 110));
 
         back.setToolTipText("");
         back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -142,19 +142,32 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-        String plate = PlateNumber.getText().trim();
+       String name = fullName.getText().trim();
+    String phone = phoneNumber.getText().trim();
+    String plate = PlateNumber.getText().trim();
 
-    if (plate.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Enter a plate number!");
+    if (name.isEmpty() || phone.isEmpty() || plate.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all details!");
         return;
     }
 
+    // Save to text file (database)
+    try {
+        java.io.FileWriter fw = new java.io.FileWriter("src/DATABASE/fullslot_details.txt", true);
+        java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+        bw.write("FullName: " + name + ", PhoneNumber: " + phone + ", PlateNumber: " + plate);
+        bw.newLine();
+        bw.close();
+        fw.close();
+    } catch (java.io.IOException e) {
+        e.printStackTrace();
+    }
 
     // Show the ticket frame
     this.setVisible(false);
     new P13_QN_TICKET(plate).setVisible(true);
     QN_panel.getInstance().setVisible(true);
-    
+
     }//GEN-LAST:event_confirmActionPerformed
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed

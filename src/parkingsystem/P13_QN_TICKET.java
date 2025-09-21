@@ -209,8 +209,8 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PRINTTICKETActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTTICKETActionPerformed
-     
-        PDFticket pdf = new PDFticket();
+                
+    PDFticket pdf = new PDFticket();
 
     // Pass the values from P13_QN_TICKET to PDFticket
     pdf.TicketNumber.setText(this.TicketNumber.getText());
@@ -223,6 +223,9 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     pdf.setVisible(true);  
     pdf.savePanelImageAsPDF();
         
+    this.setVisible(false);
+    P14_WaitQueue p14 = new P14_WaitQueue();
+    p14.setVisible(true);
     }//GEN-LAST:event_PRINTTICKETActionPerformed
 
     /**

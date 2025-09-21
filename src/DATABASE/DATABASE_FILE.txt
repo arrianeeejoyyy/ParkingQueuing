@@ -1,2 +1,8 @@
 TicketCode:  110401 | Slot: R03 | Plate: Plate Number:
 TicketCode:  341593 | Slot: R04 | Plate: Plate Number:
+TicketCode:  893623 | Slot: R05 | Plate: Plate Number:
+TicketCode:  153405 | Slot: L01 | Plate: Plate Number:
+TicketCode:  337480 | Slot: L02 | Plate: Plate Number:
+TicketCode:  122058 | Slot: L03 | Plate: Plate Number:
+TicketCode:  700436 | Slot: L04 | Plate: Plate Number:
+TicketCode:  948868 | Slot: L05 | Plate: Plate Number:

@@ -120,10 +120,8 @@ private void closePDFAndShowPanel() {
 
     // Show another panel or frame
     // Assuming you want to show a different JPanel:
-    P14_WaitQueue newPanel = new P14_WaitQueue();
-    newPanel.setVisible(true);// Replace NewPanel with your actual panel class
+    
     this.getContentPane().removeAll();
-    this.getContentPane().add(newPanel);
     this.revalidate();
     this.repaint();
 }
