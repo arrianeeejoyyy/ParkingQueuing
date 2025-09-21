@@ -134,25 +134,28 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         if (slot != null) {
             // Save plate number in memory
             ParkingData.occupiedSlots.put(slot, plate);
-            QN_panel.getInstance().addParkingRow(slot, plate);
 
             // --- Save to text file (database) with slot status --- 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE, true))) {
-                // Assuming 'R' for reserved and 'L' for left side, you can modify accordingly
                 String status = "Occupied";  // Could be "Occupied" or "Available"
-                String slotColor = (ParkingData.occupiedSlots.containsKey(slot)) ? "RED" : "GREEN"; // Color indication
-                writer.write(slot + " - " + plate + " - " + status + " - " + slotColor); // Save with status and color
+                String slotColor = "RED";    // Default for occupied
+                writer.write(slot + " - " + plate + " - " + status + " - " + slotColor);
                 writer.newLine();
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
             }
+
+            // --- Show confirmation inside P04 itself (instead of QN_panel) ---
+            JOptionPane.showMessageDialog(this, 
+                "Parking saved:\nSlot: " + slot + "\nPlate: " + plate, 
+                "Parking Saved", 
+                JOptionPane.INFORMATION_MESSAGE);
         }
 
         this.setVisible(false);
         P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
         P05.setVisible(true); 
     }
-
     }//GEN-LAST:event_confirmActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

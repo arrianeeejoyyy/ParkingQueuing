@@ -4,4 +4,8 @@ R02 - RTG-5675 - Occupied - RED
 R03 - FER-4356 - Occupied - RED
 R04 - VFD-4564 - Occupied - RED
 R05 - FGF-5675 - Occupied - RED
-
+L03 - HGT-5675 - Occupied - RED
+L04 - FHG-5657 - Occupied - RED
+L05 - FHG-6756 - Occupied - RED
+L02 - FSD-4564 - Occupied - RED
+L01 - DFG-5675 - Occupied - RED

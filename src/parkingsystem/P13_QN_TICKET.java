@@ -12,6 +12,9 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
      private String paymentType;
     
     private static int counter = 0;
+    
+    private String plate;   // store plate number
+    private String ticketCode; // store ticket code
 
    
     private String generateTransactionNumber() {
@@ -22,37 +25,33 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     }
 
    
-    public P13_QN_TICKET() {
-        initComponents();     
-        
-        Date now = new Date();
+     public P13_QN_TICKET(String plate) {
+         initComponents(); // initialize UI first
 
-        // Date format
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        DateLabel.setText(df.format(now));
+    // Set class field
+    this.plate = plate;
 
-        // Time format
-        SimpleDateFormat tf = new SimpleDateFormat("hh:mm:ss a");
-        TimeLabel.setText( tf.format(now));
-        
-        
-        Random rand = new Random();
-        int ticketCode = 100000 + rand.nextInt(900000); 
-        
-        String trxNumber = generateTransactionNumber();
-        transactionNumber.setText(trxNumber);
-        
+    // Set plate number label
+    TNL.setText("Plate Number: " + this.plate);
 
-    
+    // Generate ticket code and set label
+    this.ticketCode = String.valueOf(100000 + new Random().nextInt(900000));
+    TicketNumber.setText(this.ticketCode);
 
-        TicketNumber.setText(" " + ticketCode);
-        
-        PaymentTypeLabel.setText(paymentType);
-        
-        
-       
+    // Generate transaction number
+    String trxNumber = generateTransactionNumber();
+    TNL1.setText(trxNumber);
+
+    // Set date and time
+    Date now = new Date();
+    DateLabel.setText(new SimpleDateFormat("yyyy-MM-dd").format(now));
+    TimeLabel.setText(new SimpleDateFormat("hh:mm:ss a").format(now));
+
+    // Add to QN panel table
+    QN_panel.getInstance().addToQueue(ticketCode);
     }
-    
+        
+     
     
     
     @SuppressWarnings("unchecked")
@@ -164,7 +163,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         TNL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         TNL.setText("Plate Number:");
-        getContentPane().add(TNL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 200, 20));
+        getContentPane().add(TNL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 350, 20));
 
         PTL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         PTL.setText("Payment Type");
@@ -256,8 +255,9 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P13_QN_TICKET().setVisible(true);
+            public void run(){ 
+               
+            new P13_QN_TICKET("test123").setVisible(true);
             }
         });
     }
