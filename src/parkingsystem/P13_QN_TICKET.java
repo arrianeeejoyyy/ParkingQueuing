@@ -1,5 +1,5 @@
-
 package parkingsystem;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.util.Date;
@@ -50,10 +50,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     // Add to QN panel table
     QN_panel.getInstance().addToQueue(ticketCode);
     }
-        
-     
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

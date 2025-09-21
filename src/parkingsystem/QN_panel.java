@@ -1,18 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package parkingsystem;
 
+
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 
-/**
- *
- * @author Airi
- */
 public class QN_panel extends javax.swing.JFrame {
     
     
@@ -23,8 +18,9 @@ public class QN_panel extends javax.swing.JFrame {
         initComponents();
         model = new DefaultTableModel(new String[]{"Ticket Code"}, 0);
         jTable1.setModel(model);
-        
-    
+
+        // Load saved tickets from database file
+        loadTicketsFromDatabase();
     }
 
     public static QN_panel getInstance() {
@@ -34,6 +30,35 @@ public class QN_panel extends javax.swing.JFrame {
         return instance;
     }
 
+     // Load ticket codes from text file database
+    private void loadTicketsFromDatabase() {
+        try {
+            File file = new File("src/DATABASE/QN_ticket.txt");
+            if (!file.exists()) return; // If no file yet, skip
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Each line format: TicketCode | PlateNumber | TransactionNumber
+                String[] parts = line.split("\\|");
+                if (parts.length > 0) {
+                    String ticketCode = parts[0].trim();
+                    if (!ticketCode.isEmpty()) {
+                        model.addRow(new Object[]{ ticketCode });
+                    }
+                }
+            }
+            br.close();
+
+            // If there are saved tickets, show the first one
+            if (model.getRowCount() > 0) {
+                nextTicketField.setText((String) model.getValueAt(0, 0));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     // Add a new row to the table and update next ticket field
     public void addToQueue(String ticketCode) {
