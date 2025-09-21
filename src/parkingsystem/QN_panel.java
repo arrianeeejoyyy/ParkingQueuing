@@ -1,6 +1,7 @@
 package parkingsystem;
 
 
+
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,6 +19,22 @@ public class QN_panel extends javax.swing.JFrame {
         initComponents();
         model = new DefaultTableModel(new String[]{"Ticket Code"}, 0);
         jTable1.setModel(model);
+        jScrollPane1.getViewport().setOpaque(false);
+        jTable1.setBorder(null);
+        jTable1.setShowGrid(false);
+        jScrollPane1.setBorder(null);
+        jTable1.setFocusable(false);  
+        jTable1.setRowSelectionAllowed(false);
+        jTable1.setCellSelectionEnabled(false);
+        nextTicketField.setOpaque(false);  
+        nextTicketField.setBackground(new java.awt.Color(0,0,0,0)); 
+        nextTicketField.setBorder(null);
+        nextTicketField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        
+       
+       
+
 
         // Load saved tickets from database file
         loadTicketsFromDatabase();
@@ -94,6 +111,10 @@ public class QN_panel extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(1500, 150, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        nextTicketField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        nextTicketField.setForeground(new java.awt.Color(255, 255, 255));
+        nextTicketField.setBorder(null);
+        nextTicketField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nextTicketField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextTicketFieldActionPerformed(evt);
@@ -101,6 +122,9 @@ public class QN_panel extends javax.swing.JFrame {
         });
         getContentPane().add(nextTicketField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
+        jScrollPane1.setOpaque(false);
+
+        jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -117,6 +141,7 @@ public class QN_panel extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setOpaque(false);
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 310, 350));
@@ -129,6 +154,9 @@ public class QN_panel extends javax.swing.JFrame {
 
     private void nextTicketFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTicketFieldActionPerformed
         // TODO add your handling code here:
+      
+
+        
     }//GEN-LAST:event_nextTicketFieldActionPerformed
 
     /**
