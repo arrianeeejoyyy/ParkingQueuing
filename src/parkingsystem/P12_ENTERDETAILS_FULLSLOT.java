@@ -142,7 +142,19 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-        
+        String plate = PlateNumber.getText().trim();
+
+    if (plate.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Enter a plate number!");
+        return;
+    }
+
+
+    // Show the ticket frame
+    this.setVisible(false);
+    new P13_QN_TICKET(plate).setVisible(true);
+    QN_panel.getInstance().setVisible(true);
+    
     }//GEN-LAST:event_confirmActionPerformed
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed

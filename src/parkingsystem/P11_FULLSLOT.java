@@ -51,6 +51,7 @@ public class P11_FULLSLOT extends javax.swing.JFrame {
         
          P12_ENTERDETAILS_FULLSLOT P12 = new P12_ENTERDETAILS_FULLSLOT();
         P12.setVisible(true);
+        QN_panel.getInstance().setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -59,6 +60,8 @@ public class P11_FULLSLOT extends javax.swing.JFrame {
         
         P18_GIF_EXIT P18 = new P18_GIF_EXIT();
         P18.setVisible(true);
+        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

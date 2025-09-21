@@ -132,7 +132,7 @@ String plate = PlateNumber.getText().trim();
         if (slot != null) {
             // Save plate number
             ParkingData.occupiedSlots.put(slot, plate);
-            QN_panel.getInstance().addParkingRow(slot, plate);
+            
         }
 
         this.setVisible(false);

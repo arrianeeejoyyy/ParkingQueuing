@@ -4,55 +4,52 @@
  */
 package parkingsystem;
 
-
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Airi
  */
 public class QN_panel extends javax.swing.JFrame {
-      
-  
     
-    /**
-     * Creates new form QN_panel
-     * 
-     * 
-     */
+    
+     private static QN_panel instance;
+    private DefaultTableModel model;
 
-  
-    private static QN_panel instance;   // singleton instance
-    public static DefaultTableModel model;
-    
     private QN_panel() {
         initComponents();
-          model = (DefaultTableModel) jTable1.getModel();
+        model = new DefaultTableModel(new String[]{"Ticket Code"}, 0);
+        jTable1.setModel(model);
+        
+    
     }
-    
-    
+
     public static QN_panel getInstance() {
         if (instance == null) {
             instance = new QN_panel();
         }
         return instance;
     }
+
     
-     public void addParkingRow(String slot, String plate) {
-         if (model != null) {
-            model.addRow(new Object[]{slot, plate});
+    // Add a new row to the table and update next ticket field
+    public void addToQueue(String ticketCode) {
+        model.addRow(new Object[]{ ticketCode});
+
+        // Show the first ticket in queue
+        if (model.getRowCount() > 0) {
+            nextTicketField.setText((String) model.getValueAt(0, 0));
+            nextTicketField.setText(""); 
         }
     }
-     
-     public void removeParkingRow(String slot) {
-        if (model != null) {
-            for (int i = 0; i < model.getRowCount(); i++) {
-                if (model.getValueAt(i, 0).equals(slot)) { // check Slot column
-                    model.removeRow(i);
-                    break;
-                }
-            }
-        }
-     }
+      
+    
+  
+    
+
 
    
 
@@ -65,7 +62,7 @@ public class QN_panel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        nextTicketField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         PIC = new javax.swing.JLabel();
@@ -74,23 +71,23 @@ public class QN_panel extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(1500, 150, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        nextTicketField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nextTicketFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
+        getContentPane().add(nextTicketField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Slot", "Plate Number", "Title 3", "Title 4"
+                "TICKET CODE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, true
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -107,9 +104,9 @@ public class QN_panel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nextTicketFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTicketFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nextTicketFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +147,6 @@ public class QN_panel extends javax.swing.JFrame {
     private javax.swing.JLabel PIC;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nextTicketField;
     // End of variables declaration//GEN-END:variables
 }
