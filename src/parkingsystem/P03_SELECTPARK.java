@@ -14,6 +14,10 @@ import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 
 public class P03_SELECTPARK extends javax.swing.JFrame {
+
+    static void setSlotColor(String savedSlot, Color RED) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 
   
@@ -159,7 +163,6 @@ private void slotButtonClicked(String slotName) {
 
     
 
-    
     
 
    

@@ -9,16 +9,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
-
-
+import javax.swing.JOptionPane;
 
 public class P10_RECEIPT extends javax.swing.JFrame {
   private String paymentType;
     
     public static int Counter = 0;
 
-     
-    
     private String generateTransactionNumber() {
         Counter++; 
 
@@ -26,13 +23,11 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         return String.format("PARK-%s-%04d", date, Counter);
     }
     
-    
     public P10_RECEIPT() {
         initComponents();
         
         Date now = new Date();
 
-        
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         DateLabel.setText(df.format(now));
 
@@ -47,16 +42,12 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         String trxNumber = generateTransactionNumber();
         transactionNumber.setText(trxNumber);
         
-
-    
-
         TicketCode.setText(" " + ticketCode);
         
         PaymentTypeLabel.setText(paymentType);
         
     }
          
-        
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -216,35 +207,47 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       String ticketCode = TicketCode.getText();
-        String slot = P03_SELECTPARK.ParkingData.selectedSlot;
-        if (slot != null) {
-            P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
+    String ticketCode = TicketCode.getText();
+    String slot = P03_SELECTPARK.ParkingData.selectedSlot;
+    String plate = Platenumber_receipt.getText().trim();
+
+    if (slot != null) {
+        P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
+
+        // --- Save to text file (database) here ---
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Intheslot.txt", true))) {
+            String status = "Occupied";  
+            String slotColor = "RED";    
+            writer.write(slot + " - " + plate + " - " + status + " - " + slotColor);
+            writer.newLine();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
         }
+    }
 
-        // Increment the counter here inside P10_RECEIPT when user clicks the button
-        loadCounter();  // Load current counter value
-        Counter++;      // Increment counter
-        saveCounter();  // Save the updated counter value back to the text file
+    // Increment the counter here inside P10_RECEIPT when user clicks the button
+    loadCounter();  // Load current counter value
+    Counter++;      // Increment counter
+    saveCounter();  // Save the updated counter value back to the text file
 
-        // Proceed to next action
-        new P15_TY_IN().setVisible(true);
-        this.dispose();  
+    // Proceed to next action
+    new P15_TY_IN().setVisible(true);
+    this.dispose();  
 
-        // Create and show the PDF receipt
-        PDFreceipt pdf = new PDFreceipt();
-        pdf.TicketNumber.setText(this.TicketCode.getText());
-        pdf.transactionNumber.setText(this.transactionNumber.getText());
-        pdf.DateLabel.setText(this.DateLabel.getText());
-        pdf.TimeLabel.setText(this.TimeLabel.getText());
-        pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
-        pdf.setVisible(true);  
-        pdf.savePanelImageAsPDF();
-        
-        // Update counter value and proceed to the receipt frame
-        PDFreceipt receiptFrame = new PDFreceipt();
-        receiptFrame.setVisible(true);
-        this.setVisible(false);
+    // Create and show the PDF receipt
+    PDFreceipt pdf = new PDFreceipt();
+    pdf.TicketNumber.setText(this.TicketCode.getText());
+    pdf.transactionNumber.setText(this.transactionNumber.getText());
+    pdf.DateLabel.setText(this.DateLabel.getText());
+    pdf.TimeLabel.setText(this.TimeLabel.getText());
+    pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+    pdf.setVisible(true);  
+    pdf.savePanelImageAsPDF();
+
+    // Update counter value and proceed to the receipt frame
+    PDFreceipt receiptFrame = new PDFreceipt();
+    receiptFrame.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -268,7 +271,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
     // Helper method to save the updated counter to the file
     public void saveCounter() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Counter_P02.txt"))) {
@@ -277,7 +279,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
     
     public static void main(String args[]) {
         

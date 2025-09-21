@@ -72,7 +72,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
                 confirmActionPerformed(evt);
             }
         });
-        getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 690, 470, 110));
+        getContentPane().add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 680, 470, 110));
 
         PlateNumber.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
         PlateNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -113,8 +113,8 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-    String plate = PlateNumber.getText().trim();
-    
+     String plate = PlateNumber.getText().trim();
+
     if (plate.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Enter a plate number!");
         return;
@@ -127,34 +127,20 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         JOptionPane.YES_NO_OPTION);
 
     if (confirmResult == JOptionPane.YES_OPTION) {
-        P10_RECEIPT timeLabel = new P10_RECEIPT();
-        timeLabel.Platenumber_receipt.setText(plate);
+        // Set plate number on the receipt
+        P10_RECEIPT receiptFrame = new P10_RECEIPT();
+        receiptFrame.Platenumber_receipt.setText(plate);
 
+        // Save plate to memory (not yet to file)
         String slot = ParkingData.selectedSlot;
         if (slot != null) {
-            // Save plate number in memory
             ParkingData.occupiedSlots.put(slot, plate);
-
-            // --- Save to text file (database) with slot status --- 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(DATABASE_FILE, true))) {
-                String status = "Occupied";  // Could be "Occupied" or "Available"
-                String slotColor = "RED";    // Default for occupied
-                writer.write(slot + " - " + plate + " - " + status + " - " + slotColor);
-                writer.newLine();
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
-            }
-
-            // --- Show confirmation inside P04 itself (instead of QN_panel) ---
-            JOptionPane.showMessageDialog(this, 
-                "Parking saved:\nSlot: " + slot + "\nPlate: " + plate, 
-                "Parking Saved", 
-                JOptionPane.INFORMATION_MESSAGE);
         }
 
+        // Move to payment selection
         this.setVisible(false);
-        P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();  
-        P05.setVisible(true); 
+        P05_CHOOSE_PAYMENT paymentFrame = new P05_CHOOSE_PAYMENT();  
+        paymentFrame.setVisible(true); 
     }
     }//GEN-LAST:event_confirmActionPerformed
 

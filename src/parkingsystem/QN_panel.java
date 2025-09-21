@@ -47,8 +47,6 @@ public class QN_panel extends javax.swing.JFrame {
     }
       
     
-  
-    
 
 
    
