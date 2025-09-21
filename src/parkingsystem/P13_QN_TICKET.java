@@ -65,7 +65,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TimeLabel = new javax.swing.JLabel();
         totalAmount = new javax.swing.JLabel();
         subtotallabel = new javax.swing.JLabel();
-        transactionNumber = new javax.swing.JLabel();
+        platenumber = new javax.swing.JLabel();
         VatsalesLabel = new javax.swing.JLabel();
         VatLabel = new javax.swing.JLabel();
         DiscountLabel = new javax.swing.JLabel();
@@ -84,6 +84,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         VAL = new javax.swing.JLabel();
         TAL = new javax.swing.JLabel();
         TNL1 = new javax.swing.JLabel();
+        transactionNumber = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,9 +126,9 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         subtotallabel.setText("₱50.00");
         getContentPane().add(subtotallabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 600, 60, 20));
 
-        transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        transactionNumber.setText("Transaction Number");
-        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 200, 20));
+        platenumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        platenumber.setText("Transaction Number");
+        getContentPane().add(platenumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 200, 20));
 
         VatsalesLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatsalesLabel.setText("₱44.64");
@@ -163,7 +164,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         TNL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         TNL.setText("Plate Number:");
-        getContentPane().add(TNL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 350, 20));
+        getContentPane().add(TNL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 150, 20));
 
         PTL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         PTL.setText("Payment Type");
@@ -201,6 +202,10 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TNL1.setText("Transaction Number:");
         getContentPane().add(TNL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, 200, 20));
 
+        transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        transactionNumber.setText("Transaction Number");
+        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 200, 20));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QUEUING_NUMBER _ FULL.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
@@ -214,11 +219,34 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
     // Pass the values from P13_QN_TICKET to PDFticket
     pdf.TicketNumber.setText(this.TicketNumber.getText());
-    pdf.transactionNumber.setText(this.transactionNumber.getText());
+    pdf.transactionNumber.setText(this.platenumber.getText());
     pdf.DateLabel.setText(this.DateLabel.getText());
     pdf.TimeLabel.setText(this.TimeLabel.getText());
     pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
 
+     // --- Save to text file database ---
+    try {
+        File file = new File("src/DATABASE/QN_ticket.txt");
+        java.io.FileWriter fw = new java.io.FileWriter(file, true); // append mode
+        java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+
+        String ticketNum = this.TicketNumber.getText();
+        String plateNum = this.TNL.getText();  // already "Plate Number: XXX"
+        String trxNum   = this.TNL1.getText(); // already "Transaction Number: XXX"
+
+        // Write data line
+        bw.write(ticketNum + " | " + plateNum + " | " + trxNum);
+        bw.newLine();
+
+        bw.close();
+        fw.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this, "Error saving to database file!");
+    }
+
+    
+    
     // Make the PDFticket window visible
     pdf.setVisible(true);  
     pdf.savePanelImageAsPDF();
@@ -289,6 +317,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     private javax.swing.JLabel VatsalesLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel platenumber;
     private javax.swing.JLabel subtotallabel;
     private javax.swing.JLabel totalAmount;
     private javax.swing.JLabel transactionNumber;
