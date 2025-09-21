@@ -1,6 +1,7 @@
 
 package parkingsystem;
 
+import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -208,30 +209,27 @@ public class P10_RECEIPT extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     String ticketCode = TicketCode.getText();
-    String slot = P03_SELECTPARK.ParkingData.selectedSlot;
-    String plate = Platenumber_receipt.getText().trim();
+String slot = P03_SELECTPARK.ParkingData.selectedSlot;
+String plate = Platenumber_receipt.getText().trim();
 
-    if (slot != null) {
-        P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
+if (slot != null) {
+    // Mark the slot as occupied in the map
+    P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
 
-        // --- Save to text file (database) here ---
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Intheslot.txt", true))) {
-    String status = "Occupied";  
-    String slotColor = "RED";    
-    writer.write(slot + " - " + plate + " - " + status + " - " + slotColor);
-    writer.newLine();
-} catch (IOException e) {
-    JOptionPane.showMessageDialog(this, "Error saving to database: " + e.getMessage());
-}
-
-// --- Also save TicketCode to DATABASE_FILE ---
-try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/DATABASE_FILE.txt", true))) {
-    writer.write("TicketCode: " + ticketCode + " | Slot: " + slot + " | Plate: " + plate);
-    writer.newLine();
-} catch (IOException e) {
-    JOptionPane.showMessageDialog(this, "Error saving TicketCode to DATABASE_FILE: " + e.getMessage());
-}
+    // Save to Intheslot.txt
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Intheslot.txt", true))) {
+        String status = "Occupied";  
+        String slotColor = "RED";    
+        writer.write(slot + " - " + plate + " - " + status + " - " + slotColor + " - TicketCode: " + ticketCode);
+        writer.newLine();
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error saving to Intheslot database: " + e.getMessage());
     }
+
+    // Update color dynamically
+    P03_SELECTPARK selectParkFrame = new P03_SELECTPARK(); // ideally use the existing instance
+    selectParkFrame.setSlotColor(slot, Color.RED);
+}
 
     // Increment the counter here inside P10_RECEIPT when user clicks the button
     loadCounter();  // Load current counter value

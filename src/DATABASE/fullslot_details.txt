@@ -1,6 +1,2 @@
-FullName: FDBVFDGHG, PhoneNumber: 75756787888, PlateNumber: JGU-6547
-FullName: fsdvgfdh, PhoneNumber: 5675687687, PlateNumber: YFH-4754
-FullName: fhgh, PhoneNumber: 56457879, PlateNumber: HFG-5765
-FullName: fsfddg, PhoneNumber: 7645657, PlateNumber: FDG-4567
-FullName: gfdh, PhoneNumber: 6787687, PlateNumber: HGJ-6786
-FullName: bfghu, PhoneNumber: 567786, PlateNumber: UHF-6578
+
+FullName: frectry, PhoneNumber: 64457567, PlateNumber: HFG-5676

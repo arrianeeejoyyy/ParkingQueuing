@@ -1,10 +1,10 @@
-R01 - Plate Number: - Occupied - RED
-R02 - Plate Number: - Occupied - RED
-R03 - Plate Number: - Occupied - RED
-R04 - Plate Number: - Occupied - RED
-R05 - Plate Number: - Occupied - RED
-L01 - Plate Number: - Occupied - RED
-L02 - Plate Number: - Occupied - RED
-L03 - Plate Number: - Occupied - RED
-L04 - Plate Number: - Occupied - RED
-L05 - Plate Number: - Occupied - RED
+R01 - Plate Number: - Occupied - RED - TicketCode:  838050
+R02 - Plate Number: - Occupied - RED - TicketCode:  852836
+R03 - Plate Number: - Occupied - RED - TicketCode:  300856
+R04 - Plate Number: - Occupied - RED - TicketCode:  463391
+R05 - Plate Number: - Occupied - RED - TicketCode:  899243
+L01 - Plate Number: - Occupied - RED - TicketCode:  142893
+L02 - Plate Number: - Occupied - RED - TicketCode:  333084
+L03 - Plate Number: - Occupied - RED - TicketCode:  862683
+L04 - Plate Number: - Occupied - RED - TicketCode:  847660
+
