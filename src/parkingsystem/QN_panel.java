@@ -15,18 +15,38 @@ public class QN_panel extends javax.swing.JFrame {
     
      private static QN_panel instance;
 
-    private javax.swing.JLabel[] stackLabels; // Array to hold ticket labels
+    private javax.swing.JLabel[] ticketLabels; // Array to hold ticket labels
     
     private QN_panel() {
         initComponents();
                                                                 
      // Initialize stack labels (example: 5 labels)
-        stackLabels = new javax.swing.JLabel[]{one, two, three, four, five,six,seven, eight, nine,ten, eleven,twelve,thirteen, fourteen};
+        ticketLabels = new javax.swing.JLabel[]{one, two, three, four, five,six,seven, eight, nine,ten, eleven,twelve,thirteen, fourteen};
 
         // Load saved tickets into stack labels
         loadTicketsFromFile();
     }
 
+    
+    private void initializeTicketLabels() {
+    ticketLabels = new javax.swing.JLabel[]{
+        one, // replace with your actual label names
+        two,
+        three,
+        four,
+        five,
+        six,
+        seven,
+        eight,
+        nine,
+        ten,
+        eleven,
+        twelve,
+        thirteen,
+        fourteen// add all labels you have for stacking
+    };
+}
+    
      public static QN_panel getInstance() {
         if (instance == null) {
             instance = new QN_panel();
@@ -34,95 +54,109 @@ public class QN_panel extends javax.swing.JFrame {
         return instance;
     }
 
+     
+     public void addTicketToStack(String ticketCode) {
+    for (javax.swing.JLabel lbl : ticketLabels) {
+        if (lbl.getText().isEmpty()) {  // empty slot
+            lbl.setText(ticketCode);
+            break;
+        }
+    }
+}
+     
+     
+     public String popNextTicket() {
+    String nextTicket = ticketLabels[0].getText();
+    for (int i = 0; i < ticketLabels.length - 1; i++) {
+        ticketLabels[i].setText(ticketLabels[i+1].getText());
+    }
+    ticketLabels[ticketLabels.length - 1].setText(""); // last one is empty
+    return nextTicket;
+}
+     
+     public boolean hasTickets() {
+    return !ticketLabels[0].getText().isEmpty();
+}
 
       // Add new ticket (push)
-    public void pushTicket(String ticketCode) {
-        try {
-            File file = new File("src/DATABASE/QN_ticket.txt");
-            List<String> lines = new ArrayList<>();
+    public void pushTicket(String ticketCode, String plate) {
+    try {
+        File file = new File("src/DATABASE/QN_ticket.txt");
+        List<String> tickets = new ArrayList<>();
 
-            // Add new ticket at the top
-            lines.add(ticketCode);
-
-            // Read existing tickets and append
-            if (file.exists()) {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    lines.add(line);
-                }
-                br.close();
-            }
-
-            // Save all tickets back
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-            for (String s : lines) {
-                bw.write(s);
-                bw.newLine();
-            }
-            bw.close();
-
-            // Update stack labels
-            updateStackLabels(lines);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-      public String popTicket() {
-        try {
-            File file = new File("src/DATABASE/QN_ticket.txt");
-            if (!file.exists()) return null;
-
+        // Read existing tickets
+        if (file.exists()) {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            List<String> lines = new ArrayList<>();
-            String top = br.readLine(); // first ticket (top)
             String line;
-            while ((line = br.readLine()) != null) {
-                lines.add(line);
-            }
+            while ((line = br.readLine()) != null) tickets.add(line);
             br.close();
-
-            // Save remaining tickets
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-            for (String s : lines) {
-                bw.write(s);
-                bw.newLine();
-            }
-            bw.close();
-
-            // Update stack labels
-            updateStackLabels(lines);
-
-            return top;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
+
+        // Add new ticket at the end (bottom of stack)
+        tickets.add(ticketCode + " | " + plate);
+
+        // Save back to file
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+        for (String s : tickets) {
+            bw.write(s);
+            bw.newLine();
+        }
+        bw.close();
+
+        // Update stacking labels
+        List<String> codesOnly = new ArrayList<>();
+        for (String s : tickets) codesOnly.add(s.split("\\|")[0].trim());
+        updateStackLabels(codesOnly);
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+    
+     public String popTicket() {
+    File file = new File("src/DATABASE/QN_ticket.txt");
+    if (!file.exists()) return null;
+
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        List<String> tickets = new ArrayList<>();
+        String topTicket = br.readLine(); // first ticket in file
+        String line;
+        while ((line = br.readLine()) != null) tickets.add(line);
+        br.close();
+
+        // Save remaining tickets
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+        for (String s : tickets) bw.write(s + "\n");
+        bw.close();
+
+        // Update stacking labels
+        List<String> codesOnly = new ArrayList<>();
+        for (String s : tickets) codesOnly.add(s.split("\\|")[0].trim());
+        updateStackLabels(codesOnly);
+
+        return (topTicket != null) ? topTicket.split("\\|")[0].trim() : null;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
       
       
-      private void updateStackLabels(List<String> tickets) {
-        // nextTicketField shows top ticket
-        if (!tickets.isEmpty()) {
-            nextTicketField.setText(tickets.get(0));
+     private void updateStackLabels(List<String> tickets) {
+    // Keep nextTicketField empty
+    nextTicketField.setText("");
+
+    // Fill the labels with all tickets (from first to last)
+    for (int i = 0; i < ticketLabels.length; i++) {
+        if (i < tickets.size()) {
+            ticketLabels[i].setText(tickets.get(i)); // show ticket code
         } else {
-            nextTicketField.setText("");
+            ticketLabels[i].setText(""); // empty if no ticket
         }
-
-        // Shift the rest into labels
-        for (int i = 0; i < stackLabels.length; i++) {
-            if (i + 1 < tickets.size()) {
-                stackLabels[i].setText(tickets.get(i + 1));
-            } else {
-                stackLabels[i].setText("");
-            }
-        }
-
-        saveNextTicketField();
     }
+}
       
         // Save top ticket
     private void saveNextTicketField() {
@@ -137,24 +171,28 @@ public class QN_panel extends javax.swing.JFrame {
     }
 
     // Load tickets on startup
-    private void loadTicketsFromFile() {
-        try {
-            File file = new File("src/DATABASE/QN_ticket.txt");
-            if (!file.exists()) return;
+   public void loadTicketsFromFile() {
+    initializeTicketLabels();
 
-            List<String> tickets = new ArrayList<>();
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                tickets.add(line);
+    File file = new File("src/DATABASE/QN_ticket.txt");
+    if (!file.exists()) return;
+
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+        List<String> tickets = new ArrayList<>();
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (line.trim().length() >= 6) {
+                tickets.add(line.split("\\|")[0].trim()); // only ticket code
             }
-            br.close();
-
-            updateStackLabels(tickets);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+        // Update stacking labels
+        updateStackLabels(tickets);
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
    public static class Helper {
     public static void clearNextTicketField() {
@@ -164,6 +202,45 @@ public class QN_panel extends javax.swing.JFrame {
     }
 }
 
+  public void serveNextTicket(javax.swing.JTextField targetField) {
+    if(ticketLabels[0].getText().isEmpty()) {
+        targetField.setText("");
+        return;
+    }
+
+    targetField.setText(ticketLabels[0].getText());
+
+    // Remove first line from file
+    try {
+        File file = new File("src/DATABASE/NEXTTOSERVE.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        boolean firstSkipped = false;
+
+        while ((line = reader.readLine()) != null) {
+            if(!firstSkipped) {
+                firstSkipped = true; // skip the first line
+                continue;
+            }
+            sb.append(line).append("\n");
+        }
+        reader.close();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(sb.toString());
+        writer.close();
+
+        // Shift labels up
+        for(int i=0; i<ticketLabels.length-1; i++) {
+            ticketLabels[i].setText(ticketLabels[i+1].getText());
+        }
+        ticketLabels[ticketLabels.length-1].setText("");
+
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+}
    
    
 
@@ -291,37 +368,9 @@ public void loadNextTicketField() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+  
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QN_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QN_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QN_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QN_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new QN_panel().setVisible(true);

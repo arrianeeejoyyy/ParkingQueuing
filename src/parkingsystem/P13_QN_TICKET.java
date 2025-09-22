@@ -1,10 +1,13 @@
 package parkingsystem;
 
 import java.awt.Desktop;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 
 public class P13_QN_TICKET extends javax.swing.JFrame {
@@ -220,28 +223,28 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
 
      // --- Save to text file database ---
-    try {
-        File file = new File("src/DATABASE/QN_ticket.txt");
-        java.io.FileWriter fw = new java.io.FileWriter(file, true); // append mode
-        java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+     try {
+        // --- Save ticket code to NEXTTOSERVE.txt ---
+        File nextFile = new File("src/DATABASE/NEXTTOSERVE.txt");
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nextFile, true))) {
+            bw.write(this.ticketCode); // 6-digit ticket code only
+            bw.newLine();
+        }
 
-        String ticketNum = this.TicketNumber.getText();
-        String plateNum = this.TNL.getText();  // already "Plate Number: XXX"
-        String trxNum   = this.TNL1.getText(); // already "Transaction Number: XXX"
+        // --- Save ticket code + plate number to QN_PANEL_DB.txt ---
+        File dbFile = new File("src/DATABASE/QN_ticket.txt");
+        try (BufferedWriter bw2 = new BufferedWriter(new FileWriter(dbFile, true))) {
+            bw2.write(this.ticketCode + " | " + this.plate); 
+            bw2.newLine();
+        }
 
-        // Write data line
-        bw.write(ticketNum + " | " + plateNum + " | " + trxNum);
-        bw.newLine();
-
-        bw.close();
-        fw.close();
-        
-        // ✅ Update QN_panel immediately
-        
+        // --- Update QN_panel immediately ---
+        QN_panel qnPanel = QN_panel.getInstance();
+        qnPanel.loadTicketsFromFile(); // refresh stacked labels
         
     } catch (Exception e) {
         e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Error saving to database file!");
+        JOptionPane.showMessageDialog(this, "Error saving ticket data!");
     }
 
     

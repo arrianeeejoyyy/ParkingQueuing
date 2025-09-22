@@ -11,6 +11,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import parkingsystem.P03_SELECTPARK.ParkingData;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
+import static parkingsystem.QN_panel.nextTicketField;
 
 public class P16_OUT extends javax.swing.JFrame {
 
@@ -136,7 +137,12 @@ public class P16_OUT extends javax.swing.JFrame {
             }
 
             // ===== Remove first row from QN_panel JTable (FIFO) =====
-           
+            QN_panel qnPanel = QN_panel.getInstance();
+            if(qnPanel.hasTickets()) {
+            String nextTicket = qnPanel.popNextTicket();
+            nextTicketField.setText(nextTicket);
+             
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
