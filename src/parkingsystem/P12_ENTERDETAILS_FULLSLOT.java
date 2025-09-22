@@ -13,7 +13,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
         
       
         
-       PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+      PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
         @Override
         public void keyTyped(java.awt.event.KeyEvent evt) {
             char c = evt.getKeyChar();
@@ -32,19 +32,42 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
                 } else {
                     evt.setKeyChar(Character.toUpperCase(c));
                 }
-            } else if (pos == 3) {
-                PlateNumber.setText(text + "-");
+            }
+            else if (pos == 3) {
+                // Check if dash already exists, don't add it again
+                if (!text.contains("-")) {
+                    PlateNumber.setText(text + "-");
+                }
                 if (Character.isDigit(c)) {
                     PlateNumber.setText(PlateNumber.getText() + c);
                 }
                 evt.consume();
-            } else {
+            }
+            else {
                 if (!Character.isDigit(c)) {
                     evt.consume();
                 }
             }
         }
+
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE) {
+                String text = PlateNumber.getText();
+                int pos = text.length();
+
+                // Handle the case when user presses backspace and remove the dash properly
+                if (pos == 4 && text.charAt(3) == '-') {
+                    PlateNumber.setText(text.substring(0, 3));
+                }
+            } else if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                // Trigger confirm when enter is pressed
+                confirmActionPerformed(null);
+            }
+        }
     });
+
+
 
     phoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
     @Override
@@ -142,7 +165,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
                 PlateNumberActionPerformed(evt);
             }
         });
-        getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 490, 90));
+        getContentPane().add(PlateNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 490, 490, 90));
 
         confirm.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         confirm.setBorderPainted(false);
@@ -166,7 +189,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
         checkbox1.setBackground(new java.awt.Color(255, 255, 255));
         checkbox1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 740, 10, 10));
+        getContentPane().add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 735, 20, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTERDETAILS_FULLSLOT.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -177,9 +200,10 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
     String name = fullName.getText().trim();
-    String phone = phoneNumber.getText().trim();
-    String plate = PlateNumber.getText().trim();
+String phone = phoneNumber.getText().trim();
+String plate = PlateNumber.getText().trim();
 
+// Check if checkbox is selected
 if (!checkbox1.getState()) {                       
     JOptionPane.showMessageDialog(
         this,
@@ -188,10 +212,35 @@ if (!checkbox1.getState()) {
         JOptionPane.WARNING_MESSAGE
     );
     return; 
-}
-
-if (name.isEmpty() || phone.isEmpty() || plate.isEmpty()) {
-    javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all details!");
+} 
+// Validate name (not empty and letters only)
+else if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+    JOptionPane.showMessageDialog(
+        this,
+        "Please enter a valid name (letters only)!",
+        "Warning",
+        JOptionPane.WARNING_MESSAGE
+    );
+    return;
+} 
+// Validate phone number (starts with 09 and exactly 11 digits)
+else if (!phone.matches("09\\d{9}")) {
+    JOptionPane.showMessageDialog(
+        this,
+        "Please enter a valid phone number starting with 09 and 11 digits long!",
+        "Warning",
+        JOptionPane.WARNING_MESSAGE
+    );
+    return;
+} 
+// Validate plate number (3 letters + 4 digits)
+else if (!plate.matches("[A-Z]{3}-\\d{4}")) {
+    JOptionPane.showMessageDialog(
+        this,
+        "Please enter a valid plate number (format: ABC-1234)!",
+        "Warning",
+        JOptionPane.WARNING_MESSAGE
+    );
     return;
 }
 

@@ -31,13 +31,16 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
 
             if (pos < 3) {
                 if (!Character.isLetter(c)) {
-                    evt.consume(); 
+                    evt.consume();
                 } else {
                     evt.setKeyChar(Character.toUpperCase(c));
                 }
             }
             else if (pos == 3) {
-                PlateNumber.setText(text + "-");
+                // Check if dash already exists, don't add it again
+                if (!text.contains("-")) {
+                    PlateNumber.setText(text + "-");
+                }
                 if (Character.isDigit(c)) {
                     PlateNumber.setText(PlateNumber.getText() + c);
                 }
@@ -45,11 +48,28 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             }
             else {
                 if (!Character.isDigit(c)) {
-                    evt.consume(); 
+                    evt.consume();
                 }
             }
         }
+
+        @Override
+        public void keyPressed(java.awt.event.KeyEvent evt) {
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_BACK_SPACE) {
+                String text = PlateNumber.getText();
+                int pos = text.length();
+
+                // Handle the case when user presses backspace and remove the dash properly
+                if (pos == 4 && text.charAt(3) == '-') {
+                    PlateNumber.setText(text.substring(0, 3));
+                }
+            } else if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                // Trigger confirm when enter is pressed
+                confirmActionPerformed(null);
+            }
+        }
     });
+
 }
  
     @SuppressWarnings("unchecked")
