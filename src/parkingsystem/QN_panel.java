@@ -84,9 +84,7 @@ public class QN_panel extends javax.swing.JFrame {
     model.addRow(new Object[]{ ticketCode, plateNumber });
 
     // Show the first ticket in queue
-    if (model.getRowCount() > 0) {
-        nextTicketField.setText((String) model.getValueAt(0, 0));
-    }
+    
 }
 
     public String popNextTicket() {
@@ -154,7 +152,6 @@ public void updateNextTicketField() {
         nextTicketField.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         nextTicketField.setForeground(new java.awt.Color(255, 255, 255));
         nextTicketField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nextTicketField.setText("jLabel1");
         getContentPane().add(nextTicketField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
         PIC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/2ND UI DATASTRUC.png"))); // NOI18N
