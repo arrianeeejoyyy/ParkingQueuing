@@ -17,27 +17,28 @@ public class QN_panel extends javax.swing.JFrame {
 
     private QN_panel() {
         initComponents();
-        model = new DefaultTableModel(new String[]{"Ticket Code"}, 0);
-        jTable1.setModel(model);
-        jScrollPane1.getViewport().setOpaque(false);
-        jTable1.setBorder(null);
-        jTable1.setShowGrid(false);
-        jScrollPane1.setBorder(null);
-        jTable1.setFocusable(false);  
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.setCellSelectionEnabled(false);
-        nextTicketField.setOpaque(false);  
-        nextTicketField.setBackground(new java.awt.Color(0,0,0,0)); 
-        nextTicketField.setBorder(null);
-        nextTicketField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        model = new DefaultTableModel(new String[]{"Ticket Code", "Plate Number"}, 0);
+    jTable1.setModel(model);
 
-        
-       
-       
+    jScrollPane1.getViewport().setOpaque(false);
+    jTable1.setBorder(null);
+    jTable1.setShowGrid(false);
+    jScrollPane1.setBorder(null);
+    jTable1.setFocusable(false);  
+    jTable1.setRowSelectionAllowed(false);
+    jTable1.setCellSelectionEnabled(false);                                                         
+    nextTicketField.setOpaque(false);  
+    nextTicketField.setBackground(new java.awt.Color(0,0,0,0)); 
+    nextTicketField.setBorder(null);
+    nextTicketField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+    // ✅ Center the text in all table cells
+    javax.swing.table.DefaultTableCellRenderer centerRenderer = new javax.swing.table.DefaultTableCellRenderer();
+    centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+    jTable1.setDefaultRenderer(Object.class, centerRenderer);
 
-        // Load saved tickets from database file
-        loadTicketsFromDatabase();
+    // Load saved tickets from database file
+    loadTicketsFromDatabase();
     }
 
     public static QN_panel getInstance() {
@@ -49,45 +50,45 @@ public class QN_panel extends javax.swing.JFrame {
 
      // Load ticket codes from text file database
     private void loadTicketsFromDatabase() {
-        try {
-            File file = new File("src/DATABASE/QN_ticket.txt");
-            if (!file.exists()) return; // If no file yet, skip
+    try {
+        File file = new File("src/DATABASE/QN_ticket.txt");
+        if (!file.exists()) return; // If no file yet, skip
 
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                // Each line format: TicketCode | PlateNumber | TransactionNumber
-                String[] parts = line.split("\\|");
-                if (parts.length > 0) {
-                    String ticketCode = parts[0].trim();
-                    if (!ticketCode.isEmpty()) {
-                        model.addRow(new Object[]{ ticketCode });
-                    }
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = br.readLine()) != null) {
+            // Each line format: TicketCode | PlateNumber | TransactionNumber
+            String[] parts = line.split("\\|");
+            if (parts.length >= 2) {
+                String ticketCode = parts[0].trim();
+                String plateNumber = parts[1].trim();
+                if (!ticketCode.isEmpty()) {
+                    model.addRow(new Object[]{ ticketCode, plateNumber });
                 }
             }
-            br.close();
-
-            // If there are saved tickets, show the first one
-            if (model.getRowCount() > 0) {
-                nextTicketField.setText((String) model.getValueAt(0, 0));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        br.close();
+
+        // If there are saved tickets, show the first one
+        if (model.getRowCount() > 0) {
+            nextTicketField.setText((String) model.getValueAt(0, 0));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
     
     
     // Add a new row to the table and update next ticket field
-    public void addToQueue(String ticketCode) {
-        model.addRow(new Object[]{ ticketCode});
+   public void addToQueue(String ticketCode, String plateNumber) {
+    model.addRow(new Object[]{ ticketCode, plateNumber });
 
-        // Show the first ticket in queue
-        if (model.getRowCount() > 0) {
-            nextTicketField.setText((String) model.getValueAt(0, 0));
-            nextTicketField.setText(""); 
-        }
+    // Show the first ticket in queue
+    if (model.getRowCount() > 0) {
+        nextTicketField.setText((String) model.getValueAt(0, 0));
     }
-      
+}
+
     
 
 
@@ -102,25 +103,14 @@ public class QN_panel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nextTicketField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        nextTicketField = new javax.swing.JLabel();
         PIC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(1500, 150, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        nextTicketField.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        nextTicketField.setForeground(new java.awt.Color(255, 255, 255));
-        nextTicketField.setBorder(null);
-        nextTicketField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nextTicketField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextTicketFieldActionPerformed(evt);
-            }
-        });
-        getContentPane().add(nextTicketField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
         jScrollPane1.setOpaque(false);
 
@@ -130,11 +120,11 @@ public class QN_panel extends javax.swing.JFrame {
 
             },
             new String [] {
-                "TICKET CODE"
+                "TICKET CODE", "PLATE NUMBER"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -146,18 +136,17 @@ public class QN_panel extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 310, 350));
 
+        nextTicketField.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        nextTicketField.setForeground(new java.awt.Color(255, 255, 255));
+        nextTicketField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nextTicketField.setText("jLabel1");
+        getContentPane().add(nextTicketField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
+
         PIC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/2ND UI DATASTRUC.png"))); // NOI18N
         getContentPane().add(PIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nextTicketFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextTicketFieldActionPerformed
-        // TODO add your handling code here:
-      
-
-        
-    }//GEN-LAST:event_nextTicketFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,7 +187,7 @@ public class QN_panel extends javax.swing.JFrame {
     private javax.swing.JLabel PIC;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField nextTicketField;
+    private javax.swing.JLabel nextTicketField;
     // End of variables declaration//GEN-END:variables
 
     void addParkingRow(String slot, String plate) {

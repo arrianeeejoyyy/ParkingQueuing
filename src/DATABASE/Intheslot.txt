@@ -8,3 +8,4 @@ L02 - Plate Number: - Occupied - RED - TicketCode:  333084
 L03 - Plate Number: - Occupied - RED - TicketCode:  862683
 L04 - Plate Number: - Occupied - RED - TicketCode:  847660
 
+L05 - Plate Number: - Occupied - RED - TicketCode:  686154

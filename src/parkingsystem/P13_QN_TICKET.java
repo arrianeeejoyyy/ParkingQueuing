@@ -32,7 +32,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     this.plate = plate;
 
     // Set plate number label
-    TNL.setText("Plate Number: " + this.plate);
+    TNL.setText("" + this.plate);
 
     // Generate ticket code and set label
     this.ticketCode = String.valueOf(100000 + new Random().nextInt(900000));
@@ -48,7 +48,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     TimeLabel.setText(new SimpleDateFormat("hh:mm:ss a").format(now));
 
     // Add to QN panel table
-    QN_panel.getInstance().addToQueue(ticketCode);
+    QN_panel.getInstance().addToQueue(ticketCode, this.plate);
     }
 
     @SuppressWarnings("unchecked")
