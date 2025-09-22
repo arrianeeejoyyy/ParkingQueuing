@@ -218,7 +218,8 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
     // Pass the values from P13_QN_TICKET to PDFticket
     pdf.TicketNumber.setText(this.TicketNumber.getText());
-    pdf.transactionNumber.setText(this.platenumber.getText());
+    pdf.platenumber.setText(this.platenumber.getText());
+    pdf.transactionNumber.setText(this.transactionNumber.getText());
     pdf.DateLabel.setText(this.DateLabel.getText());
     pdf.TimeLabel.setText(this.TimeLabel.getText());
     pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());

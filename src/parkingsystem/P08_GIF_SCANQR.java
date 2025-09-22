@@ -4,7 +4,7 @@ package parkingsystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-
+import parkingsystem.PlateNumberHolder;
 
 public class P08_GIF_SCANQR extends javax.swing.JFrame {
 
@@ -15,15 +15,15 @@ public class P08_GIF_SCANQR extends javax.swing.JFrame {
          timer.setRepeats(false); // run only once
         timer.start();
     }
-Timer timer = new Timer(4000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Close or hide the JFrame after 3 seconds
-                setVisible(false);   // just hide
-                P10_RECEIPT P10 = new P10_RECEIPT();
-                P10.setVisible(true);         // fully close the window
-            }
-        });
+Timer timer = new Timer(5000, new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        P10_RECEIPT receipt = new P10_RECEIPT();
+        receipt.setPlateNumber(PlateNumberHolder.getPlateNumber());
+        receipt.setVisible(true);
+    }
+});
 
 
     @SuppressWarnings("unchecked")

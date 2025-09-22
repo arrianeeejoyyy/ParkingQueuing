@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import parkingsystem.P03_SELECTPARK.ParkingData;
+import parkingsystem.PlateNumberHolder;
 
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
@@ -113,32 +114,28 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-String plate = PlateNumber.getText().trim();
+ String plate = PlateNumber.getText().trim();
 
     if (plate.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Enter a plate number!");
         return;
     }
 
-    // Show confirmation dialog
     int confirmResult = JOptionPane.showConfirmDialog(this, 
         "Are you sure this is the correct plate number?\n" + plate, 
         "Confirm Plate Number", 
         JOptionPane.YES_NO_OPTION);
 
     if (confirmResult == JOptionPane.YES_OPTION) {
-       
-
-        // Save plate to memory (not yet to file)
-        String slot = ParkingData.selectedSlot;
-        if (slot != null) {
-            ParkingData.occupiedSlots.put(slot, plate);
-        }
+        // Save plate to shared holder
+        PlateNumberHolder.setPlateNumber(plate);
 
         // Move to payment selection
-        this.setVisible(false);
-        P05_CHOOSE_PAYMENT paymentFrame = new P05_CHOOSE_PAYMENT();  
+        P05_CHOOSE_PAYMENT paymentFrame = new P05_CHOOSE_PAYMENT();
+        paymentFrame.setHoldPlateLabel(plate); // set in holdplate JLabel
         paymentFrame.setVisible(true); 
+        this.setVisible(false);
+    
     }
     }//GEN-LAST:event_confirmActionPerformed
 
@@ -150,7 +147,7 @@ String plate = PlateNumber.getText().trim();
     }//GEN-LAST:event_backActionPerformed
 
   
-    
+ 
     
     
     public static void main(String args[]) {

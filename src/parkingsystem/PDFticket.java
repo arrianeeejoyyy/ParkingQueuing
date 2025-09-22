@@ -134,7 +134,7 @@ private void closePDFAndShowPanel() {
         TicketNumber = new javax.swing.JLabel();
         DateLabel = new javax.swing.JLabel();
         VatLabel = new javax.swing.JLabel();
-        tn = new javax.swing.JLabel();
+        platenumber = new javax.swing.JLabel();
         totalAmount = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         subtotallabel = new javax.swing.JLabel();
@@ -165,6 +165,7 @@ private void closePDFAndShowPanel() {
         DiscountLabel = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
         tn1 = new javax.swing.JLabel();
+        tn2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(450, 750));
@@ -173,10 +174,11 @@ private void closePDFAndShowPanel() {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TicketNumber.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
+        TicketNumber.setFont(new java.awt.Font("Arial", 1, 80)); // NOI18N
+        TicketNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TicketNumber.setText("Ticket C");
         TicketNumber.setToolTipText("");
-        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(84, 23, 310, 60));
+        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 350, 90));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");
@@ -186,9 +188,9 @@ private void closePDFAndShowPanel() {
         VatLabel.setText("VAT:");
         jPanel1.add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 559, 59, -1));
 
-        tn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        tn.setText("Plate Number:");
-        jPanel1.add(tn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 196, 20));
+        platenumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        platenumber.setText("Plate Number:");
+        jPanel1.add(platenumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 196, 20));
 
         totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         totalAmount.setText("Total Amount: ");
@@ -320,6 +322,10 @@ private void closePDFAndShowPanel() {
         tn1.setText("Transaction Number:");
         jPanel1.add(tn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 196, 20));
 
+        tn2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        tn2.setText("Plate Number:");
+        jPanel1.add(tn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 196, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 770));
 
         pack();
@@ -360,6 +366,7 @@ private void closePDFAndShowPanel() {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pl;
+    public javax.swing.JLabel platenumber;
     private javax.swing.JLabel ryy;
     private javax.swing.JLabel ryy1;
     private javax.swing.JLabel ryy2;
@@ -368,8 +375,8 @@ private void closePDFAndShowPanel() {
     private javax.swing.JLabel ryy5;
     private javax.swing.JLabel ryy6;
     private javax.swing.JLabel subtotallabel;
-    private javax.swing.JLabel tn;
     private javax.swing.JLabel tn1;
+    private javax.swing.JLabel tn2;
     private javax.swing.JLabel totalAmount;
     public javax.swing.JLabel transactionNumber;
     private javax.swing.JLabel unitcostlabel;

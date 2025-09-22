@@ -3,7 +3,7 @@ package parkingsystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-
+import parkingsystem.PlateNumberHolder;
 
 public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
 
@@ -13,14 +13,19 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
         timer.setRepeats(false);
         timer.start();
     }
-     Timer timer = new Timer(3000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);   
-                P08_GIF_SCANQR p8 = new P08_GIF_SCANQR();
-                p8.setVisible(true);
-            }
-        });
+     Timer timer = new Timer(5000, new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        P10_RECEIPT receipt = new P10_RECEIPT();
+        receipt.setPlateNumber(PlateNumberHolder.getPlateNumber());
+        receipt.setVisible(true);
+    }
+});
+     
+     public void setHoldPlate(String plate) {
+    holdplate.setText(plate); // holdplate is your JLabel
+}
 
     
     @SuppressWarnings("unchecked")

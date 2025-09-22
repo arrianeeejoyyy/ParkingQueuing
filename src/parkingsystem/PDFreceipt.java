@@ -1,27 +1,21 @@
 
 package parkingsystem;
 
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import java.io.File;
-import java.awt.Desktop;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.Timer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Document;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 
 public class PDFreceipt extends javax.swing.JFrame {
@@ -32,151 +26,72 @@ public class PDFreceipt extends javax.swing.JFrame {
         
     }
 
-   public void saveTicketAsPDF() {
-        try {
-            // Get the user's Documents folder
-            String userHome = System.getProperty("user.home");
-            String documentsPath = userHome + File.separator + "Documents";
-            String fileName = "ticket_" + System.currentTimeMillis() + ".pdf";
-            File pdfFile = new File(documentsPath, fileName);
-
-            // Create a new PDF document
-            PDDocument document = new PDDocument();
-            PDPage page = new PDPage(PDRectangle.LETTER); // A4 size, you can change it to LETTER
-            document.addPage(page);
-
-            // Create a content stream to write the content to the PDF
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-
-            // Start writing text
-            contentStream.beginText();
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
-            contentStream.newLineAtOffset(50, 750); // Starting position (x, y)
-            contentStream.showText("DISPLAY HUB Receipt");
-
-            // Set font for the ticket details (smaller font)
-            contentStream.setFont(PDType1Font.HELVETICA, 12);
-            contentStream.newLineAtOffset(0, -25);
-            contentStream.showText("Ticket Number: " + TicketNumber.getText());
-            contentStream.newLineAtOffset(0, -15);
-            contentStream.showText("Transaction Number: " + transactionNumber.getText());
-            contentStream.newLineAtOffset(0, -15);
-            contentStream.showText("Date: " + DateLabel.getText());
-            contentStream.newLineAtOffset(0, -15);
-            contentStream.showText("Time: " + TimeLabel.getText());
-            contentStream.newLineAtOffset(0, -15);
-            contentStream.showText("Payment Type: " + PaymentTypeLabel.getText());
-            contentStream.newLineAtOffset(0, -30);
-
-            
-            contentStream.endText();
-            contentStream.close();
-
-            // Save the PDF file
-            document.save(pdfFile);
-            document.close();
-
-            // Optional: Show confirmation dialog
-            javax.swing.JOptionPane.showMessageDialog(this, "Receipt saved to:\n" + pdfFile.getAbsolutePath());
-
-            // Open the saved PDF file using the default PDF viewer
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(pdfFile);
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Automatic open not supported on this platform.");
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Error saving PDF: " + e.getMessage());
-        }
-    }
-
     // Helper method to capture the panel as an image (if you want to save the receipt as an image and then convert to PDF)
+    // Capture jPanel1 as an image
     public BufferedImage getPanelImage() {
         BufferedImage image = new BufferedImage(jPanel1.getWidth(), jPanel1.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
-        jPanel1.paint(g2d);  // You may need to use your own panel for the receipt
+        jPanel1.paint(g2d);
         g2d.dispose();
         return image;
     }
 
-    // Convert the panel image to a byte array (for PDF purposes)
+    // Convert BufferedImage to byte array for PDF
     private byte[] bufferedImageToByteArray(BufferedImage image) throws IOException {
         java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
         ImageIO.write(image, "png", baos);
         return baos.toByteArray();
     }
 
+    // Save receipt as PDF
     public void savePanelImageAsPDF() {
-    try {
-        // Generate a unique filename based on the current date and time
-        String timestamp = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
-        String fileName = "receipt_" + timestamp + ".pdf";
+        try {
+            String timestamp = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
+            String fileName = "receipt_" + timestamp + ".pdf";
+            String documentsPath = System.getProperty("user.home") + File.separator + "Documents";
+            File pdfFile = new File(documentsPath, fileName);
 
-        // Get the user's Documents folder
-        String userHome = System.getProperty("user.home");
-        String documentsPath = userHome + File.separator + "Documents";
-        File pdfFile = new File(documentsPath, fileName);
+            BufferedImage receiptImage = getPanelImage();
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage(new PDRectangle(receiptImage.getWidth(), receiptImage.getHeight()));
+            document.addPage(page);
 
-        // Capture the panel as an image
-        BufferedImage receiptImage = getPanelImage();
+            PDImageXObject pdImage = PDImageXObject.createFromByteArray(document, bufferedImageToByteArray(receiptImage), "receipt_image");
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            contentStream.drawImage(pdImage, 0, 0, receiptImage.getWidth(), receiptImage.getHeight());
+            contentStream.close();
 
-        // Create a new PDF document
-        PDDocument document = new PDDocument();
-        PDPage page = new PDPage(new PDRectangle(receiptImage.getWidth(), receiptImage.getHeight()));
-        document.addPage(page);
+            document.save(pdfFile);
+            document.close();
 
-        // Convert BufferedImage to PDImageXObject
-        PDImageXObject pdImage = PDImageXObject.createFromByteArray(document, bufferedImageToByteArray(receiptImage), "receipt_image");
+            JOptionPane.showMessageDialog(this, "Receipt saved as PDF at:\n" + pdfFile.getAbsolutePath());
 
-        // Write image to PDF
-        PDPageContentStream contentStream = new PDPageContentStream(document, page);
-        contentStream.drawImage(pdImage, 0, 0, receiptImage.getWidth(), receiptImage.getHeight());
-        contentStream.close();
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(pdfFile);
 
-        // Save the PDF
-        document.save(pdfFile);
-        document.close();
+                // Timer to hide the frame after 6 seconds
+                Timer timer = new Timer(6000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        closePDFAndShowPanel();
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+            }
 
-        // Show confirmation dialog
-        javax.swing.JOptionPane.showMessageDialog(this, "Receipt saved as PDF at:\n" + pdfFile.getAbsolutePath());
-
-        // Attempt to open the PDF
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().open(pdfFile);
-
-            // Set up a Timer to close PDF and show the next panel after 6 seconds
-            Timer timer = new Timer(6000, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // After 6 seconds, close the PDF and show another panel
-                    closePDFAndShowPanel();
-                    
-                    
-                }
-            });
-            timer.setRepeats(false); // Ensure the timer runs only once
-            timer.start(); // Start the timer
-
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Automatic open not supported on this platform.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error saving PDF: " + e.getMessage());
         }
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Error saving PDF: " + e.getMessage());
     }
-}
 
-private void closePDFAndShowPanel() {
-   
-    this.setVisible(false);  
-
-    this.getContentPane().removeAll();
-    this.revalidate();
-    this.repaint();
-}
+    private void closePDFAndShowPanel() {
+        this.setVisible(false);
+        this.getContentPane().removeAll();
+        this.revalidate();
+        this.repaint();
+    }
      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -199,7 +114,7 @@ private void closePDFAndShowPanel() {
         jLabel9 = new javax.swing.JLabel();
         VatsalesLabel = new javax.swing.JLabel();
         unitcostlabel = new javax.swing.JLabel();
-        TimeLabel = new javax.swing.JLabel();
+        platenumber = new javax.swing.JLabel();
         ryy = new javax.swing.JLabel();
         transactionNumber = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -219,6 +134,7 @@ private void closePDFAndShowPanel() {
         jLabel11 = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        TimeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(450, 750));
@@ -227,10 +143,11 @@ private void closePDFAndShowPanel() {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TicketNumber.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
+        TicketNumber.setFont(new java.awt.Font("Arial", 1, 80)); // NOI18N
+        TicketNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TicketNumber.setText("R NO.");
         TicketNumber.setToolTipText("");
-        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 270, 60));
+        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 290, 70));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");
@@ -299,9 +216,9 @@ private void closePDFAndShowPanel() {
         unitcostlabel.setText("Unit Cost/Price :");
         jPanel1.add(unitcostlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 425, 153, 20));
 
-        TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        TimeLabel.setText("Time:");
-        jPanel1.add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 194, 20));
+        platenumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        platenumber.setText("platenumber");
+        jPanel1.add(platenumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 194, 20));
 
         ryy.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy.setText("₱50.00");
@@ -384,6 +301,10 @@ private void closePDFAndShowPanel() {
         jLabel12.setToolTipText("");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, 20));
 
+        TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        TimeLabel.setText("Time:");
+        jPanel1.add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 194, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 780));
 
         pack();
@@ -427,6 +348,7 @@ private void closePDFAndShowPanel() {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel pl;
+    public javax.swing.JLabel platenumber;
     private javax.swing.JLabel ryy;
     private javax.swing.JLabel ryy1;
     private javax.swing.JLabel ryy2;

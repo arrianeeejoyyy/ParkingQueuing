@@ -53,6 +53,10 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         PaymentTypeLabel.setText(paymentType);
         
     }
+    
+    public void setPlateNumber(String plate) {
+    Platenumber_receipt.setText(plate);
+}
          
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -253,6 +257,7 @@ if (slot != null) {
     pdf.TicketNumber.setText(this.TicketCode.getText());
     pdf.transactionNumber.setText(this.transactionNumber.getText());
     pdf.DateLabel.setText(this.DateLabel.getText());
+    pdf.platenumber.setText(this.Platenumber_receipt.getText());
     pdf.TimeLabel.setText(this.TimeLabel.getText());
     pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
     pdf.setVisible(true);  
