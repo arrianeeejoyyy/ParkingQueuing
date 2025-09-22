@@ -45,7 +45,6 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
         // your setSlotColor(slot, Color.GREEN);
 
         // notify QN_panel to pop next ticket
-        QN_panel.getInstance().updateNextTicketField();
         return true;
     }
     return false;

@@ -237,7 +237,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         fw.close();
         
         // ✅ Update QN_panel immediately
-        QN_panel.getInstance().addToQueue(ticketNum, plateNum);
+        
         
     } catch (Exception e) {
         e.printStackTrace();

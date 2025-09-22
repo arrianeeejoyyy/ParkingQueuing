@@ -89,8 +89,8 @@ public class P16_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     String slot = ParkingData.selectedSlot; 
-        String enteredCode = jTextField1.getText().trim(); 
+    String slot = ParkingData.selectedSlot; 
+    String enteredCode = jTextField1.getText().trim(); 
 
     if (enteredCode.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
@@ -98,55 +98,58 @@ public class P16_OUT extends javax.swing.JFrame {
     }
 
     if (ParkingData.releaseSlot(slot, enteredCode)) {
-    try {
-        // ===== Delete the same info from intheslot.txt =====
-        File slotFile = new File("src/DATABASE/intheslot.txt");
-        List<String> slotLines = new ArrayList<>();
-        try (Scanner sc = new Scanner(slotFile)) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                if (!line.contains(enteredCode)) { // delete lines with the same ticket code
-                    slotLines.add(line);
+        try {
+            // ===== Delete the same info from intheslot.txt =====
+            File slotFile = new File("src/DATABASE/intheslot.txt");
+            List<String> slotLines = new ArrayList<>();
+            try (Scanner sc = new Scanner(slotFile)) {
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    if (!line.contains(enteredCode)) { // delete lines with the same ticket code
+                        slotLines.add(line);
+                    }
                 }
             }
-        }
-        try (PrintWriter pw = new PrintWriter(slotFile)) {
-            for (String l : slotLines) pw.println(l);
-        }
-
-        // ===== Remove from occupiedSlots map =====
-        occupiedSlots.remove(slot);
-
-        // ===== Refresh the existing P03_SELECTPARK panel =====
-        if (selectParkPanel != null) {
-            selectParkPanel.refreshLabels(); // repaint slots to remove RED
-        }
-
-        // ===== Decrement counter in Counter_P02.txt =====
-        File counterFile = new File("src/DATABASE/Counter_P02.txt");
-        int count = 0;
-        if (counterFile.exists()) {
-            try (Scanner sc = new Scanner(counterFile)) {
-                if (sc.hasNextInt()) count = sc.nextInt();
+            try (PrintWriter pw = new PrintWriter(slotFile)) {
+                for (String l : slotLines) pw.println(l);
             }
-        }
-        if (count > 0) count--; // decrement but not negative
-        try (PrintWriter pw = new PrintWriter(counterFile)) {
-            pw.println(count);
+
+            // ===== Remove from occupiedSlots map =====
+            occupiedSlots.remove(slot);
+
+            // ===== Refresh the existing P03_SELECTPARK panel =====
+            if (selectParkPanel != null) {
+                selectParkPanel.refreshLabels(); // repaint slots to remove RED
+            }
+
+            // ===== Decrement counter in Counter_P02.txt =====
+            File counterFile = new File("src/DATABASE/Counter_P02.txt");
+            int count = 0;
+            if (counterFile.exists()) {
+                try (Scanner sc = new Scanner(counterFile)) {
+                    if (sc.hasNextInt()) count = sc.nextInt();
+                }
+            }
+            if (count > 0) count--; // decrement but not negative
+            try (PrintWriter pw = new PrintWriter(counterFile)) {
+                pw.println(count);
+            }
+
+            // ===== Remove first row from QN_panel JTable (FIFO) =====
+           
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-    } catch (Exception e) {
-        e.printStackTrace();
+        // ===== Show thank-you panel =====
+        P15_TY_OUT P15 = new P15_TY_OUT();
+        P15.setVisible(true);
+        this.dispose();
+
+    } else {
+        JOptionPane.showMessageDialog(this, "Invalid Ticket Code.");
     }
-
-    // ===== Show thank-you panel =====
-    P15_TY_OUT P15 = new P15_TY_OUT();
-    P15.setVisible(true);
-    this.dispose();
-
-} else {
-    JOptionPane.showMessageDialog(this, "Invalid Ticket Code.");
-}
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

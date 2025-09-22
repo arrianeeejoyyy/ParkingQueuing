@@ -1,120 +1,160 @@
 package parkingsystem;
 
-
-
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
 public class QN_panel extends javax.swing.JFrame {
     
-    
      private static QN_panel instance;
-    private DefaultTableModel model;
 
+    private javax.swing.JLabel[] stackLabels; // Array to hold ticket labels
+    
     private QN_panel() {
         initComponents();
-        model = new DefaultTableModel(new String[]{"Ticket Code", "Plate Number"}, 0);
-    jTable1.setModel(model);
+                                                                
+     // Initialize stack labels (example: 5 labels)
+        stackLabels = new javax.swing.JLabel[]{one, two, three, four, five,six,seven, eight, nine,ten, eleven,twelve,thirteen, fourteen};
 
-    jScrollPane1.getViewport().setOpaque(false);
-    jTable1.setBorder(null);
-    jTable1.setShowGrid(false);
-    jScrollPane1.setBorder(null);
-    jTable1.setFocusable(false);  
-    jTable1.setRowSelectionAllowed(false);
-    jTable1.setCellSelectionEnabled(false);                                                         
-    nextTicketField.setOpaque(false);  
-    nextTicketField.setBackground(new java.awt.Color(0,0,0,0)); 
-    nextTicketField.setBorder(null);
-    nextTicketField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-    // ✅ Center the text in all table cells
-    javax.swing.table.DefaultTableCellRenderer centerRenderer = new javax.swing.table.DefaultTableCellRenderer();
-    centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-    jTable1.setDefaultRenderer(Object.class, centerRenderer);
-
-    // Load saved tickets from database file
-    loadTicketsFromDatabase();
-    
-
-// Load last next ticket
-    loadNextTicketField();
+        // Load saved tickets into stack labels
+        loadTicketsFromFile();
     }
 
-    public static QN_panel getInstance() {
+     public static QN_panel getInstance() {
         if (instance == null) {
             instance = new QN_panel();
         }
         return instance;
     }
 
-     // Load ticket codes from text file database
-    void loadTicketsFromDatabase() {
-    try {
-        File file = new File("src/DATABASE/QN_ticket.txt");
-        if (!file.exists()) return; // If no file yet, skip
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
-        while ((line = br.readLine()) != null) {
-            // Each line format: TicketCode | PlateNumber | TransactionNumber
-            String[] parts = line.split("\\|");
-            if (parts.length >= 2) {
-                String ticketCode = parts[0].trim();
-                String plateNumber = parts[1].trim();
-                if (!ticketCode.isEmpty()) {
-                    model.addRow(new Object[]{ ticketCode, plateNumber });
+      // Add new ticket (push)
+    public void pushTicket(String ticketCode) {
+        try {
+            File file = new File("src/DATABASE/QN_ticket.txt");
+            List<String> lines = new ArrayList<>();
+
+            // Add new ticket at the top
+            lines.add(ticketCode);
+
+            // Read existing tickets and append
+            if (file.exists()) {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    lines.add(line);
                 }
+                br.close();
             }
-        }
-        br.close();
 
-        // If there are saved tickets, show the first one
-        if (model.getRowCount() > 0) {
+            // Save all tickets back
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+            for (String s : lines) {
+                bw.write(s);
+                bw.newLine();
+            }
+            bw.close();
+
+            // Update stack labels
+            updateStackLabels(lines);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+      public String popTicket() {
+        try {
+            File file = new File("src/DATABASE/QN_ticket.txt");
+            if (!file.exists()) return null;
+
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            List<String> lines = new ArrayList<>();
+            String top = br.readLine(); // first ticket (top)
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+            }
+            br.close();
+
+            // Save remaining tickets
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+            for (String s : lines) {
+                bw.write(s);
+                bw.newLine();
+            }
+            bw.close();
+
+            // Update stack labels
+            updateStackLabels(lines);
+
+            return top;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+      
+      
+      private void updateStackLabels(List<String> tickets) {
+        // nextTicketField shows top ticket
+        if (!tickets.isEmpty()) {
+            nextTicketField.setText(tickets.get(0));
+        } else {
             nextTicketField.setText("");
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-    
-    
-    // Add a new row to the table and update next ticket field
-   public void addToQueue(String ticketCode, String plateNumber) {
-    model.addRow(new Object[]{ ticketCode, plateNumber });
 
-    // Show the first ticket in queue
-    
-}
-   
-   
-   public boolean hasQueueData() {
-    return model.getRowCount() > 0; // true if there is at least 1 row
-}
+        // Shift the rest into labels
+        for (int i = 0; i < stackLabels.length; i++) {
+            if (i + 1 < tickets.size()) {
+                stackLabels[i].setText(tickets.get(i + 1));
+            } else {
+                stackLabels[i].setText("");
+            }
+        }
 
-    public String popNextTicket() {
-    if (model.getRowCount() > 0) {
-        String ticketCode = model.getValueAt(0, 0).toString(); // first row, ticket code column
-        model.removeRow(0); // remove from JTable
-        return ticketCode;
+        saveNextTicketField();
     }
-    return null; // no tickets
-}
-    
-public void updateNextTicketField() {
-    if (model.getRowCount() > 0) {
-        nextTicketField.setText(model.getValueAt(0, 0).toString());
-    } else {
-        nextTicketField.setText("");
+      
+        // Save top ticket
+    private void saveNextTicketField() {
+        try {
+            File file = new File("src/DATABASE/NEXTTOSERVE.txt");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+            bw.write(nextTicketField.getText());
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    saveNextTicketField(); // ✅ save current next ticket
-}
+
+    // Load tickets on startup
+    private void loadTicketsFromFile() {
+        try {
+            File file = new File("src/DATABASE/QN_ticket.txt");
+            if (!file.exists()) return;
+
+            List<String> tickets = new ArrayList<>();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
+                tickets.add(line);
+            }
+            br.close();
+
+            updateStackLabels(tickets);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
    public static class Helper {
     public static void clearNextTicketField() {
@@ -126,19 +166,7 @@ public void updateNextTicketField() {
 
    
    
-   // Save the current next ticket to NEXTTOSERVE.txt
-public void saveNextTicketField() {
-    try {
-        File file = new File("src/DATABASE/NEXTTOSERVE.txt");
-        file.getParentFile().mkdirs(); // ensure folder exists
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file, false)); // overwrite
-        bw.write(nextTicketField.getText());
-        bw.close();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
 
 // Load the next ticket from NEXTTOSERVE.txt
 public void loadNextTicketField() {
@@ -161,46 +189,104 @@ public void loadNextTicketField() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         nextTicketField = new javax.swing.JLabel();
+        nine = new javax.swing.JLabel();
+        three = new javax.swing.JLabel();
+        one = new javax.swing.JLabel();
+        four = new javax.swing.JLabel();
+        five = new javax.swing.JLabel();
+        seven = new javax.swing.JLabel();
+        two = new javax.swing.JLabel();
+        six = new javax.swing.JLabel();
+        ten = new javax.swing.JLabel();
+        eleven = new javax.swing.JLabel();
+        twelve = new javax.swing.JLabel();
+        thirteen = new javax.swing.JLabel();
+        fourteen = new javax.swing.JLabel();
+        eight = new javax.swing.JLabel();
         PIC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(1500, 150, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setOpaque(false);
-
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "TICKET CODE", "PLATE NUMBER"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setOpaque(false);
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 310, 350));
-
         nextTicketField.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         nextTicketField.setForeground(new java.awt.Color(255, 255, 255));
         nextTicketField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(nextTicketField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 270, 90));
 
+        nine.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        nine.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nine.setText("123456");
+        getContentPane().add(nine, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+
+        three.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        three.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        three.setText("123456");
+        getContentPane().add(three, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
+
+        one.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        one.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        one.setText("123456");
+        getContentPane().add(one, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+
+        four.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        four.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        four.setText("123456");
+        getContentPane().add(four, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, -1));
+
+        five.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        five.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        five.setText("123456");
+        getContentPane().add(five, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, -1, -1));
+
+        seven.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        seven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        seven.setText("123456");
+        getContentPane().add(seven, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 640, -1, -1));
+
+        two.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        two.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        two.setText("123456");
+        getContentPane().add(two, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+
+        six.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        six.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        six.setText("123456");
+        getContentPane().add(six, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, -1, -1));
+
+        ten.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        ten.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ten.setText("123456");
+        getContentPane().add(ten, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 440, -1, -1));
+
+        eleven.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        eleven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eleven.setText("123456");
+        getContentPane().add(eleven, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, -1, -1));
+
+        twelve.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        twelve.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        twelve.setText("123456");
+        getContentPane().add(twelve, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, -1, -1));
+
+        thirteen.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        thirteen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        thirteen.setText("123456");
+        getContentPane().add(thirteen, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 590, -1, -1));
+
+        fourteen.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        fourteen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fourteen.setText("123456");
+        getContentPane().add(fourteen, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, -1, -1));
+
+        eight.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        eight.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eight.setText("123456");
+        getContentPane().add(eight, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+
         PIC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SECOND_UI/2ND UI DATASTRUC.png"))); // NOI18N
-        getContentPane().add(PIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 700));
+        getContentPane().add(PIC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,6 +317,9 @@ public void loadNextTicketField() {
             java.util.logging.Logger.getLogger(QN_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -242,9 +331,21 @@ public void loadNextTicketField() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PIC;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel eight;
+    private javax.swing.JLabel eleven;
+    private javax.swing.JLabel five;
+    private javax.swing.JLabel four;
+    private javax.swing.JLabel fourteen;
     public static javax.swing.JLabel nextTicketField;
+    private javax.swing.JLabel nine;
+    private javax.swing.JLabel one;
+    private javax.swing.JLabel seven;
+    private javax.swing.JLabel six;
+    private javax.swing.JLabel ten;
+    private javax.swing.JLabel thirteen;
+    private javax.swing.JLabel three;
+    private javax.swing.JLabel twelve;
+    private javax.swing.JLabel two;
     // End of variables declaration//GEN-END:variables
 
     void addParkingRow(String slot, String plate) {
