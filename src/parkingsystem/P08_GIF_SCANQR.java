@@ -31,6 +31,7 @@ Timer timer = new Timer(4000, new ActionListener() {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        holdplate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
@@ -38,6 +39,9 @@ Timer timer = new Timer(4000, new ActionListener() {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GIF/SCAN QR.gif"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 890));
+
+        holdplate.setText("jLabel2");
+        getContentPane().add(holdplate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 800, 270, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -53,6 +57,7 @@ Timer timer = new Timer(4000, new ActionListener() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel holdplate;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

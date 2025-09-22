@@ -92,6 +92,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TicketCode.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
+        TicketCode.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TicketCode.setText("R NO.");
         TicketCode.setToolTipText("");
         getContentPane().add(TicketCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 310, 60));
@@ -340,7 +341,7 @@ if (slot != null) {
     private javax.swing.JLabel DiscTypeLabel;
     private javax.swing.JLabel DiscountLabel;
     public javax.swing.JLabel PaymentTypeLabel;
-    public javax.swing.JLabel Platenumber_receipt;
+    private javax.swing.JLabel Platenumber_receipt;
     public javax.swing.JLabel TicketCode;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Time2;

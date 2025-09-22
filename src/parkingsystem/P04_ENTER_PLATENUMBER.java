@@ -113,7 +113,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-     String plate = PlateNumber.getText().trim();
+String plate = PlateNumber.getText().trim();
 
     if (plate.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Enter a plate number!");
@@ -127,9 +127,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         JOptionPane.YES_NO_OPTION);
 
     if (confirmResult == JOptionPane.YES_OPTION) {
-        // Set plate number on the receipt
-        P10_RECEIPT receiptFrame = new P10_RECEIPT();
-        receiptFrame.Platenumber_receipt.setText(plate);
+       
 
         // Save plate to memory (not yet to file)
         String slot = ParkingData.selectedSlot;

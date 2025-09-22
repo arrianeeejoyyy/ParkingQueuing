@@ -35,7 +35,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     this.plate = plate;
 
     // Set plate number label
-    TNL.setText("" + this.plate);
+    platenumber.setText("" + this.plate);
 
     // Generate ticket code and set label
     this.ticketCode = String.valueOf(100000 + new Random().nextInt(900000));
@@ -43,7 +43,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
     // Generate transaction number
     String trxNumber = generateTransactionNumber();
-    TNL1.setText(trxNumber);
+    transactionNumber.setText(trxNumber);
 
     // Set date and time
     Date now = new Date();
@@ -101,12 +101,13 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("-------------------------------------------------------------------------");
         jLabel6.setToolTipText("");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, -1, -1));
 
         TicketNumber.setFont(new java.awt.Font("Arial", 1, 70)); // NOI18N
+        TicketNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TicketNumber.setText("Ticket C");
         TicketNumber.setToolTipText("");
-        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 310, 60));
+        getContentPane().add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 310, 60));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date");

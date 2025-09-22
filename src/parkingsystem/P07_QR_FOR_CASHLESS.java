@@ -29,6 +29,7 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
 
         back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        holdplate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
@@ -47,6 +48,9 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/QR_FOR CASH LESS.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
+
+        holdplate.setText("jLabel2");
+        getContentPane().add(holdplate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 800, 270, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -98,6 +102,7 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JLabel holdplate;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

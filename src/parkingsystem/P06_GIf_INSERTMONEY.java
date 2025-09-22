@@ -34,6 +34,7 @@ public class P06_GIf_INSERTMONEY extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        holdplate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
@@ -41,6 +42,9 @@ public class P06_GIf_INSERTMONEY extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GIF/MONEY.gif"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        holdplate.setText("jLabel2");
+        getContentPane().add(holdplate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 800, 270, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,6 +88,7 @@ public class P06_GIf_INSERTMONEY extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel holdplate;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
