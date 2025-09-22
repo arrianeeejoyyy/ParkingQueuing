@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 
-public class P03_SELECTPARK extends javax.swing.JFrame {
+public final class P03_SELECTPARK extends javax.swing.JFrame {
 
     public void setSlotColor(String slotName, Color color) {
     switch (slotName) {
@@ -34,8 +34,22 @@ public class P03_SELECTPARK extends javax.swing.JFrame {
    public P03_SELECTPARK() {
         initComponents();
         refreshLabels();
+
     }
     
+   public static boolean releaseSlot(String slot, String code) {
+    if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
+        occupiedSlots.remove(slot);
+        
+        // free slot visually
+        // your setSlotColor(slot, Color.GREEN);
+
+        // notify QN_panel to pop next ticket
+        QN_panel.getInstance().updateNextTicketField();
+        return true;
+    }
+    return false;
+}
      
     public class ParkingData {
         public static String selectedSlot = null;

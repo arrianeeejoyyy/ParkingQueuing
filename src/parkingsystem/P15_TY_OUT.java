@@ -9,7 +9,7 @@ public class P15_TY_OUT extends javax.swing.JFrame {
 
     public P15_TY_OUT() {
         initComponents();
-        
+        QN_panel.getInstance().updateNextTicketField();
         timer.setRepeats(false); 
         timer.start();
     }

@@ -26,6 +26,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     
     public P10_RECEIPT() {
         initComponents();
+
         
         Date now = new Date();
 

@@ -47,9 +47,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     DateLabel.setText(new SimpleDateFormat("yyyy-MM-dd").format(now));
     TimeLabel.setText(new SimpleDateFormat("hh:mm:ss a").format(now));
 
-    // Add to QN panel table
-    QN_panel.getInstance().addToQueue(ticketCode, this.plate);
-    }
+     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

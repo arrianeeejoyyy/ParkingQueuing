@@ -71,7 +71,7 @@ public class QN_panel extends javax.swing.JFrame {
 
         // If there are saved tickets, show the first one
         if (model.getRowCount() > 0) {
-            nextTicketField.setText((String) model.getValueAt(0, 0));
+            nextTicketField.setText("");
         }
     } catch (Exception e) {
         e.printStackTrace();
@@ -89,8 +89,23 @@ public class QN_panel extends javax.swing.JFrame {
     }
 }
 
+    public String popNextTicket() {
+    if (model.getRowCount() > 0) {
+        String ticketCode = model.getValueAt(0, 0).toString(); // first row, ticket code column
+        model.removeRow(0); // remove from JTable
+        return ticketCode;
+    }
+    return null; // no tickets
+}
     
-
+public void updateNextTicketField() {
+    String nextTicket = popNextTicket();
+    if (nextTicket != null) {
+        nextTicketField.setText(nextTicket); 
+    } else {
+        nextTicketField.setText(""); // empty if no ticket
+    }
+}
 
    
 
@@ -187,7 +202,7 @@ public class QN_panel extends javax.swing.JFrame {
     private javax.swing.JLabel PIC;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel nextTicketField;
+    private static javax.swing.JLabel nextTicketField;
     // End of variables declaration//GEN-END:variables
 
     void addParkingRow(String slot, String plate) {
