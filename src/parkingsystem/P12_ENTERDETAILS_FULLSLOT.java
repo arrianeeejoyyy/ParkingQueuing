@@ -166,7 +166,6 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
         checkbox1.setBackground(new java.awt.Color(255, 255, 255));
         checkbox1.setForeground(new java.awt.Color(255, 255, 255));
-        checkbox1.setMinimumSize(new java.awt.Dimension(0, 0));
         getContentPane().add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 740, 10, 10));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTERDETAILS_FULLSLOT.png"))); // NOI18N

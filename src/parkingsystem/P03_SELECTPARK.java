@@ -494,19 +494,25 @@ private void slotButtonClicked(String slotName) {
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
         String slotName = "L05";
 
-  
-        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-            JOptionPane.showMessageDialog(this, 
+    // Check if slot is already occupied
+    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+        JOptionPane.showMessageDialog(this, 
             "Slot " + slotName + " is already occupied!", 
             "Error", 
             JOptionPane.WARNING_MESSAGE);
-            return; // Stop here so it won’t go through
-        }
+        return; // Stop here so it won’t go through
+    }
 
-        slotButtonClicked(slotName);
-        P04_ENTER_PLATENUMBER P04 = new P04_ENTER_PLATENUMBER();
-        P04.setVisible(true);
-        this.setVisible(false);
+    // Slot is free → check if QN_panel has queue data
+    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
+        ParkingData.selectedSlot = slotName;
+        new P3_ENTER_TC_CODE().setVisible(true);
+        this.dispose();
+    } else {
+        ParkingData.selectedSlot = slotName;
+        new P04_ENTER_PLATENUMBER().setVisible(true);
+        this.dispose();
+    }
     }//GEN-LAST:event_L05ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

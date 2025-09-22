@@ -42,8 +42,8 @@ public class P14_WaitQueue extends javax.swing.JFrame {
         // TODO add your handling code here:
         P15_TY_IN out = new P15_TY_IN();
         out.setVisible(true);
-        this.setAlwaysOnTop(false);
-        
+        this.setVisible(false);
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
   

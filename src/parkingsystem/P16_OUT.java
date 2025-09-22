@@ -90,7 +90,7 @@ public class P16_OUT extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      String slot = ParkingData.selectedSlot; 
-    String enteredCode = jTextField1.getText().trim(); 
+        String enteredCode = jTextField1.getText().trim(); 
 
     if (enteredCode.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");

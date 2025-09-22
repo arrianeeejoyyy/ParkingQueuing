@@ -2,8 +2,10 @@
 package parkingsystem;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -16,6 +18,8 @@ public class P10_RECEIPT extends javax.swing.JFrame {
   private String paymentType;
     
     public static int Counter = 0;
+    
+    
 
     private String generateTransactionNumber() {
         Counter++; 
@@ -78,7 +82,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         ryy6 = new javax.swing.JLabel();
         ryy7 = new javax.swing.JLabel();
         ryy8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        print = new javax.swing.JButton();
         ryy9 = new javax.swing.JLabel();
         Time2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -185,14 +189,14 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         ryy8.setText("₱50.00");
         getContentPane().add(ryy8, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 640, 120, 40));
 
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        print.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        print.setContentAreaFilled(false);
+        print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                printActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 680, 420, 90));
+        getContentPane().add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 680, 420, 90));
 
         ryy9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy9.setText("₱50.00");
@@ -208,10 +212,10 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
     String ticketCode = TicketCode.getText();
-String slot = P03_SELECTPARK.ParkingData.selectedSlot;
-String plate = Platenumber_receipt.getText().trim();
+    String slot = P03_SELECTPARK.ParkingData.selectedSlot;
+    String plate = Platenumber_receipt.getText().trim();
 
 if (slot != null) {
     // Mark the slot as occupied in the map
@@ -237,6 +241,8 @@ if (slot != null) {
     Counter++;      // Increment counter
     saveCounter();  // Save the updated counter value back to the text file
 
+    
+    
     // Proceed to next action
     new P15_TY_IN().setVisible(true);
     this.dispose();  
@@ -255,7 +261,39 @@ if (slot != null) {
     PDFreceipt receiptFrame = new PDFreceipt();
     receiptFrame.setVisible(true);
     this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
+    
+     try {
+        File inputFile = new File("src/DATABASE/QN_ticket.txt");
+        File tempFile = new File("src/DATABASE/QN_ticket_temp.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+            
+            String line;
+            boolean firstLineSkipped = false;
+
+            while ((line = reader.readLine()) != null) {
+                if (!firstLineSkipped) {
+                    firstLineSkipped = true; // skip the first line only
+                    continue;
+                }
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+
+        // Replace old file with updated one
+        if (inputFile.delete()) {
+            tempFile.renameTo(inputFile);
+        }
+    QN_panel.Helper.clearNextTicketField();
+     
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error updating QN_ticket: " + e.getMessage());
+    }
+    }//GEN-LAST:event_printActionPerformed
     
    public class ParkingSystemData {
     public static int Counter = 0;  // Public static counter
@@ -285,6 +323,8 @@ if (slot != null) {
         }
     }
     
+   
+    
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -307,10 +347,10 @@ if (slot != null) {
     public javax.swing.JLabel TimeLabel;
     private javax.swing.JLabel VatLabel;
     private javax.swing.JLabel VatsalesLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel pl;
+    private javax.swing.JButton print;
     private javax.swing.JLabel ryy3;
     private javax.swing.JLabel ryy4;
     private javax.swing.JLabel ryy5;
