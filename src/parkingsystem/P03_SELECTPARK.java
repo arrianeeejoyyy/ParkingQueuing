@@ -15,6 +15,13 @@ import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 public final class P03_SELECTPARK extends javax.swing.JFrame {
 
+    
+     public P03_SELECTPARK() {
+        initComponents();
+        refreshLabels();
+
+    }
+    
     public void setSlotColor(String slotName, Color color) {
     switch (slotName) {
         case "R01": r1l.setBackground(color); r1l.setOpaque(true); break;
@@ -30,21 +37,14 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
     }
 }
     
-
-   public P03_SELECTPARK() {
-        initComponents();
-        refreshLabels();
-
-    }
-    
    public static boolean releaseSlot(String slot, String code) {
     if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
         occupiedSlots.remove(slot);
-        
-        // free slot visually
-        // your setSlotColor(slot, Color.GREEN);
 
-        // notify QN_panel to pop next ticket
+        // update UI (need instance reference for setSlotColor)
+        P03_SELECTPARK instance = new P03_SELECTPARK();
+        instance.setSlotColor(slot, Color.GREEN);
+
         return true;
     }
     return false;
@@ -67,21 +67,28 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
         }
     }
     
-private void slotButtonClicked(String slotName) {
-    // Check if the slot is occupied (RED)
-    if (ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Warning", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop further action if the slot is occupied
-    }
+    
+    private void slotButtonClicked(String slotName) {
+        // Check if the slot is already occupied
+        if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
+            JOptionPane.showMessageDialog(this, 
+                "Slot " + slotName + " is already occupied!", 
+                "Error", 
+                JOptionPane.WARNING_MESSAGE);
+            return; // Stop here so it won’t continue
+        }
 
-    // If the slot is not occupied, proceed to the next step
-    ParkingData.selectedSlot = slotName;
-    new P04_ENTER_PLATENUMBER().setVisible(true);
-    this.dispose();
-}
+        // Slot is free → check if QN_panel has queue data
+        if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
+            ParkingData.selectedSlot = slotName;
+            new P3_ENTER_TC_CODE().setVisible(true);
+            this.dispose();
+        } else {
+            ParkingData.selectedSlot = slotName;
+            new P04_ENTER_PLATENUMBER().setVisible(true);
+            this.dispose();
+        }
+    }
 
       public void refreshLabels() {
     setLabelColor(r1l, "R01");
@@ -175,11 +182,6 @@ private void slotButtonClicked(String slotName) {
         }
     }
 
-    
-
-    
-
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -328,246 +330,43 @@ private void slotButtonClicked(String slotName) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void L01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L01ActionPerformed
-        String slotName = "L01";
-
-  // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+       slotButtonClicked("L01");
     }//GEN-LAST:event_L01ActionPerformed
 
     private void R01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R01ActionPerformed
-           String slotName = "R01";
-
-    
-    // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+           slotButtonClicked("R01");
     }//GEN-LAST:event_R01ActionPerformed
 
     private void R02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R02ActionPerformed
-          String slotName = "R02";
-
-  // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+         slotButtonClicked("R02");
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
-         String slotName = "R03";
-
-  // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+         slotButtonClicked("R033");
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed
-        String slotName = "R04";
-// Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+        slotButtonClicked("R04");
     }//GEN-LAST:event_R04ActionPerformed
 
     private void R05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R05ActionPerformed
-        String slotName = "R05";
-
-  
-     // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+        slotButtonClicked("R05");
     }//GEN-LAST:event_R05ActionPerformed
 
     private void L02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L02ActionPerformed
-        String slotName = "L02";
-
-  
-        // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+        slotButtonClicked("L02");
     }//GEN-LAST:event_L02ActionPerformed
 
     private void L03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L03ActionPerformed
-       String slotName = "L03";
-
-  
-      // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+      slotButtonClicked("L03");
     }//GEN-LAST:event_L03ActionPerformed
 
     private void L04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L04ActionPerformed
-        String slotName = "L04";
-
-  // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+       slotButtonClicked("L04");
     }//GEN-LAST:event_L04ActionPerformed
 
     private void L05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_L05ActionPerformed
-        String slotName = "L05";
-
-    // Check if slot is already occupied
-    if (P03_SELECTPARK.ParkingData.occupiedSlots.containsKey(slotName)) {
-        JOptionPane.showMessageDialog(this, 
-            "Slot " + slotName + " is already occupied!", 
-            "Error", 
-            JOptionPane.WARNING_MESSAGE);
-        return; // Stop here so it won’t go through
-    }
-
-    // Slot is free → check if QN_panel has queue data
-    if (!QN_panel.getInstance().nextTicketField.getText().isEmpty()) {
-        ParkingData.selectedSlot = slotName;
-        new P3_ENTER_TC_CODE().setVisible(true);
-        this.dispose();
-    } else {
-        ParkingData.selectedSlot = slotName;
-        new P04_ENTER_PLATENUMBER().setVisible(true);
-        this.dispose();
-    }
+      slotButtonClicked("L05");
     }//GEN-LAST:event_L05ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
