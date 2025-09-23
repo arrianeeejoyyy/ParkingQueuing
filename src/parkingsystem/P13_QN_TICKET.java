@@ -1,9 +1,12 @@
 package parkingsystem;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Random;
@@ -19,14 +22,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     private String plate;   // store plate number
     private String ticketCode; // store ticket code
 
-   
-    private String generateTransactionNumber() {
-        counter++; // Increment for each transaction
-
-        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
-        return String.format("PARK-%s-%04d", date, counter);
-    }
-
+  
    
      public P13_QN_TICKET(String plate) {
          initComponents(); // initialize UI first
@@ -249,10 +245,6 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Error saving ticket data!");
     }
 
-    
-    
-    // Make the PDFticket window visible
-    pdf.setVisible(true);  
     pdf.savePanelImageAsPDF();
         
     this.setVisible(false);
@@ -260,9 +252,79 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     p14.setVisible(true);
     }//GEN-LAST:event_PRINTTICKETActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
+      
+    // Load counter for the current year from QN_TransactionCounter.txt
+private int loadYearlyCounter() {
+    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+    int counter = 0;
+    File file = new File("src/DATABASE/QN_TransactionCounter.txt");
+
+    if (file.exists()) {
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(currentYear + "=")) {
+                    counter = Integer.parseInt(line.split("=")[1]);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    return counter;
+}
+
+// Save/update the counter for the current year
+private void saveYearlyCounter(int counter) {
+    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+    File file = new File("src/DATABASE/QN_TransactionCounter.txt");
+    StringBuilder content = new StringBuilder();
+    boolean updated = false;
+
+    if (file.exists()) {
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(currentYear + "=")) {
+                    content.append(currentYear).append("=").append(counter).append("\n");
+                    updated = true;
+                } else {
+                    content.append(line).append("\n");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    if (!updated) {
+        content.append(currentYear).append("=").append(counter).append("\n");
+    }
+
+    try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(file))) {
+        writer.write(content.toString());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+// Generate a transaction number with persistent yearly counter
+private String generateTransactionNumber() {
+    int counter = loadYearlyCounter();
+    counter++;
+    saveYearlyCounter(counter);
+
+    String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+    return String.format("Queue-%s-%04d", date, counter); 
+}
+    
+  
+    
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -18,15 +18,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
   private String paymentType;
     
     public static int Counter = 0;
-    
-    
-
-    private String generateTransactionNumber() {
-        Counter++; 
-
-        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
-        return String.format("PARK-%s-%04d", date, Counter);
-    }
+   
     
     public P10_RECEIPT() {
         initComponents();
@@ -222,83 +214,96 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     String slot = P03_SELECTPARK.ParkingData.selectedSlot;
     String plate = Platenumber_receipt.getText().trim();
 
-if (slot != null) {
-    // Mark the slot as occupied in the map
-    P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
+            // Step 2: Save Slot to Database
+            if (slot != null) {
+                P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
 
-    // Save to Intheslot.txt
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Intheslot.txt", true))) {
-        String status = "Occupied";  
-        String slotColor = "RED";    
-        writer.write(slot + " - " + plate + " - " + status + " - " + slotColor + " - TicketCode: " + ticketCode);
-        writer.newLine();
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Error saving to Intheslot database: " + e.getMessage());
-    }
-
-    // Update color dynamically
-    P03_SELECTPARK selectParkFrame = new P03_SELECTPARK(); // ideally use the existing instance
-    selectParkFrame.setSlotColor(slot, Color.RED);
-}
-
-    // Increment the counter here inside P10_RECEIPT when user clicks the button
-    loadCounter();  // Load current counter value
-    Counter++;      // Increment counter
-    saveCounter();  // Save the updated counter value back to the text file
-
-    
-    
-    // Proceed to next action
-    new P15_TY_IN().setVisible(true);
-    this.dispose();  
-
-    // Create and show the PDF receipt
-    PDFreceipt pdf = new PDFreceipt();
-    pdf.TicketNumber.setText(this.TicketCode.getText());
-    pdf.transactionNumber.setText(this.transactionNumber.getText());
-    pdf.DateLabel.setText(this.DateLabel.getText());
-    pdf.platenumber.setText(this.Platenumber_receipt.getText());
-    pdf.TimeLabel.setText(this.TimeLabel.getText());
-    pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
-    pdf.setVisible(true);  
-    pdf.savePanelImageAsPDF();
-
-    // Update counter value and proceed to the receipt frame
-    PDFreceipt receiptFrame = new PDFreceipt();
-    receiptFrame.setVisible(true);
-    this.setVisible(false);
-    
-    
-    
-     try {
-        File inputFile = new File("src/DATABASE/QN_ticket.txt");
-        File tempFile = new File("src/DATABASE/QN_ticket_temp.txt");
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-            
-            String line;
-            boolean firstLineSkipped = false;
-
-            while ((line = reader.readLine()) != null) {
-                if (!firstLineSkipped) {
-                    firstLineSkipped = true; // skip the first line only
-                    continue;
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Intheslot.txt", true))) {
+                    String status = "Occupied";  
+                    String slotColor = "RED";    
+                    writer.write(slot + " - " + plate + " - " + status + " - " + slotColor + " - TicketCode: " + ticketCode);
+                    writer.newLine();
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, "Error saving to Intheslot database: " + e.getMessage());
                 }
-                writer.write(line);
-                writer.newLine();
-            }
-        }
 
-        // Replace old file with updated one
-        if (inputFile.delete()) {
-            tempFile.renameTo(inputFile);
-        }
-    QN_panel.Helper.clearNextTicketField();
-     
-    } catch (IOException e) {
-        JOptionPane.showMessageDialog(this, "Error updating QN_ticket: " + e.getMessage());
-    }
+                P03_SELECTPARK selectParkFrame = new P03_SELECTPARK();
+                selectParkFrame.setSlotColor(slot, Color.RED);
+            }
+
+            // Step 3: Update Counter (local counter, not serve)
+            loadCounter();  
+            Counter++;      
+            saveCounter();  
+
+            // Step 4: Show Thank You Screen
+            new P15_TY_IN().setVisible(true);
+            this.dispose();
+
+            // Step 5: Generate PDF
+            PDFreceipt pdf = new PDFreceipt();
+            pdf.TicketNumber.setText(this.TicketCode.getText());
+            pdf.transactionNumber.setText(this.transactionNumber.getText());
+            pdf.DateLabel.setText(this.DateLabel.getText());
+            pdf.platenumber.setText(this.Platenumber_receipt.getText());
+            pdf.TimeLabel.setText(this.TimeLabel.getText());
+            pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+            pdf.setVisible(true);  
+            pdf.savePanelImageAsPDF();
+
+            this.setVisible(false);
+
+            // Step 6: Update QN_ticket
+            File inputFile = new File("src/DATABASE/QN_ticket.txt");
+            File tempFile = new File("src/DATABASE/QN_ticket_temp.txt");
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                 BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+                String line;
+                boolean firstLineSkipped = false;
+
+                while ((line = reader.readLine()) != null) {
+                    if (!firstLineSkipped) {
+                        firstLineSkipped = true;
+                        continue;
+                    }
+                    writer.write(line);
+                    writer.newLine();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Step 7: Update counterServe correctly
+            try {
+                File counterFile = new File("src/DATABASE/CounterServe.txt");
+                int currentServe = 0;
+
+                if (counterFile.exists()) {
+                    try (Scanner scanner = new Scanner(counterFile)) {
+                        if (scanner.hasNextInt()) {
+                            currentServe = scanner.nextInt();
+                        }
+                    }
+                }
+
+                currentServe++;  // increment properly
+                P02_IN_OUT.counterServe = currentServe;
+
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(counterFile))) {
+                    writer.write(String.valueOf(currentServe));
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // Step 8: Replace Ticket File
+            if (inputFile.delete()) {
+                tempFile.renameTo(inputFile);
+            }
+            QN_panel.Helper.clearNextTicketField();
     }//GEN-LAST:event_printActionPerformed
     
    public class ParkingSystemData {
@@ -328,6 +333,75 @@ if (slot != null) {
             e.printStackTrace();
         }
     }
+    
+    // Load the counter for the current year
+private int loadYearlyCounter() {
+    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+    int counter = 0;
+
+    File file = new File("src/DATABASE/TransactionCounter.txt");
+    if (file.exists()) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(currentYear + "=")) {
+                    counter = Integer.parseInt(line.split("=")[1]);
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    return counter;
+}
+
+// Save/update the counter for the current year
+private void saveYearlyCounter(int counter) {
+    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+    File file = new File("src/DATABASE/TransactionCounter.txt");
+    StringBuilder content = new StringBuilder();
+    boolean updated = false;
+
+    // Read old content and replace if year found
+    if (file.exists()) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith(currentYear + "=")) {
+                    content.append(currentYear).append("=").append(counter).append("\n");
+                    updated = true;
+                } else {
+                    content.append(line).append("\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // If year not found, append new
+    if (!updated) {
+        content.append(currentYear).append("=").append(counter).append("\n");
+    }
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+        writer.write(content.toString());
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+// Generate transaction number with yearly counter
+private String generateTransactionNumber() {
+    int counter = loadYearlyCounter(); // load saved counter
+    counter++; // increment
+    saveYearlyCounter(counter); // save updated value
+
+    String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+    return String.format("PARK-%s-%04d", date, counter);
+}
+    
     
    
     

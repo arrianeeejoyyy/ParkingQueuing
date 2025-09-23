@@ -147,7 +147,7 @@ public class PDFreceipt extends javax.swing.JFrame {
         TicketNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TicketNumber.setText("R NO.");
         TicketNumber.setToolTipText("");
-        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 290, 70));
+        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 400, 70));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");

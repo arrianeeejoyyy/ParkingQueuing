@@ -178,7 +178,7 @@ private void closePDFAndShowPanel() {
         TicketNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         TicketNumber.setText("Ticket C");
         TicketNumber.setToolTipText("");
-        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 350, 90));
+        jPanel1.add(TicketNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 430, 90));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date:");

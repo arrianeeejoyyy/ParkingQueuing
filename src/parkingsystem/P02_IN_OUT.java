@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import org.w3c.dom.css.Counter;
 
@@ -12,10 +14,14 @@ import org.w3c.dom.css.Counter;
 public class P02_IN_OUT extends javax.swing.JFrame {
 
   public static int Counter = 0;
-  
+    public static int counterServe = 0;
+
   
     public P02_IN_OUT() {
         initComponents();
+        
+             checkDailyResetCounterServe();
+    updateCounterServeDisplay();
     }
 
    public int loadCounterFromFile() {
@@ -36,12 +42,79 @@ public class P02_IN_OUT extends javax.swing.JFrame {
 }
    
    
+ // Load counterServe from file
+    public static void loadCounterServe() {
+        try {
+            File file = new File("src/DATABASE/CounterServe.txt");
+            if (file.exists()) {
+                Scanner scanner = new Scanner(file);
+                if (scanner.hasNextInt()) {
+                    counterServe = scanner.nextInt();
+                }
+                scanner.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Save counterServe to file
+    public static void saveCounterServe() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/CounterServe.txt"))) {
+            writer.write(String.valueOf(counterServe));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Increment counterServe
+    public static void incrementCounterServe() {
+        loadCounterServe();   // always load latest value
+        counterServe++;
+        saveCounterServe();   // save updated value
+    }
+
+    // Reset counterServe daily
+    private void checkDailyResetCounterServe() {
+        try {
+            File dateFile = new File("src/DATABASE/LastCounterServeDate.txt");
+            String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
+            String lastDate = "";
+
+            if (dateFile.exists()) {
+                Scanner scanner = new Scanner(dateFile);
+                if (scanner.hasNextLine()) {
+                    lastDate = scanner.nextLine();
+                }
+                scanner.close();
+            }
+
+            if (!today.equals(lastDate)) {
+                counterServe = 0;
+                saveCounterServe();
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(dateFile))) {
+                    writer.write(today);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Update countServe JLabel
+    public void updateCounterServeDisplay() {
+        loadCounterServe();
+        countserve.setText(String.format("%02d", counterServe));
+    }
+
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         out = new javax.swing.JButton();
         in = new javax.swing.JButton();
+        countserve = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,6 +138,11 @@ public class P02_IN_OUT extends javax.swing.JFrame {
             }
         });
         getContentPane().add(in, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 220, 450, 110));
+
+        countserve.setFont(new java.awt.Font("Arial", 1, 100)); // NOI18N
+        countserve.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        countserve.setText("09");
+        getContentPane().add(countserve, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 670, 290, 100));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/IN&OUT_FNL.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -162,6 +240,7 @@ public void saveCounter() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel countserve;
     private javax.swing.JButton in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton out;
