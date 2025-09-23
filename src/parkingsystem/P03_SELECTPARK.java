@@ -310,16 +310,16 @@ private void slotButtonClicked(String slotName) {
             }
         });
         getContentPane().add(L05, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 600, 100, 80));
-        getContentPane().add(r1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 306, 100, 20));
-        getContentPane().add(r2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 100, 20));
-        getContentPane().add(r3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 306, 100, 20));
-        getContentPane().add(r4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 310, 100, 20));
-        getContentPane().add(r5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 306, 100, 20));
-        getContentPane().add(l1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 696, 100, 20));
-        getContentPane().add(l2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 696, 100, 20));
-        getContentPane().add(l3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 696, 100, 20));
-        getContentPane().add(l4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 696, 100, 20));
-        getContentPane().add(l5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 696, 100, 20));
+        getContentPane().add(r1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 308, 100, 20));
+        getContentPane().add(r2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 308, 100, 20));
+        getContentPane().add(r3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 308, 100, 20));
+        getContentPane().add(r4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 308, 100, 20));
+        getContentPane().add(r5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1012, 308, 100, 20));
+        getContentPane().add(l1l, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 694, 100, 20));
+        getContentPane().add(l2l, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 694, 100, 20));
+        getContentPane().add(l3l, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 694, 100, 20));
+        getContentPane().add(l4l, new org.netbeans.lib.awtextra.AbsoluteConstraints(831, 694, 100, 20));
+        getContentPane().add(l5l, new org.netbeans.lib.awtextra.AbsoluteConstraints(1012, 694, 100, 20));
 
         mainIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/SELECT_PARK_FNL.png"))); // NOI18N
         getContentPane().add(mainIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, -1));
