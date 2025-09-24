@@ -53,12 +53,13 @@ public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
         ticketCodeField.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         ticketCodeField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ticketCodeField.setToolTipText("");
+        ticketCodeField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         ticketCodeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ticketCodeFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(ticketCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 690, 160));
+        getContentPane().add(ticketCodeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 690, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/ENTER_TC_CODE .png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 900));
