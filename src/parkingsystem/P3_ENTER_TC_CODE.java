@@ -15,7 +15,22 @@ public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
     public P3_ENTER_TC_CODE() {
         initComponents();
         
-        
+        ticketCodeField.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+
+            // Allow only digits
+            if (!Character.isDigit(c)) {
+                evt.consume(); // block non-digits
+            }
+
+            // Limit to 6 digits only
+            if (ticketCodeField.getText().length() >= 6) {
+                evt.consume(); // block extra input
+            }
+        }
+    });
         
     }
 

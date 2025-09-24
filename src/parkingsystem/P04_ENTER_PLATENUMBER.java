@@ -1,7 +1,9 @@
 
 package parkingsystem;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -141,21 +143,62 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         return;
     }
 
-    int confirmResult = JOptionPane.showConfirmDialog(this, 
-        "Are you sure this is the correct plate number?\n" + plate, 
-        "Confirm Plate Number", 
-        JOptionPane.YES_NO_OPTION);
+    // --- NEW: Check QN_ticket.txt file ---
+    boolean allowProceed = false; 
 
-    if (confirmResult == JOptionPane.YES_OPTION) {
-        // Save plate to shared holder
-        PlateNumberHolder.setPlateNumber(plate);
+    try (BufferedReader br = new BufferedReader(new FileReader("src/DATABASE/QN_ticket.txt"))) {
+        String firstRow = br.readLine();  // only read the first row
 
-        // Move to payment selection
-        P05_CHOOSE_PAYMENT paymentFrame = new P05_CHOOSE_PAYMENT();
-        paymentFrame.setHoldPlateLabel(plate); // set in holdplate JLabel
-        paymentFrame.setVisible(true); 
-        this.setVisible(false);
-    
+        if (firstRow == null || firstRow.trim().isEmpty()) {
+            // ✅ Case 1: File is empty → allow any plate number
+            allowProceed = true;
+        } else {
+            // ✅ Case 2: File has data, check only the first row
+            String[] parts = firstRow.split("\\|");
+            if (parts.length == 2) {
+                String registeredPlate = parts[1].trim();  // plate from file (e.g. FGH-5654)
+
+                if (plate.equals(registeredPlate)) {
+                    allowProceed = true; // ✅ Plate matches
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "The plate number entered was wrong!\n" +
+                            "Check the ticket for the registered plate number.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return; // ❌ stop execution if not matching
+                }
+            } else {
+                // if row format invalid, just allow (fallback)
+                allowProceed = true;
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this,
+                "Error reading QN_ticket.txt",
+                "File Error",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // --- Continue only if allowed ---
+    if (allowProceed) {
+        int confirmResult = JOptionPane.showConfirmDialog(this, 
+            "Are you sure this is the correct plate number?\n" + plate, 
+            "Confirm Plate Number", 
+            JOptionPane.YES_NO_OPTION);
+
+        if (confirmResult == JOptionPane.YES_OPTION) {
+            // ✅ Save plate to shared holder
+            PlateNumberHolder.setPlateNumber(plate);
+
+            // ✅ Move to payment selection
+            P05_CHOOSE_PAYMENT paymentFrame = new P05_CHOOSE_PAYMENT();
+            paymentFrame.setHoldPlateLabel(plate); // set in holdplate JLabel
+            paymentFrame.setVisible(true); 
+            this.setVisible(false);
+        }
     }
     }//GEN-LAST:event_confirmActionPerformed
 

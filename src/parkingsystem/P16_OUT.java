@@ -26,6 +26,26 @@ public class P16_OUT extends javax.swing.JFrame {
     public P16_OUT() {
         initComponents();
         this.selectParkPanel = panel;
+        
+        
+        
+        RECEIPTCODE.addKeyListener(new java.awt.event.KeyAdapter() {
+        @Override
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            char c = evt.getKeyChar();
+
+            // Allow only digits
+            if (!Character.isDigit(c)) {
+                evt.consume(); // block non-digits
+            }
+
+            // Limit to 6 digits only
+            if (RECEIPTCODE.getText().length() >= 6) {
+                evt.consume(); // block extra input
+            }
+        }
+    });
+        
     }
 
     public static boolean releaseSlot(String slot, String code) {
@@ -42,7 +62,7 @@ public class P16_OUT extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        RECEIPTCODE = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,20 +87,20 @@ public class P16_OUT extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 140, 120));
 
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        RECEIPTCODE.setFont(new java.awt.Font("Arial", 1, 55)); // NOI18N
+        RECEIPTCODE.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        RECEIPTCODE.setBorder(null);
+        RECEIPTCODE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                RECEIPTCODEActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        RECEIPTCODE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                RECEIPTCODEKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 690, 180));
+        getContentPane().add(RECEIPTCODE, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, 690, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/OUT.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -95,7 +115,7 @@ public class P16_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String enteredCodeRaw = jTextField1.getText().trim();
+    String enteredCodeRaw = RECEIPTCODE.getText().trim();
 
         if (enteredCodeRaw.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
@@ -224,12 +244,12 @@ public class P16_OUT extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void RECEIPTCODEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RECEIPTCODEActionPerformed
        
       
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_RECEIPTCODEActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void RECEIPTCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RECEIPTCODEKeyTyped
      
         char c = evt.getKeyChar();
 
@@ -239,9 +259,9 @@ public class P16_OUT extends javax.swing.JFrame {
 }
 
 
-    if (jTextField1.getText().length() >= 6) {
+    if (RECEIPTCODE.getText().length() >= 6) {
     evt.consume(); 
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_RECEIPTCODEKeyTyped
     }
    
     
@@ -255,9 +275,9 @@ public class P16_OUT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField RECEIPTCODE;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
