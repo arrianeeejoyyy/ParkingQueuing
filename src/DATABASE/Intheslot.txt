@@ -6,7 +6,6 @@ R05 - DFG-6575 - Occupied - RED - TicketCode:  280758
 L01 - YTU-7878 - Occupied - RED - TicketCode:  797594
 L03 - JHH-8678 - Occupied - RED - TicketCode:  596454
 L04 - HGJ-5636 - Occupied - RED - TicketCode:  785701
-
 L05 - FHG-6767 - Occupied - RED - TicketCode:  458793
 R04 - FDG-5435 - Occupied - RED - TicketCode:  469396
-L02 - NGN-5677 - Occupied - RED - TicketCode:  809125
+L02 - SGD-4565 - Occupied - RED - TicketCode:  474875
