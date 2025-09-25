@@ -123,13 +123,16 @@ public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, 
                         "Invalid ticket code. Please enter the correct one.");
+                    ticketCodeField.setText("");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, 
                     "No valid ticket found in QN_ticket.");
+                ticketCodeField.setText("");
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error reading QN_ticket: " + e.getMessage());
+            ticketCodeField.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

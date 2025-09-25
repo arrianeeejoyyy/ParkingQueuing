@@ -166,6 +166,7 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
                             "Check the ticket for the registered plate number.",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
+                    PlateNumber.setText("");
                     return; // ❌ stop execution if not matching
                 }
             } else {

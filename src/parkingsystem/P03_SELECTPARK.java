@@ -342,7 +342,7 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
     }//GEN-LAST:event_R02ActionPerformed
 
     private void R03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R03ActionPerformed
-         slotButtonClicked("R033");
+         slotButtonClicked("R03");
     }//GEN-LAST:event_R03ActionPerformed
 
     private void R04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_R04ActionPerformed

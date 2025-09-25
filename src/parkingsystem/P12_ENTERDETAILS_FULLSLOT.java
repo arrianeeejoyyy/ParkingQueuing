@@ -199,66 +199,72 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-    String name = fullName.getText().trim();
-String phone = phoneNumber.getText().trim();
-String plate = PlateNumber.getText().trim();
+        String name = fullName.getText().trim();
+        String phone = phoneNumber.getText().trim();
+        String plate = PlateNumber.getText().trim();
 
-// Check if checkbox is selected
-if (!checkbox1.getState()) {                       
-    JOptionPane.showMessageDialog(
-        this,
-        "You must check the box before confirming!",
-        "Warning",
-        JOptionPane.WARNING_MESSAGE
-    );
-    return; 
-} 
-// Validate name (not empty and letters only)
-else if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
-    JOptionPane.showMessageDialog(
-        this,
-        "Please enter a valid name (letters only)!",
-        "Warning",
-        JOptionPane.WARNING_MESSAGE
-    );
-    return;
-} 
-// Validate phone number (starts with 09 and exactly 11 digits)
-else if (!phone.matches("09\\d{9}")) {
-    JOptionPane.showMessageDialog(
-        this,
-        "Please enter a valid phone number starting with 09 and 11 digits long!",
-        "Warning",
-        JOptionPane.WARNING_MESSAGE
-    );
-    return;
-} 
-// Validate plate number (3 letters + 4 digits)
-else if (!plate.matches("[A-Z]{3}-\\d{4}")) {
-    JOptionPane.showMessageDialog(
-        this,
-        "Please enter a valid plate number (format: ABC-1234)!",
-        "Warning",
-        JOptionPane.WARNING_MESSAGE
-    );
-    return;
-}
+        // Check if checkbox is selected
+        if (!checkbox1.getState()) {                       
+            JOptionPane.showMessageDialog(
+                this,
+                "You must check the box before confirming!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+            );
+            return; 
+        } 
+        // Validate name (not empty and letters only)
+        else if (name.isEmpty() || !name.matches("[a-zA-Z ]+")) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Please enter a valid name (letters only)!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        } 
+        // Validate phone number (starts with 09 and exactly 11 digits)
+        else if (!phone.matches("09\\d{9}")) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Please enter a valid phone number starting with 09 and 11 digits long!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+                    
+            );
+            
+           phoneNumber.setText("");
+            return;
+        } 
+        // Validate plate number (3 letters + 4 digits)
+        else if (!plate.matches("[A-Z]{3}-\\d{4}")) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Please enter a valid plate number (format: ABC-1234)!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+                        
+            );
+            
+            PlateNumber.setText("");
+            return;
+        }
 
-// Save to text file (database)
-try {
-    java.io.FileWriter fw = new java.io.FileWriter("src/DATABASE/fullslot_details.txt", true);
-    java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
-    bw.write("FullName: " + name + ", PhoneNumber: " + phone + ", PlateNumber: " + plate);
-    bw.newLine();
-    bw.close();
-    fw.close();
-} catch (java.io.IOException e) {
-    e.printStackTrace();
-}
+        // Save to text file (database)
+        try {
+            java.io.FileWriter fw = new java.io.FileWriter("src/DATABASE/fullslot_details.txt", true);
+            java.io.BufferedWriter bw = new java.io.BufferedWriter(fw);
+            bw.write("FullName: " + name + ", PhoneNumber: " + phone + ", PlateNumber: " + plate);
+            bw.newLine();
+            bw.close();
+            fw.close();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
 
-// Show the ticket frame
-this.setVisible(false);
-new P13_QN_TICKET(plate).setVisible(true);
+        // Show the ticket frame
+        this.setVisible(false);
+        new P13_QN_TICKET(plate).setVisible(true);
 
     }//GEN-LAST:event_confirmActionPerformed
 
