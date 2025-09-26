@@ -127,6 +127,7 @@ public class P16_OUT extends javax.swing.JFrame {
         if (enteredCode.length() != 6) {
             // still allow if user typed less/more digits, but prompt them
             JOptionPane.showMessageDialog(this, "Please enter the 6-digit Ticket Code (digits only).");
+            RECEIPTCODE.setText("");
             return;
         }
 
@@ -166,12 +167,15 @@ public class P16_OUT extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error reading Intheslot file: " + e.getMessage());
+            RECEIPTCODE.setText("");
             return;
         }
 
         if (!found) {
             JOptionPane.showMessageDialog(this, "Invalid Ticket Code. Please try again or check the receipt.");
+            RECEIPTCODE.setText("");
             return;
+            
         }
 
         // Remove all lines that contain the matched 6-digit ticket code (the exact last 6-digit group)
@@ -232,6 +236,9 @@ public class P16_OUT extends javax.swing.JFrame {
             if (qnPanel.hasTickets()) {
                 String nextTicket = qnPanel.popNextTicket();
                 nextTicketField.setText(nextTicket);
+                
+                textmessage txt = new textmessage();
+                txt.setVisible(true);
             }
         } catch (Exception e) {
             // If QN_panel is not available or throws, ignore — best-effort
@@ -242,6 +249,8 @@ public class P16_OUT extends javax.swing.JFrame {
         P15_TY_OUT P15 = new P15_TY_OUT();
         P15.setVisible(true);
         this.dispose();
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void RECEIPTCODEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RECEIPTCODEActionPerformed
@@ -250,21 +259,18 @@ public class P16_OUT extends javax.swing.JFrame {
     }//GEN-LAST:event_RECEIPTCODEActionPerformed
 
     private void RECEIPTCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RECEIPTCODEKeyTyped
-     
-        char c = evt.getKeyChar();
-
+    char c = evt.getKeyChar();
 
     if (!Character.isDigit(c)) {
     evt.consume(); 
-}
-
-
+        }
+   
     if (RECEIPTCODE.getText().length() >= 6) {
     evt.consume(); 
     }//GEN-LAST:event_RECEIPTCODEKeyTyped
+    
     }
    
-    
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {

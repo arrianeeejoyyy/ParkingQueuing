@@ -1,10 +1,8 @@
-R02 - BFG-8657 - Occupied - RED - TicketCode:  561819
 R03 - GHF-8767 - Occupied - RED - TicketCode:  455001
 R04 - GHG-5646 - Occupied - RED - TicketCode:  917672
-R05 - GFD-7567 - Occupied - RED - TicketCode:  131188
-L02 - GFH-6546 - Occupied - RED - TicketCode:  681301
-L03 - HTY-8787 - Occupied - RED - TicketCode:  359432
-L04 - GDF-6597 - Occupied - RED - TicketCode:  983613
-R01 - TGT-7567 - Occupied - RED - TicketCode:  981349
-
-L01 - HGF-6757 - Occupied - RED - TicketCode:  411208
+R01 - HRB-6786 - Occupied - RED - TicketCode:  862396
+L04 - FER-5675 - Occupied - RED - TicketCode:  305066
+L03 - CSD-5678 - Occupied - RED - TicketCode:  309229
+L02 - CHF-6786 - Occupied - RED - TicketCode:  615500
+R02 - VDF-6768 - Occupied - RED - TicketCode:  228124
+R05 - XCS-6765 - Occupied - RED - TicketCode:  856867

@@ -284,7 +284,7 @@ public void loadNextTicketField() {
         PIC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(1500, 150, 0, 0));
+        setBounds(new java.awt.Rectangle(1500, 50, 0, 0));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nextTicketField.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
