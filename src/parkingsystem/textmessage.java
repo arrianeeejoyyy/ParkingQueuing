@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.sound.sampled.*;
+
 
 public class textmessage extends javax.swing.JFrame {
 
@@ -20,15 +22,33 @@ public class textmessage extends javax.swing.JFrame {
       
          this.currentTicket = "";
         qn.setText("");
+        
+         playNotificationSound();
     }
 
     
+   
         // Constructor that accepts the 6-digit ticket string
     public textmessage(String ticketCode) {
         initComponents();
         this.currentTicket = (ticketCode == null ? "" : ticketCode);
         qn.setText(this.currentTicket);
+        playNotificationSound();
+        
     }
+    
+    
+     public void playNotificationSound() {
+    try {
+        File soundFile = new File("src/SOUNDS/NOTIF.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -131,6 +151,7 @@ public class textmessage extends javax.swing.JFrame {
         try { QN_panel.getInstance().loadTicketsFromFile(); } catch (Exception ex) { ex.printStackTrace(); }
 
         if (!tickets.isEmpty()) {
+            playNotificationSound();
             // 🔹 Keep panel open and show the new ticket
             this.currentTicket = nextTicket;
             qn.setText(nextTicket);
@@ -154,9 +175,10 @@ public class textmessage extends javax.swing.JFrame {
             this.dispose();
     }//GEN-LAST:event_confirmActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+   
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
