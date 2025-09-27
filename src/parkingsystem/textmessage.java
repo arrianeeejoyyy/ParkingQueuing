@@ -85,59 +85,68 @@ public class textmessage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-           try {
-            File qnFile = new File("src/DATABASE/QN_ticket.txt");
-            if (!qnFile.exists()) {
-                this.dispose();
-                return;
-            }
+             try {
+        File qnFile = new File("src/DATABASE/QN_ticket.txt");
+        if (!qnFile.exists()) {
+            this.dispose();
+            return;
+        }
 
-            List<String> tickets = new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader(qnFile))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    if (!line.trim().isEmpty()) tickets.add(line);
+        List<String> tickets = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(qnFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) tickets.add(line);
+            }
+        }
+
+        // Remove first row if present
+        if (!tickets.isEmpty()) {
+            tickets.remove(0);
+
+            // Rewrite QN_ticket.txt with the remaining lines (stack shift)
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(qnFile, false))) {
+                for (String s : tickets) {
+                    bw.write(s);
+                    bw.newLine();
                 }
             }
+        }
 
-            // Remove first row if present
-            if (!tickets.isEmpty()) {
-                tickets.remove(0);
+        // Update NEXTTOSERVE.txt (first 6-digit of the new top or empty)
+        File nextFile = new File("src/DATABASE/NEXTTOSERVE.txt");
+        String nextTicket = "";
+        if (!tickets.isEmpty()) {
+            // extract first 6-digit group from the new first line
+            Pattern p = Pattern.compile("\\d{6}");
+            Matcher m = p.matcher(tickets.get(0));
+            if (m.find()) nextTicket = m.group();
+        }
 
-                // Rewrite QN_ticket.txt with the remaining lines (stack shift)
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter(qnFile, false))) {
-                    for (String s : tickets) {
-                        bw.write(s);
-                        bw.newLine();
-                    }
-                }
-            }
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(nextFile, false))) {
+            bw.write(nextTicket);
+        }
 
-            // Update NEXTTOSERVE.txt (first 6-digit of the new top or empty)
-            File nextFile = new File("src/DATABASE/NEXTTOSERVE.txt");
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(nextFile, false))) {
-                if (tickets.isEmpty()) {
-                    bw.write("");
-                    try { QN_panel.nextTicketField.setText(""); } catch (Exception ex) {}
-                } else {
-                    // extract first 6-digit group from the new first line
-                    Pattern p = Pattern.compile("\\d{6}");
-                    Matcher m = p.matcher(tickets.get(0));
-                    String nextTicket = "";
-                    if (m.find()) nextTicket = m.group();
-                    bw.write(nextTicket);
-                    try { QN_panel.nextTicketField.setText(nextTicket); } catch (Exception ex) {}
-                }
-            }
+        // Refresh QN_panel labels from file
+        try { QN_panel.getInstance().loadTicketsFromFile(); } catch (Exception ex) { ex.printStackTrace(); }
 
-            // Refresh QN_panel labels from file
-            try { QN_panel.getInstance().loadTicketsFromFile(); } catch (Exception ex) { ex.printStackTrace(); }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
+        if (!tickets.isEmpty()) {
+            // 🔹 Keep panel open and show the new ticket
+            this.currentTicket = nextTicket;
+            qn.setText(nextTicket);
+            this.setVisible(true); 
+        } else {
+            // 🔹 No tickets left → close the panel
             this.dispose();
         }
+
+        QN_panel.getInstance().loadNextTicketField();
+        
+        
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        this.dispose();
+    }
     }//GEN-LAST:event_cancelActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed

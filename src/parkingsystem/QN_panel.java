@@ -24,7 +24,8 @@ public class QN_panel extends javax.swing.JFrame {
         ticketLabels = new javax.swing.JLabel[]{one, two, three, four, five,six,seven, eight, nine,ten, eleven,twelve,thirteen, fourteen};
 
         // Load saved tickets into stack labels
-        loadTicketsFromFile();
+    loadTicketsFromFile();
+
     }
 
     
@@ -249,16 +250,22 @@ public class QN_panel extends javax.swing.JFrame {
 public void loadNextTicketField() {
     try {
         File file = new File("src/DATABASE/NEXTTOSERVE.txt");
-        if (!file.exists()) return;
-
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String nextTicket = br.readLine();
-        if (nextTicket != null) {
-            nextTicketField.setText(nextTicket);
+        if (!file.exists()) {
+            nextTicketField.setText(""); 
+            return;
         }
-        br.close();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String firstLine = br.readLine(); // ✅ only first row
+            if (firstLine != null && !firstLine.trim().isEmpty()) {
+                nextTicketField.setText(firstLine.trim()); 
+            } else {
+                nextTicketField.setText(""); // clear if empty
+            }
+        }
     } catch (Exception e) {
         e.printStackTrace();
+        nextTicketField.setText(""); // safe fallback
     }
 }
 
@@ -398,6 +405,6 @@ public void loadNextTicketField() {
     // End of variables declaration//GEN-END:variables
 
     void addParkingRow(String slot, String plate) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 }

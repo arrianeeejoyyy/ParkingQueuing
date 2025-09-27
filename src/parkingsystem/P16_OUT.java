@@ -249,6 +249,7 @@ public class P16_OUT extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error in queue system: " + e.getMessage());
         }
 
+        QN_panel.getInstance().loadNextTicketField();
         // Thank you panel (existing behavior)
         P15_TY_OUT P15 = new P15_TY_OUT();
         P15.setVisible(true);
