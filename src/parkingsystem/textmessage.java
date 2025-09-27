@@ -29,7 +29,9 @@ public class textmessage extends javax.swing.JFrame {
         confirm = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        qn = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        pic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(1470, 700, 0, 0));
@@ -43,11 +45,23 @@ public class textmessage extends javax.swing.JFrame {
         cancel.setContentAreaFilled(false);
         getContentPane().add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 60, 20));
 
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 260, 70));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setText("Please click the button to confirm or to cancel.");
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 270, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/textmessage.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        qn.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        qn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        qn.setText("123456");
+        getContentPane().add(qn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 128, 170, 40));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setText("Good Day Client, your parking queue number ");
+        jLabel4.setToolTipText("");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 280, -1));
+
+        pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/textmessage.png"))); // NOI18N
+        getContentPane().add(pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -90,7 +104,9 @@ public class textmessage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
     private javax.swing.JButton confirm;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel pic;
+    private javax.swing.JLabel qn;
     // End of variables declaration//GEN-END:variables
 }
