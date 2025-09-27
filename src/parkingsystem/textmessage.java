@@ -18,12 +18,18 @@ public class textmessage extends javax.swing.JFrame {
     public textmessage() {
         initComponents();
       
-        String ticketCode = null;
-        
-        this.currentTicket = ticketCode;
-        qn.setText(ticketCode); // show first 6-digit ticket
+         this.currentTicket = "";
+        qn.setText("");
     }
 
+    
+        // Constructor that accepts the 6-digit ticket string
+    public textmessage(String ticketCode) {
+        initComponents();
+        this.currentTicket = (ticketCode == null ? "" : ticketCode);
+        qn.setText(this.currentTicket);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -79,16 +85,13 @@ public class textmessage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        try {
+           try {
             File qnFile = new File("src/DATABASE/QN_ticket.txt");
             if (!qnFile.exists()) {
-                // nothing to do
-                this.setVisible(false);
                 this.dispose();
                 return;
             }
 
-            // Read all tickets
             List<String> tickets = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(qnFile))) {
                 String line;
@@ -97,11 +100,11 @@ public class textmessage extends javax.swing.JFrame {
                 }
             }
 
+            // Remove first row if present
             if (!tickets.isEmpty()) {
-                // Remove the first row (index 0)
                 tickets.remove(0);
 
-                // Rewrite QN_ticket.txt with remaining (stack shift)
+                // Rewrite QN_ticket.txt with the remaining lines (stack shift)
                 try (BufferedWriter bw = new BufferedWriter(new FileWriter(qnFile, false))) {
                     for (String s : tickets) {
                         bw.write(s);
@@ -110,41 +113,31 @@ public class textmessage extends javax.swing.JFrame {
                 }
             }
 
-            // Update NEXTTOSERVE.txt with new first ticket's first 6 digits (or clear if none)
+            // Update NEXTTOSERVE.txt (first 6-digit of the new top or empty)
             File nextFile = new File("src/DATABASE/NEXTTOSERVE.txt");
-            if (tickets.isEmpty()) {
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter(nextFile, false))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(nextFile, false))) {
+                if (tickets.isEmpty()) {
                     bw.write("");
-                }
-                // also clear on the running QN panel if visible
-                try { QN_panel.nextTicketField.setText(""); } catch (Exception ex) { /*ignore*/ }
-            } else {
-                // find first 6-digit group in the new first line
-                Pattern p = Pattern.compile("\\d{6}");
-                Matcher m = p.matcher(tickets.get(0));
-                String nextTicket = "";
-                if (m.find()) nextTicket = m.group();
-
-                try (BufferedWriter bw = new BufferedWriter(new FileWriter(nextFile, false))) {
+                    try { QN_panel.nextTicketField.setText(""); } catch (Exception ex) {}
+                } else {
+                    // extract first 6-digit group from the new first line
+                    Pattern p = Pattern.compile("\\d{6}");
+                    Matcher m = p.matcher(tickets.get(0));
+                    String nextTicket = "";
+                    if (m.find()) nextTicket = m.group();
                     bw.write(nextTicket);
+                    try { QN_panel.nextTicketField.setText(nextTicket); } catch (Exception ex) {}
                 }
-                try { QN_panel.nextTicketField.setText(nextTicket); } catch (Exception ex) { /*ignore*/ }
             }
 
-            // Refresh QN_panel labels (reload from file)
-            try {
-                QN_panel.getInstance().loadTicketsFromFile();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            // Refresh QN_panel labels from file
+            try { QN_panel.getInstance().loadTicketsFromFile(); } catch (Exception ex) { ex.printStackTrace(); }
 
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
-            this.setVisible(false);
             this.dispose();
         }
-
     }//GEN-LAST:event_cancelActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
