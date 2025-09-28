@@ -22,7 +22,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     public P10_RECEIPT() {
         initComponents();
 
-        
         Date now = new Date();
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,8 +39,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         transactionNumber.setText(trxNumber);
         
         TicketCode.setText(" " + ticketCode);
-        
-        PaymentTypeLabel.setText(paymentType);
         
     }
     
@@ -236,7 +233,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
             pdf.DateLabel.setText(this.DateLabel.getText());
             pdf.platenumber.setText(this.Platenumber_receipt.getText());
             pdf.TimeLabel.setText(this.TimeLabel.getText());
-            pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
             pdf.setVisible(true);  
             pdf.savePanelImageAsPDF();
 

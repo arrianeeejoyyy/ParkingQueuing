@@ -1,23 +1,39 @@
 package parkingsystem;
 
 import java.awt.event.ActionEvent;
-
-
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
 import javax.swing.Timer;
 
-public class P15_TY_OUT extends javax.swing.JFrame {
+public final class P15_TY_OUT extends javax.swing.JFrame {
 
     public P15_TY_OUT() {
         initComponents();
         timer.setRepeats(false); 
         timer.start();
+        
+        //playsound
+        playNotificationSound();
     }
 
-    Timer timer = new Timer(2000, (ActionEvent e) -> {
+    Timer timer = new Timer(6000, (ActionEvent e) -> {
         setVisible(false);
         P18_GIF_EXIT P18 = new P18_GIF_EXIT();
         P18.setVisible(true);
     });
+    
+    public void playNotificationSound() {
+    try {
+        File soundFile = new File("src/SOUNDS/exit.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+    }
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -1,9 +1,16 @@
 package parkingsystem;
 
-public class P01_START extends javax.swing.JFrame {
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
+
+public final class P01_START extends javax.swing.JFrame {
 
     public P01_START() {
         initComponents();
+        
+        //playsound
+        playNotificationSound();
     }
 
     
@@ -40,6 +47,17 @@ public class P01_START extends javax.swing.JFrame {
     inOutFrame.setVisible(true);
     }//GEN-LAST:event_startActionPerformed
 
+       public void playNotificationSound() {
+    try {
+        File soundFile = new File("src/SOUNDS/welcome.wav");
+        AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioIn);
+        clip.start();
+    } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+    }
+}
+    
    
     public static void main(String args[]) {
      
