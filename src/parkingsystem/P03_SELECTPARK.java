@@ -2,11 +2,8 @@
 package parkingsystem;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -24,18 +21,38 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
     
     public void setSlotColor(String slotName, Color color) {
     switch (slotName) {
-        case "R01": r1l.setBackground(color); r1l.setOpaque(true); break;
-        case "R02": r2l.setBackground(color); r2l.setOpaque(true); break;
-        case "R03": r3l.setBackground(color); r3l.setOpaque(true); break;
-        case "R04": r4l.setBackground(color); r4l.setOpaque(true); break;
-        case "R05": r5l.setBackground(color); r5l.setOpaque(true); break;
-        case "L01": l1l.setBackground(color); l1l.setOpaque(true); break;
-        case "L02": l2l.setBackground(color); l2l.setOpaque(true); break;
-        case "L03": l3l.setBackground(color); l3l.setOpaque(true); break;
-        case "L04": l4l.setBackground(color); l4l.setOpaque(true); break;
-        case "L05": l5l.setBackground(color); l5l.setOpaque(true); break;
+        case "R01" -> {
+            r1l.setBackground(color); r1l.setOpaque(true);
+             }
+        case "R02" -> {
+            r2l.setBackground(color); r2l.setOpaque(true);
+             }
+        case "R03" -> {
+            r3l.setBackground(color); r3l.setOpaque(true);
+             }
+        case "R04" -> {
+            r4l.setBackground(color); r4l.setOpaque(true);
+             }
+        case "R05" -> {
+            r5l.setBackground(color); r5l.setOpaque(true);
+             }
+        case "L01" -> {
+            l1l.setBackground(color); l1l.setOpaque(true);
+             }
+        case "L02" -> {
+            l2l.setBackground(color); l2l.setOpaque(true);
+             }
+        case "L03" -> {
+            l3l.setBackground(color); l3l.setOpaque(true);
+             }
+        case "L04" -> {
+            l4l.setBackground(color); l4l.setOpaque(true);
+             }
+        case "L05" -> {
+            l5l.setBackground(color); l5l.setOpaque(true);
+             }
     }
-}
+            }
     
    public static boolean releaseSlot(String slot, String code) {
     if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
@@ -48,7 +65,7 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
         return true;
     }
     return false;
-}
+        }
      
     public class ParkingData {
         public static String selectedSlot = null;
@@ -90,7 +107,7 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
         }
     }
 
-      public void refreshLabels() {
+    public void refreshLabels() {
     setLabelColor(r1l, "R01");
     setLabelColor(r2l, "R02");
     setLabelColor(r3l, "R03");
@@ -104,7 +121,7 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
 
     // Read data from file and apply the colors to slots
     loadSlotStatusesFromFile();
-}
+        }
 
     private void loadSlotStatusesFromFile() {
     try (BufferedReader reader = new BufferedReader(new FileReader("src/DATABASE/Intheslot.txt"))) {
@@ -130,56 +147,40 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
     } catch (IOException e) {
         JOptionPane.showMessageDialog(this, "Error reading slot statuses: " + e.getMessage());
     }
-}
+        }
 
     private void applySlotColor(String slot, String color) {
         switch (slot) {
-            case "R01":
-                setLabelColor(r1l, color);
-                break;
-            case "R02":
-                setLabelColor(r2l, color);
-                break;
-            case "R03":
-                setLabelColor(r3l, color);
-                break;
-            case "R04":
-                setLabelColor(r4l, color);
-                break;
-            case "R05":
-                setLabelColor(r5l, color);
-                break;
-            case "L01":
-                setLabelColor(l1l, color);
-                break;
-            case "L02":
-                setLabelColor(l2l, color);
-                break;
-            case "L03":
-                setLabelColor(l3l, color);
-                break;
-            case "L04":
-                setLabelColor(l4l, color);
-                break;
-            case "L05":
-                setLabelColor(l5l, color);
-                break;
-            default:
-                break;
+            case "R01" -> setLabelColor(r1l, color);
+            case "R02" -> setLabelColor(r2l, color);
+            case "R03" -> setLabelColor(r3l, color);
+            case "R04" -> setLabelColor(r4l, color);
+            case "R05" -> setLabelColor(r5l, color);
+            case "L01" -> setLabelColor(l1l, color);
+            case "L02" -> setLabelColor(l2l, color);
+            case "L03" -> setLabelColor(l3l, color);
+            case "L04" -> setLabelColor(l4l, color);
+            case "L05" -> setLabelColor(l5l, color);
+            default -> {
+             }
         }
     }
 
     private void setLabelColor(javax.swing.JLabel label, String color) {
-        if (color.equals("RED")) {
-            label.setOpaque(true);
-            label.setBackground(Color.RED);
-        } else if (color.equals("GREEN")) {
-            label.setOpaque(true);
-            label.setBackground(Color.GREEN);
-        } else {
-            label.setOpaque(false);
-            label.setBackground(null);
-        }
+         switch (color) {
+             case "RED" -> {
+                 label.setOpaque(true);
+                 label.setBackground(Color.RED);
+             }
+             case "GREEN" -> {
+                 label.setOpaque(true);
+                 label.setBackground(Color.GREEN);
+             }
+             default -> {
+                 label.setOpaque(false);
+                 label.setBackground(null);
+             }
+         }
     }
 
     @SuppressWarnings("unchecked")
@@ -375,16 +376,12 @@ public final class P03_SELECTPARK extends javax.swing.JFrame {
         QN_panel.getInstance().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
-
-    
  
-       
-       
-       
        
     public static void main(String args[]) {
       
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new P03_SELECTPARK().setVisible(true);
             }

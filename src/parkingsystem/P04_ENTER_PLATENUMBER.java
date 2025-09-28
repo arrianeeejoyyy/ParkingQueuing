@@ -2,18 +2,12 @@
 package parkingsystem;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import parkingsystem.P03_SELECTPARK.ParkingData;
-import parkingsystem.PlateNumberHolder;
 
 
 public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
-
-   private static final String DATABASE_FILE = "src/DATABASE/Intheslot.txt";
     
     public P04_ENTER_PLATENUMBER() {
         initComponents();
@@ -161,13 +155,13 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
                 if (plate.equals(registeredPlate)) {
                     allowProceed = true; // ✅ Plate matches
                 } else {
-                    JOptionPane.showMessageDialog(this,
-                            "The plate number entered was wrong!\n" +
-                            "Check the ticket for the registered plate number.",
+                    JOptionPane.showMessageDialog(this, """
+                                                        The plate number entered was wrong!
+                                                        Check the ticket for the registered plate number.""",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                     PlateNumber.setText("");
-                    return; // ❌ stop execution if not matching
+                    return; // stop execution if not matching
                 }
             } else {
                 // if row format invalid, just allow (fallback)
@@ -175,7 +169,6 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             }
         }
     } catch (IOException e) {
-        e.printStackTrace();
         JOptionPane.showMessageDialog(this,
                 "Error reading QN_ticket.txt",
                 "File Error",
@@ -191,10 +184,10 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION);
 
         if (confirmResult == JOptionPane.YES_OPTION) {
-            // ✅ Save plate to shared holder
+            // Save plate to shared holder
             PlateNumberHolder.setPlateNumber(plate);
 
-            // ✅ Move to payment selection
+            // Move to payment selection
             P05_CHOOSE_PAYMENT paymentFrame = new P05_CHOOSE_PAYMENT();
             paymentFrame.setHoldPlateLabel(plate); // set in holdplate JLabel
             paymentFrame.setVisible(true); 
@@ -215,38 +208,9 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
     
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P04_ENTER_PLATENUMBER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-        //</editor-fold>a
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new P04_ENTER_PLATENUMBER().setVisible(true);
             }

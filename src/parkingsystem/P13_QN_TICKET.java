@@ -1,10 +1,7 @@
 package parkingsystem;
 
-import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
@@ -12,19 +9,13 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-
 public class P13_QN_TICKET extends javax.swing.JFrame {
     
-     private String paymentType;
+    private final String plate;   // store plate number
+    private final String ticketCode; // store ticket code
     
-    private static int counter = 0;
     
-    private String plate;   // store plate number
-    private String ticketCode; // store ticket code
-
-  
-   
-     public P13_QN_TICKET(String plate) {
+    public P13_QN_TICKET(String plate) {
          initComponents(); // initialize UI first
 
     // Set class field
@@ -65,11 +56,9 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         DiscountLabel = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
         unitcostlabel = new javax.swing.JLabel();
-        PaymentTypeLabel = new javax.swing.JLabel();
         DL = new javax.swing.JLabel();
         TL = new javax.swing.JLabel();
         TNL = new javax.swing.JLabel();
-        PTL = new javax.swing.JLabel();
         UL = new javax.swing.JLabel();
         DTL = new javax.swing.JLabel();
         DSL = new javax.swing.JLabel();
@@ -113,13 +102,13 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TimeLabel.setText("Time");
         getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 290, 20));
 
-        totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        totalAmount.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         totalAmount.setText("₱50.00");
-        getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 690, 80, -1));
+        getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 670, 140, -1));
 
         subtotallabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         subtotallabel.setText("₱50.00");
-        getContentPane().add(subtotallabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 600, 60, 20));
+        getContentPane().add(subtotallabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 580, 60, 20));
 
         platenumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         platenumber.setText("Transaction Number");
@@ -127,27 +116,23 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
 
         VatsalesLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatsalesLabel.setText("₱44.64");
-        getContentPane().add(VatsalesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 630, 60, 20));
+        getContentPane().add(VatsalesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 610, 60, 20));
 
         VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatLabel.setText("₱5.36");
-        getContentPane().add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 660, -1, 20));
+        getContentPane().add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, -1, 20));
 
         DiscountLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscountLabel.setText("₱0.00");
-        getContentPane().add(DiscountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 570, 50, -1));
+        getContentPane().add(DiscountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 550, 50, -1));
 
         DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscTypeLabel.setText("None");
-        getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, -1, -1));
+        getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, -1, -1));
 
         unitcostlabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         unitcostlabel.setText("₱50.00");
-        getContentPane().add(unitcostlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 60, 20));
-
-        PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        PaymentTypeLabel.setText("Payment Type");
-        getContentPane().add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, -1, 20));
+        getContentPane().add(unitcostlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 490, 60, 20));
 
         DL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DL.setText("Date:");
@@ -161,37 +146,33 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         TNL.setText("Plate Number:");
         getContentPane().add(TNL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 150, 20));
 
-        PTL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        PTL.setText("Payment Type");
-        getContentPane().add(PTL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 260, 20));
-
         UL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         UL.setText("Unit Cost/Price ");
-        getContentPane().add(UL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, 300, 20));
+        getContentPane().add(UL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 300, 20));
 
         DTL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DTL.setText("Discount Type:");
-        getContentPane().add(DTL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 370, -1));
+        getContentPane().add(DTL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 370, -1));
 
         DSL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DSL.setText("Discount");
-        getContentPane().add(DSL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 570, 350, 20));
+        getContentPane().add(DSL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 550, 350, 20));
 
         SL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         SL.setText("Subtotal");
-        getContentPane().add(SL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 290, 20));
+        getContentPane().add(SL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 290, 20));
 
         VSL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VSL.setText("VAT Sales");
-        getContentPane().add(VSL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 630, 310, 20));
+        getContentPane().add(VSL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 610, 310, 20));
 
         VAL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VAL.setText("VAT (12%)");
-        getContentPane().add(VAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 660, 330, 20));
+        getContentPane().add(VAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 640, 330, 20));
 
         TAL.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         TAL.setText("Total Amount:");
-        getContentPane().add(TAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 690, 300, -1));
+        getContentPane().add(TAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 670, 300, -1));
 
         TNL1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         TNL1.setText("Transaction Number:");
@@ -209,7 +190,6 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PRINTTICKETActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRINTTICKETActionPerformed
-                
     PDFticket pdf = new PDFticket();
 
     // Pass the values from P13_QN_TICKET to PDFticket
@@ -218,7 +198,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     pdf.transactionNumber.setText(this.transactionNumber.getText());
     pdf.DateLabel.setText(this.DateLabel.getText());
     pdf.TimeLabel.setText(this.TimeLabel.getText());
-    pdf.PaymentTypeLabel.setText(this.PaymentTypeLabel.getText());
+    
 
      // --- Save to text file database ---
      try {
@@ -240,8 +220,7 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
         QN_panel qnPanel = QN_panel.getInstance();
         qnPanel.loadTicketsFromFile(); // refresh stacked labels
         
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch (IOException e) {
         JOptionPane.showMessageDialog(this, "Error saving ticket data!");
     }
 
@@ -252,73 +231,68 @@ public class P13_QN_TICKET extends javax.swing.JFrame {
     p14.setVisible(true);
     }//GEN-LAST:event_PRINTTICKETActionPerformed
 
-    
-      
     // Load counter for the current year from QN_TransactionCounter.txt
-private int loadYearlyCounter() {
-    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
-    int counter = 0;
-    File file = new File("src/DATABASE/QN_TransactionCounter.txt");
+    private int loadYearlyCounter() {
+        int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+        int counter = 0;
+        File file = new File("src/DATABASE/QN_TransactionCounter.txt");
 
-    if (file.exists()) {
-        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith(currentYear + "=")) {
-                    counter = Integer.parseInt(line.split("=")[1]);
-                    break;
+        if (file.exists()) {
+            try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(currentYear + "=")) {
+                        counter = Integer.parseInt(line.split("=")[1]);
+                        break;
+                    }
                 }
+            } catch (Exception e) {
             }
+        }
+        return counter;
+    }
+
+    // Save/update the counter for the current year
+    private void saveYearlyCounter(int counter) {
+        int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+        File file = new File("src/DATABASE/QN_TransactionCounter.txt");
+        StringBuilder content = new StringBuilder();
+        boolean updated = false;
+
+        if (file.exists()) {
+            try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(currentYear + "=")) {
+                        content.append(currentYear).append("=").append(counter).append("\n");
+                        updated = true;
+                    } else {
+                        content.append(line).append("\n");
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }
+
+        if (!updated) {
+            content.append(currentYear).append("=").append(counter).append("\n");
+        }
+
+        try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(file))) {
+            writer.write(content.toString());
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
-    return counter;
-}
 
-// Save/update the counter for the current year
-private void saveYearlyCounter(int counter) {
-    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
-    File file = new File("src/DATABASE/QN_TransactionCounter.txt");
-    StringBuilder content = new StringBuilder();
-    boolean updated = false;
+    // Generate a transaction number with persistent yearly counter
+    private String generateTransactionNumber() {
+        int counter = loadYearlyCounter();
+        counter++;
+        saveYearlyCounter(counter);
 
-    if (file.exists()) {
-        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith(currentYear + "=")) {
-                    content.append(currentYear).append("=").append(counter).append("\n");
-                    updated = true;
-                } else {
-                    content.append(line).append("\n");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        return String.format("Queue-%s-%04d", date, counter); 
     }
-
-    if (!updated) {
-        content.append(currentYear).append("=").append(counter).append("\n");
-    }
-
-    try (java.io.BufferedWriter writer = new java.io.BufferedWriter(new java.io.FileWriter(file))) {
-        writer.write(content.toString());
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-
-// Generate a transaction number with persistent yearly counter
-private String generateTransactionNumber() {
-    int counter = loadYearlyCounter();
-    counter++;
-    saveYearlyCounter(counter);
-
-    String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
-    return String.format("Queue-%s-%04d", date, counter); 
-}
     
   
     
@@ -326,36 +300,9 @@ private String generateTransactionNumber() {
     
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P13_QN_TICKET.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run(){ 
-               
+        
+        java.awt.EventQueue.invokeLater(() -> {
             new P13_QN_TICKET("test123").setVisible(true);
-            }
         });
     }
 
@@ -367,8 +314,6 @@ private String generateTransactionNumber() {
     private javax.swing.JLabel DiscTypeLabel;
     private javax.swing.JLabel DiscountLabel;
     private javax.swing.JButton PRINTTICKET;
-    private javax.swing.JLabel PTL;
-    private javax.swing.JLabel PaymentTypeLabel;
     private javax.swing.JLabel SL;
     private javax.swing.JLabel TAL;
     private javax.swing.JLabel TL;

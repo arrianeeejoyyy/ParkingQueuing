@@ -2,9 +2,9 @@
 package parkingsystem;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import javax.swing.Timer;
-import parkingsystem.PlateNumberHolder;
+
 
 public class P09_INSERTCARD extends javax.swing.JFrame {
 
@@ -15,15 +15,14 @@ public class P09_INSERTCARD extends javax.swing.JFrame {
          timer.setRepeats(false); // run only once
         timer.start();
     }
-Timer timer = new Timer(5000, new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
+    
+    //timer of the panel
+    Timer timer = new Timer(5000, (ActionEvent e) -> {
         setVisible(false);
         P10_RECEIPT receipt = new P10_RECEIPT();
         receipt.setPlateNumber(PlateNumberHolder.getPlateNumber());
         receipt.setVisible(true);
-    }
-});
+    });
 
 public void setHoldPlate(String plate) {
     holdplate.setText(plate); // holdplate is your JLabel
@@ -53,10 +52,8 @@ public void setHoldPlate(String plate) {
   
     public static void main(String args[]) {
        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P09_INSERTCARD().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P09_INSERTCARD().setVisible(true);
         });
     }
 

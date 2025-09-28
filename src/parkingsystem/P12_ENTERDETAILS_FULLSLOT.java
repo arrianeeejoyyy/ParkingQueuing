@@ -1,18 +1,12 @@
-
 package parkingsystem;
-
 
 import javax.swing.JOptionPane;
 
-
 public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
 
-   
     public P12_ENTERDETAILS_FULLSLOT() {
         initComponents();
-        
-      
-        
+         
       PlateNumber.addKeyListener(new java.awt.event.KeyAdapter() {
         @Override
         public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -259,13 +253,11 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
             bw.close();
             fw.close();
         } catch (java.io.IOException e) {
-            e.printStackTrace();
         }
 
         // Show the ticket frame
         this.setVisible(false);
         new P13_QN_TICKET(plate).setVisible(true);
-
     }//GEN-LAST:event_confirmActionPerformed
 
     private void PlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlateNumberActionPerformed
@@ -280,7 +272,7 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     }//GEN-LAST:event_PlateNumberActionPerformed
 
     private void phoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumberActionPerformed
-       
+
     }//GEN-LAST:event_phoneNumberActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -316,10 +308,8 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P12_ENTERDETAILS_FULLSLOT().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P12_ENTERDETAILS_FULLSLOT().setVisible(true);
         });
     }
 
@@ -333,7 +323,4 @@ public class P12_ENTERDETAILS_FULLSLOT extends javax.swing.JFrame {
     private javax.swing.JTextField phoneNumber;
     // End of variables declaration//GEN-END:variables
 
-    private String generateTicketCode() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

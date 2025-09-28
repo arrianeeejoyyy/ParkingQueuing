@@ -1,4 +1,3 @@
-
 package parkingsystem;
 
 import java.io.BufferedReader;
@@ -6,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -13,17 +13,18 @@ import java.util.regex.Pattern;
 import javax.sound.sampled.*;
 
 
-public class textmessage extends javax.swing.JFrame {
+public final class textmessage extends javax.swing.JFrame {
 
    private String currentTicket; // holds the first ticket (6 digits)
    
     public textmessage() {
         initComponents();
       
-         this.currentTicket = "";
+        this.currentTicket = "";
         qn.setText("");
         
-         playNotificationSound();
+        //playsound
+        playNotificationSound();
     }
 
     
@@ -33,6 +34,8 @@ public class textmessage extends javax.swing.JFrame {
         initComponents();
         this.currentTicket = (ticketCode == null ? "" : ticketCode);
         qn.setText(this.currentTicket);
+        
+        //play sound
         playNotificationSound();
         
     }
@@ -45,8 +48,7 @@ public class textmessage extends javax.swing.JFrame {
         Clip clip = AudioSystem.getClip();
         clip.open(audioIn);
         clip.start();
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
     }
 }
     
@@ -148,7 +150,7 @@ public class textmessage extends javax.swing.JFrame {
         }
 
         // Refresh QN_panel labels from file
-        try { QN_panel.getInstance().loadTicketsFromFile(); } catch (Exception ex) { ex.printStackTrace(); }
+        try { QN_panel.getInstance().loadTicketsFromFile(); } catch (Exception ex) {}
 
         if (!tickets.isEmpty()) {
             playNotificationSound();
@@ -164,8 +166,7 @@ public class textmessage extends javax.swing.JFrame {
         QN_panel.getInstance().loadNextTicketField();
         
         
-    } catch (Exception ex) {
-        ex.printStackTrace();
+    } catch (IOException ex) {
         this.dispose();
     }
     }//GEN-LAST:event_cancelActionPerformed
@@ -174,40 +175,11 @@ public class textmessage extends javax.swing.JFrame {
         this.setVisible(false);
             this.dispose();
     }//GEN-LAST:event_confirmActionPerformed
-
-   
-    
-    
-    
+  
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(textmessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(textmessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(textmessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(textmessage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new textmessage().setVisible(true);
-            }
+        
+        java.awt.EventQueue.invokeLater(() -> {
+            new textmessage().setVisible(true);
         });
     }
 

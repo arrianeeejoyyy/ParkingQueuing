@@ -1,4 +1,3 @@
-
 package parkingsystem;
 
 import java.io.BufferedWriter;
@@ -8,15 +7,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-import org.w3c.dom.css.Counter;
 
 
-public class P02_IN_OUT extends javax.swing.JFrame {
+public final class P02_IN_OUT extends javax.swing.JFrame {
 
   public static int Counter = 0;
-    public static int counterServe = 0;
-
-  
+  public static int counterServe = 0;
+ 
     public P02_IN_OUT() {
         initComponents();
         
@@ -36,7 +33,6 @@ public class P02_IN_OUT extends javax.swing.JFrame {
             scanner.close();
         }
     } catch (IOException e) {
-        e.printStackTrace();
     }
     return counter;
 }
@@ -54,7 +50,6 @@ public class P02_IN_OUT extends javax.swing.JFrame {
                 scanner.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -63,7 +58,6 @@ public class P02_IN_OUT extends javax.swing.JFrame {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/CounterServe.txt"))) {
             writer.write(String.valueOf(counterServe));
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -97,7 +91,6 @@ public class P02_IN_OUT extends javax.swing.JFrame {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -158,7 +151,7 @@ public class P02_IN_OUT extends javax.swing.JFrame {
 
     private void inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inActionPerformed
      // Load the counter from the file
-    int currentCounter = loadCounterFromFile();  // Load the current counter value from the file
+    int currentCounter = loadCounterFromFile();  
 
     // Check if the counter is less than or equal to 10
     if (currentCounter <= 9) {
@@ -187,7 +180,6 @@ public class P02_IN_OUT extends javax.swing.JFrame {
             scanner.close();
         }
     } catch (IOException e) {
-        e.printStackTrace();
     }
 }
 
@@ -196,43 +188,13 @@ public void saveCounter() {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Counter_P02.txt"))) {
         writer.write(String.valueOf(Counter)); // Save the counter value to the text file
     } catch (IOException e) {
-        e.printStackTrace();
     }
 }
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P02_IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P02_IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P02_IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P02_IN_OUT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new P02_IN_OUT().setVisible(true);
             }

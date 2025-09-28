@@ -1,9 +1,9 @@
 package parkingsystem;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 
+
+import javax.swing.Timer;
 
 public class P15_TY_OUT extends javax.swing.JFrame {
 
@@ -13,15 +13,11 @@ public class P15_TY_OUT extends javax.swing.JFrame {
         timer.start();
     }
 
-    Timer timer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                setVisible(false);  
-                P18_GIF_EXIT P18 = new P18_GIF_EXIT();
-                P18.setVisible(true);          
-            }
-        });
+    Timer timer = new Timer(2000, (ActionEvent e) -> {
+        setVisible(false);
+        P18_GIF_EXIT P18 = new P18_GIF_EXIT();
+        P18.setVisible(true);
+    });
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,10 +50,8 @@ public class P15_TY_OUT extends javax.swing.JFrame {
 
     public static void main(String args[]) {
   
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P15_TY_OUT().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P15_TY_OUT().setVisible(true);
         });
     }
 

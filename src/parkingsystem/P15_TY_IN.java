@@ -1,14 +1,10 @@
-
 package parkingsystem;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.Timer;
-
 
 public class P15_TY_IN extends javax.swing.JFrame {
 
-    
     public P15_TY_IN() {
         initComponents();
         
@@ -17,15 +13,12 @@ public class P15_TY_IN extends javax.swing.JFrame {
         timer.start();
     }
 
-    Timer timer = new Timer(2000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Close or hide the JFrame after 3 seconds
-                setVisible(false);   
-                P17_GIF_ENTRANCE P17 = new P17_GIF_ENTRANCE();
-                P17.setVisible(true);          
-            }
-        });
+    Timer timer = new Timer(2000, (ActionEvent e) -> {
+        // Close or hide the JFrame after 3 seconds
+        setVisible(false);
+        P17_GIF_ENTRANCE P17 = new P17_GIF_ENTRANCE();
+        P17.setVisible(true);
+    });
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,13 +47,10 @@ public class P15_TY_IN extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
     public static void main(String args[]) {
        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P15_TY_IN().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P15_TY_IN().setVisible(true);
         });
     }
 

@@ -1,27 +1,22 @@
 package parkingsystem;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import javax.swing.*;
+
 public class P17_GIF_ENTRANCE extends javax.swing.JFrame {
 
-  
     public P17_GIF_ENTRANCE() {
-        initComponents();
-         
+        initComponents();  
         timer.setRepeats(false); 
         timer.start();
     }
 
-     Timer timer = new Timer(5000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                setVisible(false);   
-                P01_START P01 = new P01_START();  
-                P01.setVisible(true);
-            }
-        });
+     Timer timer = new Timer(5000, (ActionEvent e) -> {
+         setVisible(false);
+         P01_START P01 = new P01_START();
+         P01.setVisible(true);
+    });
         
     
     
@@ -42,13 +37,10 @@ public class P17_GIF_ENTRANCE extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
     public static void main(String args[]) {
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P17_GIF_ENTRANCE().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P17_GIF_ENTRANCE().setVisible(true);
         });
     }
 

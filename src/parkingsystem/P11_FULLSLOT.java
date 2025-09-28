@@ -48,30 +48,23 @@ public class P11_FULLSLOT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-         P12_ENTERDETAILS_FULLSLOT P12 = new P12_ENTERDETAILS_FULLSLOT();
-        P12.setVisible(true);
-        QN_panel.getInstance().setVisible(true);
-        this.setVisible(false);
-
+    P12_ENTERDETAILS_FULLSLOT P12 = new P12_ENTERDETAILS_FULLSLOT();
+    P12.setVisible(true);
+    QN_panel.getInstance().setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        P18_GIF_EXIT P18 = new P18_GIF_EXIT();
-        P18.setVisible(true);
-        
-
-        this.setVisible(false);
+    P18_GIF_EXIT P18 = new P18_GIF_EXIT();
+    P18.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
     public static void main(String args[]) {
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P11_FULLSLOT().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P11_FULLSLOT().setVisible(true);
         });
     }
 

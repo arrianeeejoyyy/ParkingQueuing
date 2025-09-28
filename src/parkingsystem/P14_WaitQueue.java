@@ -1,15 +1,11 @@
-
 package parkingsystem;
 
-
 public class P14_WaitQueue extends javax.swing.JFrame {
-
-    
+  
     public P14_WaitQueue() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,16 +39,12 @@ public class P14_WaitQueue extends javax.swing.JFrame {
         P15_TY_IN out = new P15_TY_IN();
         out.setVisible(true);
         this.setVisible(false);
-      
     }//GEN-LAST:event_jButton1ActionPerformed
 
-  
     public static void main(String args[]) {
     
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P14_WaitQueue().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P14_WaitQueue().setVisible(true);
         });
     }
     

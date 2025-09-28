@@ -1,7 +1,4 @@
-
 package parkingsystem;
-
-
 
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -16,16 +13,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
-import static parkingsystem.QN_panel.nextTicketField;
 
 public class P16_OUT extends javax.swing.JFrame {
-
-     private P03_SELECTPARK selectParkPanel; // reference to the existing P03 panel
-    private P03_SELECTPARK panel;
      
-    public P16_OUT() {
+        public P16_OUT() {
         initComponents();
-        this.selectParkPanel = panel;
         
         
         
@@ -49,11 +41,9 @@ public class P16_OUT extends javax.swing.JFrame {
     }
 
     public static boolean releaseSlot(String slot, String code) {
-        if (occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code)) {
-//            occupiedSlots.remove(slot); 
-            return true; 
-        }
-        return false; 
+         // occupiedSlots.remove(slot);
+         
+        return occupiedSlots.containsKey(slot) && occupiedSlots.get(slot).equals(code); 
     }
     
     @SuppressWarnings("unchecked")
@@ -245,7 +235,7 @@ public class P16_OUT extends javax.swing.JFrame {
                     }
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error in queue system: " + e.getMessage());
         }
 
@@ -264,23 +254,20 @@ public class P16_OUT extends javax.swing.JFrame {
 
     private void RECEIPTCODEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RECEIPTCODEKeyTyped
     char c = evt.getKeyChar();
-
     if (!Character.isDigit(c)) {
     evt.consume(); 
         }
-   
     if (RECEIPTCODE.getText().length() >= 6) {
     evt.consume(); 
-    }//GEN-LAST:event_RECEIPTCODEKeyTyped
     
     }
+    }//GEN-LAST:event_RECEIPTCODEKeyTyped
+    
    
     public static void main(String args[]) {
        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P16_OUT().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P16_OUT().setVisible(true);
         });
     }
 

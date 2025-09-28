@@ -5,15 +5,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 
-public class QN_panel extends javax.swing.JFrame {
+public final class QN_panel extends javax.swing.JFrame {
     
-     private static QN_panel instance;
+    private static QN_panel instance;
 
     private javax.swing.JLabel[] ticketLabels; // Array to hold ticket labels
     
@@ -21,10 +20,10 @@ public class QN_panel extends javax.swing.JFrame {
         initComponents();
                                                                 
      // Initialize stack labels (example: 5 labels)
-        ticketLabels = new javax.swing.JLabel[]{one, two, three, four, five,six,seven, eight, nine,ten, eleven,twelve,thirteen, fourteen};
+     ticketLabels = new javax.swing.JLabel[]{one, two, three, four, five,six,seven, eight, nine,ten, eleven,twelve,thirteen, fourteen};
 
         // Load saved tickets into stack labels
-    loadTicketsFromFile();
+        loadTicketsFromFile();
 
     }
 
@@ -109,8 +108,7 @@ public class QN_panel extends javax.swing.JFrame {
         for (String s : tickets) codesOnly.add(s.split("\\|")[0].trim());
         updateStackLabels(codesOnly);
 
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch (IOException e) {
     }
 }
     
@@ -138,8 +136,7 @@ public class QN_panel extends javax.swing.JFrame {
 
         return (topTicket != null) ? topTicket.split("\\|")[0].trim() : null;
 
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch (IOException e) {
         return null;
     }
 }
@@ -156,18 +153,6 @@ public class QN_panel extends javax.swing.JFrame {
         }
     }
 }
-      
-        // Save top ticket
-    private void saveNextTicketField() {
-        try {
-            File file = new File("src/DATABASE/NEXTTOSERVE.txt");
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
-            bw.write(nextTicketField.getText());
-            bw.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     // Load tickets on startup
    public void loadTicketsFromFile() {
@@ -189,7 +174,6 @@ public class QN_panel extends javax.swing.JFrame {
         updateStackLabels(tickets);
 
     } catch (Exception e) {
-        e.printStackTrace();
     }
 }
 
@@ -236,8 +220,7 @@ public class QN_panel extends javax.swing.JFrame {
         }
         ticketLabels[ticketLabels.length-1].setText("");
 
-    } catch(Exception e) {
-        e.printStackTrace();
+    } catch(IOException e) {
     }
 }
    
@@ -261,8 +244,7 @@ public void loadNextTicketField() {
                 nextTicketField.setText(""); // clear if empty
             }
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+    } catch (IOException e) {
         nextTicketField.setText(""); // safe fallback
     }
 }
@@ -378,10 +360,8 @@ public void loadNextTicketField() {
   
     public static void main(String args[]) {
        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QN_panel().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new QN_panel().setVisible(true);
         });
     }
 

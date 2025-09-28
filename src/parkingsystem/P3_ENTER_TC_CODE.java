@@ -1,4 +1,3 @@
-
 package parkingsystem;
 
 import java.io.BufferedReader;
@@ -11,7 +10,6 @@ import javax.swing.JOptionPane;
 
 public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
 
-    
     public P3_ENTER_TC_CODE() {
         initComponents();
         
@@ -101,13 +99,13 @@ public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader("src/DATABASE/QN_ticket.txt"))) {
-            String firstLine = reader.readLine(); // ✅ only check the very first line
+            String firstLine = reader.readLine(); // only check the very first line
 
             if (firstLine != null && firstLine.length() >= 6) {
-                String fileCode = firstLine.substring(0, 6).trim(); // ✅ first 6 characters only
+                String fileCode = firstLine.substring(0, 6).trim(); //  first 6 characters only
 
                 if (enteredCode.equals(fileCode)) {
-                    // ✅ Correct code → proceed to plate number entry
+                    //  Correct code → proceed to plate number entry
 
                     // Clear NEXTTOSERVE.txt
                     try (BufferedWriter bw = new BufferedWriter(
@@ -140,34 +138,9 @@ public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
     
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P3_ENTER_TC_CODE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P3_ENTER_TC_CODE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P3_ENTER_TC_CODE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P3_ENTER_TC_CODE.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P3_ENTER_TC_CODE().setVisible(true);
-            }
+       
+        java.awt.EventQueue.invokeLater(() -> {
+            new P3_ENTER_TC_CODE().setVisible(true);
         });
     }
 

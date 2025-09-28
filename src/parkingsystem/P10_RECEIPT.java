@@ -1,4 +1,3 @@
-
 package parkingsystem;
 
 import java.awt.Color;
@@ -59,7 +58,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         Date = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
         Platenumber_receipt = new javax.swing.JLabel();
-        pl = new javax.swing.JLabel();
         unitcostlabel = new javax.swing.JLabel();
         DiscTypeLabel = new javax.swing.JLabel();
         DiscountLabel = new javax.swing.JLabel();
@@ -71,7 +69,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         transactionNumber = new javax.swing.JLabel();
         DateLabel = new javax.swing.JLabel();
         TimeLabel = new javax.swing.JLabel();
-        PaymentTypeLabel = new javax.swing.JLabel();
         ryy3 = new javax.swing.JLabel();
         ryy4 = new javax.swing.JLabel();
         ryy5 = new javax.swing.JLabel();
@@ -95,31 +92,27 @@ public class P10_RECEIPT extends javax.swing.JFrame {
 
         tn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         tn.setText("Transaction Number:");
-        getContentPane().add(tn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 196, 20));
+        getContentPane().add(tn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 190, 20));
 
         Date.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Date.setText("Date:");
-        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, 20));
+        getContentPane().add(Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 210, 20));
 
         Time.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Time.setText("Time:");
-        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 53, 20));
+        getContentPane().add(Time, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 53, 20));
 
         Platenumber_receipt.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        Platenumber_receipt.setText("Plate Number:");
-        getContentPane().add(Platenumber_receipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 150, 20));
-
-        pl.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        pl.setText("Payment Type:");
-        getContentPane().add(pl, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 142, 20));
+        Platenumber_receipt.setText("HTY-9876");
+        getContentPane().add(Platenumber_receipt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 150, 20));
 
         unitcostlabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         unitcostlabel.setText("Unit Cost/Price :");
-        getContentPane().add(unitcostlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 153, 20));
+        getContentPane().add(unitcostlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 153, 20));
 
         DiscTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscTypeLabel.setText("Discount Type:");
-        getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 520, 145, -1));
+        getContentPane().add(DiscTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 515, 145, -1));
 
         DiscountLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DiscountLabel.setText("Discount:");
@@ -127,48 +120,44 @@ public class P10_RECEIPT extends javax.swing.JFrame {
 
         subtotallabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         subtotallabel.setText("Subtotal:");
-        getContentPane().add(subtotallabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 560, 94, 20));
+        getContentPane().add(subtotallabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 565, 94, 20));
 
         VatsalesLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatsalesLabel.setText("VAT Sales:");
-        getContentPane().add(VatsalesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 580, 118, 20));
+        getContentPane().add(VatsalesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 118, 20));
 
         VatLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         VatLabel.setText("VAT:");
-        getContentPane().add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 600, 59, -1));
+        getContentPane().add(VatLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 615, 59, -1));
 
         totalAmount.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         totalAmount.setText("Total Amount: ");
-        getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, -1, 20));
+        getContentPane().add(totalAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 650, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("-------------------------------------------------------------------------");
         jLabel5.setToolTipText("");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 470, -1, -1));
 
         transactionNumber.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         transactionNumber.setText("number");
-        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 196, 20));
+        getContentPane().add(transactionNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 450, 196, 20));
 
         DateLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         DateLabel.setText("Date");
-        getContentPane().add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 226, 20));
+        getContentPane().add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 226, 20));
 
         TimeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         TimeLabel.setText("Tim");
-        getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 170, 20));
-
-        PaymentTypeLabel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        PaymentTypeLabel.setText("Payment Type");
-        getContentPane().add(PaymentTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, 142, 20));
+        getContentPane().add(TimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 170, 20));
 
         ryy3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy3.setText("₱5.36");
-        getContentPane().add(ryy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 600, -1, 20));
+        getContentPane().add(ryy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 615, -1, 20));
 
         ryy4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy4.setText("None");
-        getContentPane().add(ryy4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 520, -1, 20));
+        getContentPane().add(ryy4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 515, -1, 20));
 
         ryy5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy5.setText("₱0.00");
@@ -176,11 +165,11 @@ public class P10_RECEIPT extends javax.swing.JFrame {
 
         ryy6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy6.setText("₱50.00");
-        getContentPane().add(ryy6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 560, -1, 20));
+        getContentPane().add(ryy6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 565, -1, 20));
 
         ryy7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy7.setText("₱44.64");
-        getContentPane().add(ryy7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 580, -1, 20));
+        getContentPane().add(ryy7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 590, -1, 20));
 
         ryy8.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         ryy8.setText("₱50.00");
@@ -197,11 +186,11 @@ public class P10_RECEIPT extends javax.swing.JFrame {
 
         ryy9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         ryy9.setText("₱50.00");
-        getContentPane().add(ryy9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, -1, 20));
+        getContentPane().add(ryy9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, -1, 20));
 
         Time2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         Time2.setText("Plate Number:");
-        getContentPane().add(Time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 150, 20));
+        getContentPane().add(Time2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 150, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/RECEIPT.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 910));
@@ -272,7 +261,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
                     writer.newLine();
                 }
             } catch (IOException e) {
-                e.printStackTrace();
             }
 
             // Step 7: Update counterServe correctly
@@ -296,7 +284,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
             }
 
             // Step 8: Replace Ticket File
@@ -323,7 +310,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
                 scanner.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
     // Helper method to save the updated counter to the file
@@ -331,87 +317,81 @@ public class P10_RECEIPT extends javax.swing.JFrame {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/DATABASE/Counter_P02.txt"))) {
             writer.write(String.valueOf(Counter)); // Save the counter value to the text file
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
     
     // Load the counter for the current year
-private int loadYearlyCounter() {
-    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
-    int counter = 0;
+    private int loadYearlyCounter() {
+        int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+        int counter = 0;
 
-    File file = new File("src/DATABASE/TransactionCounter.txt");
-    if (file.exists()) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith(currentYear + "=")) {
-                    counter = Integer.parseInt(line.split("=")[1]);
-                    break;
+        File file = new File("src/DATABASE/TransactionCounter.txt");
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(currentYear + "=")) {
+                        counter = Integer.parseInt(line.split("=")[1]);
+                        break;
+                    }
                 }
+            } catch (IOException e) {
             }
+        }
+        return counter;
+    }
+
+    // Save/update the counter for the current year
+    private void saveYearlyCounter(int counter) {
+        int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+        File file = new File("src/DATABASE/TransactionCounter.txt");
+        StringBuilder content = new StringBuilder();
+        boolean updated = false;
+
+        // Read old content and replace if year found
+        if (file.exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith(currentYear + "=")) {
+                        content.append(currentYear).append("=").append(counter).append("\n");
+                        updated = true;
+                    } else {
+                        content.append(line).append("\n");
+                    }
+                }
+            } catch (IOException e) {
+            }
+        }
+
+        // If year not found, append new
+        if (!updated) {
+            content.append(currentYear).append("=").append(counter).append("\n");
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(content.toString());
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-    return counter;
-}
 
-// Save/update the counter for the current year
-private void saveYearlyCounter(int counter) {
-    int currentYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
-    File file = new File("src/DATABASE/TransactionCounter.txt");
-    StringBuilder content = new StringBuilder();
-    boolean updated = false;
+    // Generate transaction number with yearly counter
+    private String generateTransactionNumber() {
+        int counter = loadYearlyCounter(); // load saved counter
+        counter++; // increment
+        saveYearlyCounter(counter); // save updated value
 
-    // Read old content and replace if year found
-    if (file.exists()) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith(currentYear + "=")) {
-                    content.append(currentYear).append("=").append(counter).append("\n");
-                    updated = true;
-                } else {
-                    content.append(line).append("\n");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        return String.format("PARK-%s-%04d", date, counter);
     }
-
-    // If year not found, append new
-    if (!updated) {
-        content.append(currentYear).append("=").append(counter).append("\n");
-    }
-
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-        writer.write(content.toString());
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-}
-
-// Generate transaction number with yearly counter
-private String generateTransactionNumber() {
-    int counter = loadYearlyCounter(); // load saved counter
-    counter++; // increment
-    saveYearlyCounter(counter); // save updated value
-
-    String date = new SimpleDateFormat("yyyyMMdd").format(new Date());
-    return String.format("PARK-%s-%04d", date, counter);
-}
     
     
    
     
     public static void main(String args[]) {
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P10_RECEIPT().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P10_RECEIPT().setVisible(true);
         });
     }
 
@@ -420,8 +400,7 @@ private String generateTransactionNumber() {
     public javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DiscTypeLabel;
     private javax.swing.JLabel DiscountLabel;
-    public javax.swing.JLabel PaymentTypeLabel;
-    private javax.swing.JLabel Platenumber_receipt;
+    public javax.swing.JLabel Platenumber_receipt;
     public javax.swing.JLabel TicketCode;
     private javax.swing.JLabel Time;
     private javax.swing.JLabel Time2;
@@ -430,7 +409,6 @@ private String generateTransactionNumber() {
     private javax.swing.JLabel VatsalesLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel pl;
     private javax.swing.JButton print;
     private javax.swing.JLabel ryy3;
     private javax.swing.JLabel ryy4;

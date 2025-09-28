@@ -4,7 +4,7 @@ package parkingsystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import parkingsystem.PlateNumberHolder;
+
 
 public class P08_GIF_SCANQR extends javax.swing.JFrame {
 
@@ -51,10 +51,8 @@ public void setHoldPlate(String plate) {
    
     public static void main(String args[]) {
        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P08_GIF_SCANQR().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new P08_GIF_SCANQR().setVisible(true);
         });
     }
 
