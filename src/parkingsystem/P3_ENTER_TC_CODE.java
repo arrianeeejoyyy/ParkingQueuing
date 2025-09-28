@@ -134,6 +134,7 @@ public class P3_ENTER_TC_CODE extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error reading QN_ticket: " + e.getMessage());
             ticketCodeField.setText("");
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

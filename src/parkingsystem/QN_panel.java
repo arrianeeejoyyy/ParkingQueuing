@@ -146,8 +146,6 @@ public class QN_panel extends javax.swing.JFrame {
       
       
      private void updateStackLabels(List<String> tickets) {
-    // Keep nextTicketField empty
-    nextTicketField.setText("");
 
     // Fill the labels with all tickets (from first to last)
     for (int i = 0; i < ticketLabels.length; i++) {
@@ -268,6 +266,8 @@ public void loadNextTicketField() {
         nextTicketField.setText(""); // safe fallback
     }
 }
+
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -6,4 +6,5 @@ L03 - CSD-5678 - Occupied - RED - TicketCode:  309229
 L02 - CHF-6786 - Occupied - RED - TicketCode:  615500
 R02 - VDF-6768 - Occupied - RED - TicketCode:  228124
 R05 - XCS-6765 - Occupied - RED - TicketCode:  856867
-L01 - RYR-7757 - Occupied - RED - TicketCode:  696280
+L05 - GDF-6767 - Occupied - RED - TicketCode:  264258
+L01 - MMM-2222 - Occupied - RED - TicketCode:  296413

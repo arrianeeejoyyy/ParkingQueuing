@@ -17,14 +17,14 @@ public class P07_QR_FOR_CASHLESS extends javax.swing.JFrame {
     @Override
     public void actionPerformed(ActionEvent e) {
         setVisible(false);
-        P10_RECEIPT receipt = new P10_RECEIPT();
-        receipt.setPlateNumber(PlateNumberHolder.getPlateNumber());
-        receipt.setVisible(true);
+        P08_GIF_SCANQR p08 = new P08_GIF_SCANQR();
+        p08.setHoldPlate(holdplate.getText()); // pass plate to P08
+        p08.setVisible(true);
     }
 });
      
-     public void setHoldPlate(String plate) {
-    holdplate.setText(plate); // holdplate is your JLabel
+   public void setHoldPlate(String plate) {
+    holdplate.setText(plate); 
 }
 
     

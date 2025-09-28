@@ -304,6 +304,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
                 tempFile.renameTo(inputFile);
             }
             QN_panel.Helper.clearNextTicketField();
+            QN_panel.getInstance().loadTicketsFromFile();
     }//GEN-LAST:event_printActionPerformed
     
    public class ParkingSystemData {

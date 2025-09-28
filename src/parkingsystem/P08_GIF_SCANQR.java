@@ -20,12 +20,14 @@ Timer timer = new Timer(5000, new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         setVisible(false);
         P10_RECEIPT receipt = new P10_RECEIPT();
-        receipt.setPlateNumber(PlateNumberHolder.getPlateNumber());
+        receipt.setPlateNumber(holdplate.getText()); // pass plate to P10
         receipt.setVisible(true);
     }
 });
 
-
+public void setHoldPlate(String plate) {
+    holdplate.setText(plate);
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,4 +62,6 @@ Timer timer = new Timer(5000, new ActionListener() {
     private javax.swing.JLabel holdplate;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+   
 }
