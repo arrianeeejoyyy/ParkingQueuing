@@ -173,7 +173,7 @@ public final class textmessage extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         this.setVisible(false);
-            this.dispose();
+        this.dispose();
     }//GEN-LAST:event_confirmActionPerformed
   
     public static void main(String args[]) {

@@ -200,7 +200,7 @@ public class P10_RECEIPT extends javax.swing.JFrame {
     String slot = P03_SELECTPARK.ParkingData.selectedSlot;
     String plate = Platenumber_receipt.getText().trim();
 
-            // Step 2: Save Slot to Database
+            // Save Slot to Database
             if (slot != null) {
                 P03_SELECTPARK.ParkingData.occupiedSlots.put(slot, ticketCode);
 
@@ -217,16 +217,16 @@ public class P10_RECEIPT extends javax.swing.JFrame {
                 selectParkFrame.setSlotColor(slot, Color.RED);
             }
 
-            // Step 3: Update Counter (local counter, not serve)
+            // Update Counter (local counter, not serve)
             loadCounter();  
             Counter++;      
             saveCounter();  
 
-            // Step 4: Show Thank You Screen
+            // Show Thank You Screen
             new P15_TY_IN().setVisible(true);
             this.dispose();
 
-            // Step 5: Generate PDF
+            // Generate PDF
             PDFreceipt pdf = new PDFreceipt();
             pdf.TicketNumber.setText(this.TicketCode.getText());
             pdf.transactionNumber.setText(this.transactionNumber.getText());

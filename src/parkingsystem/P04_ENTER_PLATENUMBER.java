@@ -144,16 +144,16 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         String firstRow = br.readLine();  // only read the first row
 
         if (firstRow == null || firstRow.trim().isEmpty()) {
-            // ✅ Case 1: File is empty → allow any plate number
+            // Case 1: File is empty → allow any plate number
             allowProceed = true;
         } else {
-            // ✅ Case 2: File has data, check only the first row
+            // Case 2: File has data, check only the first row
             String[] parts = firstRow.split("\\|");
             if (parts.length == 2) {
                 String registeredPlate = parts[1].trim();  // plate from file (e.g. FGH-5654)
 
                 if (plate.equals(registeredPlate)) {
-                    allowProceed = true; // ✅ Plate matches
+                    allowProceed = true; // Plate matches
                 } else {
                     JOptionPane.showMessageDialog(this, """
                                                         The plate number entered was wrong!
@@ -203,10 +203,6 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backActionPerformed
 
-  
- 
-    
-    
     public static void main(String args[]) {
        
         java.awt.EventQueue.invokeLater(new Runnable() {

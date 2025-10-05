@@ -13,7 +13,7 @@ public class P15_TY_IN extends javax.swing.JFrame {
         timer.start();
     }
 
-    Timer timer = new Timer(2000, (ActionEvent e) -> {
+    Timer timer = new Timer(10000, (ActionEvent e) -> {
         // Close or hide the JFrame after 3 seconds
         setVisible(false);
         P17_GIF_ENTRANCE P17 = new P17_GIF_ENTRANCE();
