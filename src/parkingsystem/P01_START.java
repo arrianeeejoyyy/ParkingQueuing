@@ -9,8 +9,7 @@ public final class P01_START extends javax.swing.JFrame {
     public P01_START() {
         initComponents();
         
-        //playsound
-        playNotificationSound();
+        
     }
 
     
@@ -42,6 +41,9 @@ public final class P01_START extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+    //playsound
+    playNotificationSound();
+        
     this.setVisible(false);
     P02_IN_OUT inOutFrame = new P02_IN_OUT();
     inOutFrame.setVisible(true);

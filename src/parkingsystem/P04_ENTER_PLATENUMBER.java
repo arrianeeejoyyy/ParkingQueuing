@@ -136,6 +136,20 @@ public class P04_ENTER_PLATENUMBER extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Enter a plate number!");
         return;
     }
+    
+    // Validate plate number (3 letters + 4 digits)
+        else if (!plate.matches("[A-Z]{3}-\\d{4}")) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Please enter a valid plate number (format: ABC-1234)!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+                        
+            );
+            
+            PlateNumber.setText("");
+            return;
+        }
 
     // --- NEW: Check QN_ticket.txt file ---
     boolean allowProceed = false; 
