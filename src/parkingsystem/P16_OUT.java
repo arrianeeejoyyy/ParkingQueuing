@@ -1,6 +1,8 @@
 package parkingsystem;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -11,7 +13,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import static parkingsystem.P03_SELECTPARK.ParkingData.occupiedSlots;
 
 public class P16_OUT extends javax.swing.JFrame {
@@ -107,143 +113,254 @@ public class P16_OUT extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      String enteredCodeRaw = RECEIPTCODE.getText().trim();
 
-        if (enteredCodeRaw.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
+if (enteredCodeRaw.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please enter the Ticket Code.");
+    return;
+}
+
+// Normalize to digits only
+String enteredCode = enteredCodeRaw.replaceAll("\\D", "");
+if (enteredCode.length() != 6) {
+    JOptionPane.showMessageDialog(this, "Please enter the 6-digit Ticket Code (digits only).");
+    RECEIPTCODE.setText("");
+    return;
+}
+
+// Intheslot file (case variants)
+File slotFile = new File("src/DATABASE/Intheslot.txt");
+if (!slotFile.exists()) slotFile = new File("src/DATABASE/intheslot.txt");
+if (!slotFile.exists()) {
+    JOptionPane.showMessageDialog(this, "Ticket Number not found.");
+    RECEIPTCODE.setText("");
+    return;
+}
+
+// Read lines & find a match (look for last 6-digit group)
+List<String> allLines = new ArrayList<>();
+boolean found = false;
+String matchedSlot = null;
+String matchedLine = null; // store full line for plate verification
+Pattern sixDigitPattern = Pattern.compile("\\d{6}");
+
+try (Scanner sc = new Scanner(slotFile)) {
+    while (sc.hasNextLine()) {
+        String line = sc.nextLine();
+        allLines.add(line);
+
+        Matcher m = sixDigitPattern.matcher(line);
+        String lastMatch = null;
+        while (m.find()) lastMatch = m.group();
+
+        if (lastMatch != null && lastMatch.equals(enteredCode)) {
+            found = true;
+            matchedLine = line;
+            String[] parts = line.split(" - ");
+            if (parts.length > 0) matchedSlot = parts[0].trim();
+        }
+    }
+} catch (IOException e) {
+    JOptionPane.showMessageDialog(this, "Error reading Intheslot file: " + e.getMessage());
+    RECEIPTCODE.setText("");
+    return;
+}
+
+if (!found) {
+    JOptionPane.showMessageDialog(this, "Invalid Ticket Code. Please try again or check the receipt.");
+    RECEIPTCODE.setText("");
+    return;
+}
+
+// ===== NEW PART: Ask for plate number verification with key listener =====
+
+// Create a panel with a text field for custom input
+JPanel platePanel = new JPanel(new BorderLayout());
+JTextField plateField = new JTextField();
+plateField.setColumns(10);
+platePanel.add(new JLabel("Please enter your Plate Number (e.g. ABC-1234):"), BorderLayout.NORTH);
+platePanel.add(plateField, BorderLayout.CENTER);
+
+// Add KeyListener for plate formatting
+plateField.addKeyListener(new java.awt.event.KeyAdapter() {
+    @Override
+    public void keyTyped(java.awt.event.KeyEvent evt) {
+        char c = evt.getKeyChar();
+        String text = plateField.getText();
+
+        // Allow backspace
+        if (c == KeyEvent.VK_BACK_SPACE) {
             return;
         }
 
-        // Normalize to digits only
-        String enteredCode = enteredCodeRaw.replaceAll("\\D", "");
-        if (enteredCode.length() != 6) {
-            JOptionPane.showMessageDialog(this, "Please enter the 6-digit Ticket Code (digits only).");
-            RECEIPTCODE.setText("");
+        // Limit total length to 8 (e.g. ABC-1234)
+        if (text.length() >= 8) {
+            evt.consume();
             return;
         }
 
-        // Intheslot file (case variants)
-        File slotFile = new File("src/DATABASE/Intheslot.txt");
-        if (!slotFile.exists()) slotFile = new File("src/DATABASE/intheslot.txt");
-        if (!slotFile.exists()) {
-            JOptionPane.showMessageDialog(this, "Ticket Number not found.");
-            RECEIPTCODE.setText("");
-            return;
-        }
+        int pos = text.length();
 
-        // Read lines & find a match (look for last 6-digit group)
-        List<String> allLines = new ArrayList<>();
-        boolean found = false;
-        String matchedSlot = null;
-        Pattern sixDigitPattern = Pattern.compile("\\d{6}");
-
-        try (Scanner sc = new Scanner(slotFile)) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                allLines.add(line);
-
-                Matcher m = sixDigitPattern.matcher(line);
-                String lastMatch = null;
-                while (m.find()) lastMatch = m.group();
-
-                if (lastMatch != null && lastMatch.equals(enteredCode)) {
-                    found = true;
-                    String[] parts = line.split(" - ");
-                    if (parts.length > 0) matchedSlot = parts[0].trim();
-                }
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error reading Intheslot file: " + e.getMessage());
-            RECEIPTCODE.setText("");
-            return;
-        }
-
-        if (!found) {
-            JOptionPane.showMessageDialog(this, "Invalid Ticket Code. Please try again or check the receipt.");
-            RECEIPTCODE.setText("");
-            return;
-        }
-
-        // Remove the matched line(s)
-        List<String> keep = new ArrayList<>();
-        for (String line : allLines) {
-            Matcher m = sixDigitPattern.matcher(line);
-            String lastMatch = null;
-            while (m.find()) lastMatch = m.group();
-            if (lastMatch != null && lastMatch.equals(enteredCode)) {
-                // skip
+        if (pos < 3) {
+            // Only allow letters for first 3 characters
+            if (!Character.isLetter(c)) {
+                evt.consume();
             } else {
-                keep.add(line);
+                evt.setKeyChar(Character.toUpperCase(c));
+            }
+        } else if (pos == 3) {
+            // Automatically insert dash, but allow deleting it later
+            if (!text.endsWith("-")) {
+                plateField.setText(text + "-");
+            }
+            // Accept next input only if it's a digit
+            if (Character.isDigit(c)) {
+                plateField.setText(plateField.getText() + c);
+            }
+            evt.consume();
+        } else {
+            // After the dash, only digits allowed
+            if (!Character.isDigit(c)) {
+                evt.consume();
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(java.awt.event.KeyEvent evt) {
+        // Enable deleting the dash when backspacing
+        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            String text = plateField.getText();
+            int len = text.length();
+            if (len > 0) {
+                // Manually remove last character (including '-')
+                plateField.setText(text.substring(0, len - 1));
+            }
+            evt.consume(); // prevent default beep
+        }
+    }
+});
+
+// Autofocus the text field when the dialog opens
+SwingUtilities.invokeLater(() -> plateField.requestFocusInWindow());
+
+// Show dialog
+int result = JOptionPane.showConfirmDialog(
+        this,
+        platePanel,
+        "Plate Number Verification",
+        JOptionPane.OK_CANCEL_OPTION,
+        JOptionPane.PLAIN_MESSAGE
+);
+
+if (result != JOptionPane.OK_OPTION) return; // user canceled
+
+String enteredPlate = plateField.getText().trim().toUpperCase();
+
+if (enteredPlate.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Plate number cannot be empty.");
+    RECEIPTCODE.setText("");
+    return;
+}
+
+// Extract the plate number from the matched line
+String filePlate = null;
+try {
+    String[] parts = matchedLine.split(" - ");
+    if (parts.length >= 2) {
+        filePlate = parts[1].trim().toUpperCase();
+    }
+} catch (Exception ex) {
+    filePlate = null;
+}
+
+if (filePlate == null || !filePlate.equals(enteredPlate)) {
+    JOptionPane.showMessageDialog(this, "Plate number does not match our record. Please try again.");
+    RECEIPTCODE.setText("");
+    return;
+}
+
+// ===== If both ticket code and plate number are valid =====
+
+// Remove the matched line(s)
+List<String> keep = new ArrayList<>();
+for (String line : allLines) {
+    Matcher m = sixDigitPattern.matcher(line);
+    String lastMatch = null;
+    while (m.find()) lastMatch = m.group();
+    if (lastMatch != null && lastMatch.equals(enteredCode)) {
+        // skip
+    } else {
+        keep.add(line);
+    }
+}
+
+try (PrintWriter pw = new PrintWriter(slotFile)) {
+    for (String l : keep) pw.println(l);
+} catch (IOException e) {
+    JOptionPane.showMessageDialog(this, "Error updating Intheslot file: " + e.getMessage());
+    return;
+}
+
+// Free slot in memory + update UI color
+if (matchedSlot != null && !matchedSlot.isEmpty()) {
+    occupiedSlots.remove(matchedSlot);
+    try {
+        P03_SELECTPARK selectParkFrame = new P03_SELECTPARK();
+        selectParkFrame.setSlotColor(matchedSlot, Color.GREEN);
+    } catch (Exception ex) { /* best-effort - ignore */ }
+}
+
+// Decrement Counter_P02.txt safely
+File counterFile = new File("src/DATABASE/Counter_P02.txt");
+int count = 0;
+if (counterFile.exists()) {
+    try (Scanner sc = new Scanner(counterFile)) {
+        if (sc.hasNextInt()) count = sc.nextInt();
+    } catch (IOException e) {}
+}
+if (count > 0) count--;
+try (PrintWriter pw = new PrintWriter(counterFile)) {
+    pw.println(count);
+} catch (IOException e) {}
+
+// NEW PART: if QN_ticket.txt exists & has rows => open textmessage with first 6-digit found
+try {
+    File qnFile = new File("src/DATABASE/QN_ticket.txt");
+    if (qnFile.exists()) {
+        List<String> tickets = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(qnFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) tickets.add(line.trim());
             }
         }
 
-        try (PrintWriter pw = new PrintWriter(slotFile)) {
-            for (String l : keep) pw.println(l);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error updating Intheslot file: " + e.getMessage());
-            return;
-        }
-
-        // Free slot in memory + update UI color
-        if (matchedSlot != null && !matchedSlot.isEmpty()) {
-            occupiedSlots.remove(matchedSlot);
-            try {
-                P03_SELECTPARK selectParkFrame = new P03_SELECTPARK();
-                selectParkFrame.setSlotColor(matchedSlot, Color.GREEN);
-            } catch (Exception ex) { /* best-effort - ignore */ }
-        }
-
-        // Decrement Counter_P02.txt safely
-        File counterFile = new File("src/DATABASE/Counter_P02.txt");
-        int count = 0;
-        if (counterFile.exists()) {
-            try (Scanner sc = new Scanner(counterFile)) {
-                if (sc.hasNextInt()) count = sc.nextInt();
-            } catch (IOException e) {}
-        }
-        if (count > 0) count--;
-        try (PrintWriter pw = new PrintWriter(counterFile)) {
-            pw.println(count);
-        } catch (IOException e) {}
-
-        // NEW PART: if QN_ticket.txt exists & has rows => open textmessage with first 6-digit found
-        try {
-            File qnFile = new File("src/DATABASE/QN_ticket.txt");
-            if (qnFile.exists()) {
-                List<String> tickets = new ArrayList<>();
-                try (BufferedReader br = new BufferedReader(new FileReader(qnFile))) {
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        if (!line.trim().isEmpty()) tickets.add(line.trim());
-                    }
-                }
-
-                if (!tickets.isEmpty()) {
-                    String firstTicketLine = tickets.get(0);
-                    // Try to extract a 6-digit group (preferred) otherwise a safe substring if possible
-                    Pattern ticketPattern = Pattern.compile("\\d{6}");
-                    Matcher mm = ticketPattern.matcher(firstTicketLine);
-                    String ticketCode = null;
-                    if (mm.find()) {
-                        ticketCode = mm.group();
-                    } else if (firstTicketLine.length() >= 6) {
-                        ticketCode = firstTicketLine.substring(0, 6);
-                    }
-
-                    if (ticketCode != null && ticketCode.length() == 6) {
-                        // Show the text message dialog with that 6-digit code
-                        textmessage tm = new textmessage(ticketCode);
-                        tm.setVisible(true);
-                    }
-                }
+        if (!tickets.isEmpty()) {
+            String firstTicketLine = tickets.get(0);
+            Pattern ticketPattern = Pattern.compile("\\d{6}");
+            Matcher mm = ticketPattern.matcher(firstTicketLine);
+            String ticketCode = null;
+            if (mm.find()) {
+                ticketCode = mm.group();
+            } else if (firstTicketLine.length() >= 6) {
+                ticketCode = firstTicketLine.substring(0, 6);
             }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error in queue system: " + e.getMessage());
-        }
 
-        QN_panel.getInstance().loadNextTicketField();
-        // Thank you panel (existing behavior)
-        P15_TY_OUT P15 = new P15_TY_OUT();
-        P15.setVisible(true);
-        this.dispose();
+            if (ticketCode != null && ticketCode.length() == 6) {
+                textmessage tm = new textmessage(ticketCode);
+                tm.setVisible(true);
+            }
+        }
+    }
+} catch (IOException e) {
+    JOptionPane.showMessageDialog(this, "Error in queue system: " + e.getMessage());
+}
+
+QN_panel.getInstance().loadNextTicketField();
+
+// Thank you panel (existing behavior)
+P15_TY_OUT P15 = new P15_TY_OUT();
+P15.setVisible(true);
+this.dispose();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
