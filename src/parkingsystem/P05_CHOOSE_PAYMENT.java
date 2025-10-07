@@ -81,7 +81,7 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
 
     private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHLESSActionPerformed
     String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
-    P07_QR_FOR_CASHLESS p07 = new P07_QR_FOR_CASHLESS();
+    e_payment p07 = new e_payment();
     p07.setHoldPlate(plate);  // pass value
     p07.setVisible(true);
     this.setVisible(false);
