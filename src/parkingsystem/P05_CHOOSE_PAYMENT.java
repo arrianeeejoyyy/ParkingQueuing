@@ -1,6 +1,8 @@
 
 package parkingsystem;
 
+import javax.swing.JOptionPane;
+
 public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
 
     
@@ -64,19 +66,41 @@ public class P05_CHOOSE_PAYMENT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CASHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHActionPerformed
+    int confirm = JOptionPane.showConfirmDialog(
+    this,
+    "Are you sure you want to pay in cash?",
+    "Payment Confirmation",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
     PlateNumberHolder.setPlateNumber(holdplate.getText());
     P06_GIf_INSERTMONEY p6 = new P06_GIf_INSERTMONEY();
     p6.setHoldPlate(holdplate.getText());
     p6.setVisible(true);
     this.setVisible(false);
+} else {
+    JOptionPane.showMessageDialog(this, "Payment cancelled.");
+}
     }//GEN-LAST:event_CASHActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
+   int confirm = JOptionPane.showConfirmDialog(
+    this,
+    "Are you sure you want to pay through card?",
+    "Payment Confirmation",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
     PlateNumberHolder.setPlateNumber(holdplate.getText());
     P09_INSERTCARD p6 = new P09_INSERTCARD();
     p6.setHoldPlate(holdplate.getText());
     p6.setVisible(true);
-    this.setVisible(false); 
+    this.setVisible(false);
+} else {
+    JOptionPane.showMessageDialog(this, "Payment cancelled.");
+}
     }//GEN-LAST:event_CARDActionPerformed
 
     private void CASHLESSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CASHLESSActionPerformed

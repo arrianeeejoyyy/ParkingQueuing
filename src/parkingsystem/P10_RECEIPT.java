@@ -233,7 +233,6 @@ public class P10_RECEIPT extends javax.swing.JFrame {
             pdf.DateLabel.setText(this.DateLabel.getText());
             pdf.platenumber.setText(this.Platenumber_receipt.getText());
             pdf.TimeLabel.setText(this.TimeLabel.getText());
-            pdf.setVisible(true);  
             pdf.savePanelImageAsPDF();
 
             this.setVisible(false);

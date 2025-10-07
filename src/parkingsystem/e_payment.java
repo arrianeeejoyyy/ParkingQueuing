@@ -1,6 +1,8 @@
 
 package parkingsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Airi
@@ -31,7 +33,6 @@ public class e_payment extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1400, 900));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         gcash.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -72,6 +73,11 @@ public class e_payment extends javax.swing.JFrame {
 
         back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         back.setContentAreaFilled(false);
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 130, 130));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MAIN_UI/e payment.png"))); // NOI18N
@@ -85,35 +91,89 @@ public class e_payment extends javax.swing.JFrame {
 
     private void gcashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gcashActionPerformed
     String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
+
+int confirm = JOptionPane.showConfirmDialog(
+    this,
+    "Are you sure you want to pay through GCash?",
+    "Payment Confirmation",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
     gcash p07 = new gcash();
     p07.setHoldPlate(plate);  // pass value
     p07.setVisible(true);
     this.setVisible(false);
+} else {
+    JOptionPane.showMessageDialog(this, "Payment cancelled.");
+}
     }//GEN-LAST:event_gcashActionPerformed
 
     private void mayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mayaActionPerformed
-     String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
+   String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
+
+int confirm = JOptionPane.showConfirmDialog(
+    this,
+    "Are you sure you want to pay through Maya?",
+    "Payment Confirmation",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
     maya p07 = new maya();
     p07.setHoldPlate(plate);  // pass value
     p07.setVisible(true);
     this.setVisible(false);
+} else {
+    JOptionPane.showMessageDialog(this, "Payment cancelled.");
+}
     }//GEN-LAST:event_mayaActionPerformed
 
     private void gtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gtActionPerformed
-      String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
+    String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
+
+int confirm = JOptionPane.showConfirmDialog(
+    this,
+    "Are you sure you want to pay through GoTyme?",
+    "Payment Confirmation",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
     gotyme p07 = new gotyme();
     p07.setHoldPlate(plate);  // pass value
     p07.setVisible(true);
     this.setVisible(false);
+} else {
+    JOptionPane.showMessageDialog(this, "Payment cancelled.");
+}
     }//GEN-LAST:event_gtActionPerformed
 
     private void bpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpiActionPerformed
     String plate = PlateNumberHolder.getPlateNumber(); // get plate from holder
+
+int confirm = JOptionPane.showConfirmDialog(
+    this,
+    "Are you sure you want to pay through BPI?",
+    "Payment Confirmation",
+    JOptionPane.YES_NO_OPTION
+);
+
+if (confirm == JOptionPane.YES_OPTION) {
     bpi p07 = new bpi();
     p07.setHoldPlate(plate);  // pass value
     p07.setVisible(true);
     this.setVisible(false);
+} else {
+    JOptionPane.showMessageDialog(this, "Payment cancelled.");
+}
     }//GEN-LAST:event_bpiActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+     this.setVisible(false);
+     P05_CHOOSE_PAYMENT P05 = new P05_CHOOSE_PAYMENT();
+     P05.setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
