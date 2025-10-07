@@ -5,4 +5,3 @@ L03 - ABC-1234 - Occupied - RED - TicketCode:  101120
 L02 - AVG-5464 - Occupied - RED - TicketCode:  583460
 L01 - SDG-2365 - Occupied - RED - TicketCode:  865858
 L04 - EWE-7845 - Occupied - RED - TicketCode:  489529
-
